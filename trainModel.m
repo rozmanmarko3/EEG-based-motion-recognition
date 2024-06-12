@@ -1,7 +1,7 @@
 clear all;
 
 name = 'MMDS data';
-region = 'full GC and 13-20Hz CPCC';
+region = 'CPCC 0.5-4Hz and 13-20Hz';
 epoch = '0s-4s';
 
 resultsDirectory = './results';
