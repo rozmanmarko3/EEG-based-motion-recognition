@@ -1,6 +1,6 @@
 function [ds_data,ds_markers] = downSample(data,markers)
     arguments
-        data (:,:,:) double
+        data (:,:,:,:) double
         markers (1,:) double
     end
 
@@ -17,14 +17,14 @@ function [ds_data,ds_markers] = downSample(data,markers)
     
         idx = find(markers == unique_values(i));
         selected_idx = idx(randperm(length(idx), min_count)); 
-        ds_data = cat(3, ds_data, data(:, :, selected_idx));
+        ds_data = cat(4, ds_data, data(:, :, :, selected_idx));
         ds_markers = [ds_markers, markers(selected_idx)];
     
     end
     
     %permutate
     perm = randperm(length(ds_markers));
-    ds_data = ds_data(:, :, perm);
+    ds_data = ds_data(:, :, :, perm);
     ds_markers = ds_markers(perm);
 
 

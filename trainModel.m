@@ -1,7 +1,7 @@
 clear all;
 
 name = 'MMDS data';
-region = '13-20Hz';
+region = 'full GC and 13-20Hz CPCC';
 epoch = '0s-4s';
 
 resultsDirectory = './results';
@@ -22,12 +22,10 @@ diary(fullfile(resultsDirectory, diaryFile))
 %load data
 %data -> MMDS data
 %markers -> markers for MMDS data
-%my_data -> my recordings
-%my_markers -> markers for my recordings
 load(dataMatrixName);
 
 layers = [
-    imageInputLayer([19,19,1])
+    imageInputLayer([19,19,2])
     fullyConnectedLayer(100)
     leakyReluLayer %geluLayer %leakyReluLayer
     dropoutLayer(0.5)
@@ -44,12 +42,6 @@ netStarter = dlnetwork(layers);
 
 saveas(confusionFigure, fullfile(resultsDirectory,confusionPlotName))
 save(fullfile(resultsDirectory,netName), 'netTrained')
-
-%additionaly train on my data
-[accuracy, netRetrained, confusionFigure ] = foldEvaluation(my_data,my_markers,netTrained);
-
-saveas(confusionFigure, fullfile(resultsDirectory,confusionPlotNameRetrained))
-save(fullfile(resultsDirectory,netNameRetrained), 'netRetrained')
 
 print('done')
 

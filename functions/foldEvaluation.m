@@ -1,5 +1,11 @@
 function [accuracy, netTrained, confusionFigure] = foldEvaluation(data,labels, net)
 
+arguments
+    data (:,:,:,:) double
+    labels (1,:) double
+    net dlnetwork
+end
+
 % 0.75 train, 0.25 test
 number_of_folds = 5;
 classNames = {'rest', 'left' , 'right'};
@@ -15,8 +21,8 @@ for fold_index = 1:number_of_folds
     trainIdx = training(folds, fold_index);
     testIdx = test(folds, fold_index);
 
-    XTest = reshape(data(:,:,testIdx), [19, 19, 1, sum(testIdx)]);
-    XTrain = reshape(data(:,:,trainIdx), [19, 19, 1, sum(trainIdx)]);
+    XTest = data(:,:,:,testIdx);
+    XTrain = data(:,:,:,trainIdx);
 
     YTest = (categorical(labels(testIdx),[1 2 3], classNames))';
     YTrain = (categorical(labels(trainIdx),[1 2 3], classNames))';

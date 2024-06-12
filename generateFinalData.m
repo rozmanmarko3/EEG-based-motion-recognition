@@ -1,23 +1,10 @@
 %% setup
 
-% generateData iz MMDS in mojih posnetkov naredi podtatke za mrežo
-% calculateCPCC naredi transformacijo in izračuna CPCC
-% downSample odstrani naključne razrede, tako da je vseh enako
-% isInRowForm preveri da so vrstice matrike kanali eegja
-% liveFunction funkcija za prikazovanje klasifikacij v živo
-% liveClasification sestavni del zgornje funkcije
-% liveProcessing obdelava podatkov iz eegja
-% rereferenceChunk odšteje povprečje stolpcev
-% trainModel
-% viusalizeData prikaže podatke v obliki matric
-
-%program potrebuje okoli 5min
-
 clear all;
 
 low = 13;
 high = 20;
-epoch_time = 3;
+epoch_time = 4;
 desired_sampling_rate = 500;
 filterOrder = 2;
 n_chanels = 19;
@@ -52,9 +39,13 @@ end
 data = zeros(19,19,1);
 markers = zeros(1);
 
+%data
+dataGC = zeros(19,19,1);
+markersGC = zeros(1);
+
 locations = cellfun(@(c) c{1}, locations, 'UniformOutput', false);
 
-%% procesiraj motor movment dataset
+%% procesiraj motor movment dataset CPCC
 counter = 1;
 for locIndx = 1:length(locations)
 
@@ -103,53 +94,50 @@ for locIndx = 1:length(locations)
     end
 end
 
-%% procesiraj moj posnetek na primerljiv način
+%% procesiraj motor movment dataset GC
+counter = 1;
+for locIndx = 1:length(locations)
 
-%podatkiStanjSkupaj => n*1 cell array posnetkov eventov
-%stanjaSkupaj => n*1 double array indikatorjev stanj
-load(mojPosnetekUrl)
+    %use eeglab
+    EEG = pop_biosig(locations(locIndx));
+    EEG = pop_select( EEG, 'channel',{'C3..','Cz..','C4..','Fp1.','Fp2.','F7..','F3..','Fz..','F4..','F8..','T7..','T8..','P7..','P3..','Pz..','P4..','P8..','O1..','O2..'});
+    EEG = pop_resample( EEG, 160);
+    EEG = pop_eegfiltnew(EEG, 'locutoff',1,'hicutoff',40);
+    EEG = pop_epoch( EEG, {  }, [0  epoch_time], 'newname', 'EDF file epochs');
+    markers_all = [EEG.urevent.edftype];
 
-my_data = zeros(19,19,1);
-my_markers = stanjaSkupaj';
+    disp(locations(locIndx))
 
-%reorder index
-expectedOrder = {'C3','Cz','C4','Fp1','Fp2','F7','F3','Fz','F4','F8','T7','T8','P7','P3','Pz','P4','P8','O1','O2'};  
-receivedOrder = {'F7', 'Fp1', 'Fp2', 'F8', 'F3', 'Fz', 'F4', 'C3', 'Cz', 'P8', 'P7', 'Pz', 'P4', 'T7', 'P3', 'O1', 'O2', 'C4', 'T8'};
-[~, reorderIndex] = ismember(expectedOrder, receivedOrder);
+    for chunkInx = 1:size(EEG.data,3)
+        dataChunk = EEG.data(:,:,chunkInx);
 
-%same filter, clean
-eeg_filter = {b, a, zeros(max(length(a),length(b))-1,1)};
-
-
-for i = 1:size(stanjaSkupaj,1)
-    [my_data(:,:,i),eeg_filter] = liveProcessing(podatkiStanjSkupaj{i},reorderIndex,eeg_filter);
+        %rerefrence
+        dataChunk = rereferenceChunk(dataChunk, n_chanels);
+        
+        %hilbert and calculate CPCC 
+        conn = calculateGC(dataChunk, n_chanels,12);
+        
+        %save
+        dataGC(:,:,counter) = conn;
+        markersGC(counter) = markers_all(chunkInx);
+        counter = counter+1;
+    end
 end
 
-%remove matrices at the start of each recording, they are broken by the
-%filter starting at 0
-remove = [1,11,61,111,164,255];
-my_data(:,:,remove) = [];
-my_markers(remove) = [];
+%% combine data
+
+data = reshape(data, [19, 19, 1, size(data,3)]);
+dataGC = reshape(dataGC, [19, 19, 1, size(dataGC,3)]);
+data = cat(3,data,dataGC);
 
 %% downsample and in prikaz
 
-
-disp("Distribution of MMDS clases before downsampling")
-groupcounts(markers')
-
-disp("Distribution of clases of my recordings before downsampling")
-groupcounts(my_markers')
-
 %downsample and save
 [data,markers] = downSample(data,markers);
-[my_data,my_markers] = downSample(my_data,my_markers);
-save("finalData",'data', 'markers', "my_markers", "my_data")
+save("finalData",'data', 'markers')
 
 disp("Distribution of clases after downsampling")
 groupcounts(markers')
-
-disp("Distribution of clases of my recordings after downsampling")
-groupcounts(my_markers')
 
 disp("Done")
 toc
