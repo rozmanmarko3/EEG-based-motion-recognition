@@ -1,7 +1,7 @@
 Struktura
 
 # Code
-| |  |
+|||
 |--|--|
 | 📁functions | funkcije uporabljene za računaje |
 | 🖹 compareEpochsAndFrequencies|  primerjava natančnosti klasifikacije po različnih epohah in frekvenčnih pasovih |
@@ -11,7 +11,7 @@ Struktura
 | 🖹 trainModel | nuči nn na MMDS podatkinh, nato dodatno nauči na mojih posnetkih |
 
 #  Diplomska naloga
-|Datoteka ali mapa| pomen |
+|||
 |--|--|
 |📁build | **vsebuje .pdf diplomske naloge**|
 |📁poglavja| |
