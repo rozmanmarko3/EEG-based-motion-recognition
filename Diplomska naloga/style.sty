@@ -1,0 +1,164 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% zakljucna_FAMNIT_1_stopnja_MA_MEF_2016.sty
+% verzija februar 2016
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[slovene]{babel}
+%Preimenuje naslov Slike v Seznam slik, Tabele v Seznam tabel, Priloge v Seznam prilog:
+\addto\captionsslovene{%
+  \renewcommand{\contentsname}{Kazalo vsebine}
+  \renewcommand{\listfigurename}{Kazalo slik}
+  \renewcommand{\listtablename}{Kazalo tabel}
+  \renewcommand{\listappendicesname}{Kazalo prilog}
+}
+
+% Nastavi, da se slike in tabele štejejo neodvisno od poglavij
+\usepackage{chngcntr}
+\counterwithout{table}{chapter}
+\counterwithout{figure}{chapter}
+\addtocounter{table}{-1}
+
+% Oblikovanje naslovov poglavij (brez Chapter) -> St. poglavja in naslov poglavja
+\makeatletter
+\def\@makechapterhead#1{%
+  \vspace*{30\p@}%
+  {\noindent\Huge\bf\thechapter \hspace*{0.5cm} \parindent \z@ \raggedright \normalfont
+    \interlinepenalty\@M
+    \Huge \bfseries #1\par\nobreak
+    \vskip 30\p@
+  }}
+  \makeatother
+
+% Poglavje Literatura
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\thebibliography}{%
+  \chapter*{\bibname}\@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}}{%
+  \chapter{Literatura in viri}}{}{}
+\makeatother
+
+
+% Priloge
+\usepackage{appendix}
+\addto\captionsslovene{%
+  \renewcommand\appendixname{Priloga}
+  \renewcommand\appendixpagename{Priloge}
+}
+
+% Kazalo prilog:
+\usepackage{tocloft}
+
+\newcommand{\listappendicesname}{Priloge}
+\newlistof{appendices}{apc}{\listappendicesname}
+\renewcommand{\appendices}[1]{\addcontentsline{apc}{appendices}{#1}}
+
+% Seznam kratic
+\usepackage{longtable}
+\newcommand\nomenclature[2]{#1 & #2 \\}
+
+%\usepackage[latin2]{inputenc} % za Linux
+\usepackage[utf8]{inputenc} % za Mac OS X in za Windows
+\usepackage[dvips]{graphicx}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{fix-cm}
+%\usepackage{cite}
+\usepackage{color}
+
+% Paket za prikaz strani, kjer so citirane reference.
+% Paket ni kompatibilen s paketom hyperref (za dodajanje hiperpovezav).
+% Če paketa ne želite uporabljati, zakomentirajte naslednjih 10 vrstic.
+% \usepackage[pageref]{backref}
+% \usepackage{url}
+% \def\backreftwosep{ in~}
+% \def\backreflastsep{ in~}
+% \renewcommand*{\backref}[1]{}
+% \renewcommand*{\backrefalt}[4]{%
+%     \ifcase #1 {\it (Ni citirano.)}%
+%     \or        {\it (Citirano na strani~#2.)}%
+%     \else      {\it (Citirano na straneh~#2.)}%
+%     \fi}
+
+% Paket za psevdokode algoritmov s slovenskimi ukazi.
+% Po potrebi lahko prevedemo še ostale ukaze,
+% glej http://www.tug.org/texlive/Contents/live/texmf-dist/doc/latex/algorithm2e/algorithm2e.pdf
+% Če tega ne potrebujete, lahko zakomentirate naslednjih 7 vrstic.
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\SetKwInput{Vhod}{Vhod}
+\SetKwInput{Izhod}{Izhod}
+\SetKwFor{Za}{za}{}{konec za}
+\SetKwIF{Ce}{SicerCe}{Sicer}{če}{potem}{sicer če}{sicer}{konec če}
+\SetKw{Vrni}{vrni}
+\renewcommand{\algorithmcfname}{Algoritem}
+
+
+%http://en.wikibooks.org/wiki/LaTeX/Basics
+
+% ------------- NOVI UKAZI -----------------
+
+% pri navajanju literature je potrebno menjavati obliko fontov -
+% italics, bold ipd.
+\newcommand{\knjigaEnAvtor}[3]{{\sc #1}, {\it #2}, #3.}
+\newcommand{\knjigaVecAvtorjev}[4]{{\sc #1} in {\sc #2}, {\it #3}. #4.}
+
+\newcommand{\clanekVRevijiEnAvtor}[6]{{\sc #1}, {#2}. {\it #3} {#4} (#5) #6.}
+\newcommand{\clanekVRevijiVecAvtorjev}[7]{{\sc #1} in {\sc #2}, {#3}. {\it #4} {#5} (#6) #7.}
+
+\newcommand{\clanekVRevijiEnAvtorSprejetVObjavo}[3]{{\sc #1}, {#2}. {\it #3}, sprejeto v objavo.}
+\newcommand{\clanekVRevijiVecAvtorjevSprejetVObjavo}[4]{{\sc #1} in {\sc #2}, {#3}. {\it #4}, sprejeto v objavo.}
+
+\newcommand{\clanekVRevijiEnAvtorVTisku}[3]{{\sc #1}, {#2}. {\it #3}, v tisku.}
+\newcommand{\clanekVRevijiVecAvtorjevVTisku}[4]{{\sc #1} in {\sc #2}, {#3}. {\it #4}, v tisku.}
+
+\newcommand{\clanekVRevijiEnAvtorPoslanVObjavo}[3]{{\sc #1}, {#2}. {#3}, poslano v objavo.}
+\newcommand{\clanekVRevijiVecAvtorjevPoslanVObjavo}[4]{{\sc #1} in {\sc #2}, {#3}. {#4}, poslano v objavo.}
+
+\newcommand{\poglavjeVKnjigiEnAvtor}[6]{{\sc #1}, {#2}, v: {#3}, {\it #4}, {#5}, {#6}.}
+\newcommand{\poglavjeVKnjigiVecAvtorjev}[7]{{\sc #1} in {\sc #2}, {#3}. V: {#4}, {\it #5}, {#6}, {#7}.}
+
+\newcommand{\poglavjeVecAvtorjev}[6]{{\sc #1} in {\sc #2}, {#3}. V: {\it #4} {#5}, #6.}
+
+\newcommand{\konferencniClanekEnAvtor}[5]{{\sc #1}, {#2}. V {\it #3}, {#4}, #5.}
+\newcommand{\konferencniClanekVecAvtorjev}[6]{{\sc #1} in {\sc #2}, {#3}. V {\it #4}, {#5}, #6.}
+
+\newcommand{\doktorskaDisertacija}[3]{{\sc #1}, {\it #2},\, {#3}.}
+
+\newcommand{\spletniVirBrezAvtorja}[5]{{\it #1},\, {\texttt{#2}}. (Datum ogleda: {#3}.~{#4}.~{#5}.)}
+\newcommand{\spletniVirZAvtorjem}[6]{{\sc #1}, {\it #2},\, {\texttt{#3}}. (Datum ogleda: {#4}.~{#5}.~{#6}.)}
+\newcommand{\spletniVirBrezAvtorjaZInstitucijo}[6]{{\it #1},\, {#2}. {\texttt{#3}}. (Datum ogleda: {#4}.~{#5}.~{#6}.)}
+
+\def\R{\mathbb R}
+\def\N{\mathbb N}
+
+% Razmik med vrsticami je 1.25 (privzeto je faktor=1)
+\renewcommand{\baselinestretch}{1.25}
+
+% Okolja: definicija, primer, izrek, lema, posledica, trditev, opomba
+\theoremstyle{definition}
+\newtheorem{defi}{Definicija}[chapter]
+\newtheorem{prim}[defi]{Primer}
+\theoremstyle{plain}
+\newtheorem{izr}[defi]{Izrek}
+\newtheorem{lema}[defi]{Lema}
+\newtheorem{posl}[defi]{Posledica}
+\newtheorem{trdit}[defi]{Trditev}
+\theoremstyle{remark}
+\newtheorem{opom}[defi]{Opomba}
+
+% Sirina besedila: 155mm, visina besedila: 242mm, (A4: 210mm x 297mm)
+\setlength{\textwidth}{155mm}
+\setlength{\textheight}{242mm}
+
+% Robovi: levi: 3cm, ostali: 2.5cm
+\oddsidemargin=-1in
+\setlength{\marginparsep}{0cm}
+\setlength{\marginparwidth}{0cm}
+\setlength{\oddsidemargin}{0.46cm}
+
+\setlength{\headheight}{25.30836pt}
+\setlength{\topmargin}{-1.9769pt}
+\setlength{\headsep}{0.68cm}
+
+\usepackage{fancyhdr}
+
+\endinput

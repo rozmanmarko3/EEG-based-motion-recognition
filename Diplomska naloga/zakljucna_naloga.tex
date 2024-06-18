@@ -1,0 +1,192 @@
+\documentclass[12pt,a4paper,titlepage,openany]{report}
+\usepackage{style}
+
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{csquotes}
+\usepackage{hyperref}
+%\usepackage{todonotes}
+
+\usepackage[
+backend=biber,
+style=numeric,
+sorting=ynt
+]{biblatex}
+
+\addbibresource{bibliografija.bib}
+
+
+% Glava dokumenta:
+
+\fancyhf{}
+\lhead[]{{\fontsize{9.3}{12}\selectfont
+Rozman M. Razpoznavanje gibanja na osnovi encefalografije.\\
+\noindent Univerza na Primorskem, Fakulteta za matematiko, naravoslovje in informacijske tehnologije, 2024}}
+\chead[]{\fancyplain{}{}}
+\rhead[]{\fancyplain{\thepage}
+{\thepage}}
+\cfoot[]{\fancyplain{}{}}
+\lfoot[]{\fancyplain{}{}}
+\rfoot[]{\fancyplain{}{}}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%% ZAČETEK DOKUMENTA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Naslovna stran %%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+\pagenumbering{Roman}
+\pagestyle{empty}
+\begin{center}
+\noindent \large UNIVERZA NA PRIMORSKEM\\
+\large FAKULTETA ZA MATEMATIKO, NARAVOSLOVJE IN\\
+INFORMACIJSKE TEHNOLOGIJE
+
+
+\normalsize
+\vspace{6cm}
+Zaključna naloga\\
+\textbf{\large Razpoznavanje gibanja na osnovi encefalografije}\\
+\normalsize
+(Movement recognition based on encephalography)\\
+\end{center}
+
+\begin{flushleft}
+\vspace{5cm}
+\noindent Ime in priimek: Marko Rozman
+% v zgornjo vrstico dopišite ime in priimek študenta
+\\
+\noindent Študijski program: Računalništvo in informatika
+% v zgornjo vrstico dopišite ime študijskega programa
+\\
+\noindent Mentor: Docent dr. Peter Rogelj 
+% v zgornjo vrstico dopišite akademski naziv, ime in priimek mentorja
+
+\end{flushleft}
+
+\vspace{4cm}
+\begin{center}
+\large \textbf{Koper, Julij 2024}
+% dopišite mesec in leto oddaje zaključne naloge
+\end{center}
+\newpage
+
+\pagestyle{fancy}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Ključna dokumentacijska informacija (slo in ang) %%%%%%%%%%%
+
+\section*{Ključna dokumentacijska informacija}
+
+\medskip
+\begin{center}
+\fbox{\parbox{\linewidth}{
+\vspace{0.2cm}
+\noindent
+Ime in PRIIMEK:\vspace{0.5cm}\\
+Naslov zaključne naloge:\vspace{0.5cm}\\
+Kraj:\vspace{0.5cm}\\
+Leto:\vspace{0.5cm}\\
+Število listov: \hspace{2cm} Število slik: \hspace{2.6cm} Število tabel:\hspace{2cm}\vspace{0.5cm}\\
+Število prilog: \hspace{1.9cm} Število strani prilog: \hspace{1cm} Število referenc:\vspace{0.5cm}\\
+Mentor:\vspace{0.5cm}\\
+Somentor:\vspace{0.5cm}\\
+Ključne besede:\vspace{0.5cm}\\
+Math.~Subj.~Class.~(2010):\vspace{0.5cm}\\
+{\bf Izvleček:}\\
+Izvleček predstavlja kratek, a jedrnat prikaz vsebine naloge. V največ 250 besedah nakažemo problem, metode, rezultate, ključne ugotovitve in njihov pomen.
+\vspace{0.2cm}
+}}
+\end{center}
+
+\newpage
+
+\section*{Key words documentation}
+
+\medskip
+
+\begin{center}
+\fbox{\parbox{\linewidth}{
+\vspace{0.2cm}
+\noindent
+Name and SURNAME:\vspace{0.5cm}\\
+Title of final project paper:\vspace{0.5cm}\\
+Place:\vspace{0.5cm}\\
+Year:\vspace{0.5cm}\\
+Number of pages:\hspace{1.6cm} Number of figures:\hspace{2.2cm} Number of tables:\vspace{0.5cm}\\
+Number of appendices:\hspace{0.6cm} Number of appendix pages:\hspace{0.8cm}Number of references:\vspace{0.5cm}\\
+Mentor: title~First Name~Last Name, PhD\vspace{0.5cm}\\
+% opomba: za "title" vpišite eno od naslednjega:
+% Assist.~Prof. (če je naziv docent),
+% Assoc.~Prof. (če je naziv izredni profesor),
+% Prof. (če je naziv profesor)
+Co-Mentor:\vspace{0.5cm}\\
+Keywords:\vspace{0.5cm}\\
+Math.~Subj.~Class.~(2010):\vspace{0.5cm}\\
+{\bf Abstract:}
+\vspace{0.2cm}
+}}
+\end{center}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Zahvala %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\section*{Zahvala}
+
+
+Tu se zahvalimo sodelujočim pri zaključni nalogi, osebam ali ustanovam, ki so nam pri delu pomagale ali so delo omogočile. Zahvalimo se lahko tudi mentorju in morebitnemu somentorju.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Kazala %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
+% Dodamo kazala (po potrebi):
+\tableofcontents
+\addtocontents{toc}{\protect\thispagestyle{fancy}}
+\newpage
+\listoftables
+\addtocontents{lot}{\protect\thispagestyle{fancy}}
+\newpage
+\listoffigures
+\addtocontents{lof}{\protect\thispagestyle{fancy}}
+\newpage
+% ker priloge niso oštevilčene, tudi pikic do številk strani (ki jih ni) ne izpišemo
+\renewcommand{\cftdot}{}
+\listofappendices
+\thispagestyle{fancy}
+\newpage
+
+\chapter*{Seznam kratic}
+\thispagestyle{fancyplain}
+\begin{longtable}{@{}p{1cm}@{}p{\dimexpr\textwidth-1cm\relax}@{}}
+\nomenclature{$tj.$}{to je}
+\nomenclature{$npr.$}{na primer}
+\nomenclature{PLI}{phase lag lndex}
+\end{longtable}
+\newpage
+
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Poglavja: %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Namig: Za večjo preglednost datoteke lahko vsebino vsakega poglavja shranite v poseben .tex dokument
+% v isto mapo, kjer je shranjena osnovna .tex datoteka. Nato poglavja vstavite v dokument s klicem \include
+% Primer: PrvoPoglavje.tex in DrugoPoglavje.tex vstavimo tako:
+% \include{PrvoPoglavje}
+% \include{DrugoPoglavje}
+
+\include{poglavja/1_uvod}
+
+\include{poglavja/2_metode}
+
+\include{poglavja/3_rezultati}
+
+\include{poglavja/4_zakljucek}
+
+\printbibliography
+
+\addtocontents{toc}{\setcounter{tocdepth}{2}}
+\end{document}

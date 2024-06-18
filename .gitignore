@@ -1,0 +1,5 @@
+Code/done.ps
+Code/results_*
+
+Diplomska naloga/build/*
+!Diplomska naloga/build/*.pdf

@@ -1,0 +1,17 @@
+\chapter{Uvod}
+\thispagestyle{fancy}
+\pagenumbering{arabic}
+Motivacija za raziskavo je bilo ugotoviti do kakšne mere je mogoča razpoznavanje gibanja v živo na osnovi analize možganske aktivnosti z EEG meritvami. Najprej smo podatke iz prosto dostopne zbirke podatkov s pomočjo knjižnice EEGLAB razdelili na nekaj različno dolgih epoh po dogodkih in jim zožili frekvenčne pasove. Iz vsake pridobljene zbirke podatkov smo pridobili matrike povezljivosti Grangerjevega indexa vzročnosti in matrike povezljivosti kompleksnega Pearsonovega korelacijskega koeficienta. Na pridobljenih podatkih smo naučili nevronsko mrežo. Iz pridobljenih rezultatov smo se odločili za nadaljevanje razvoja na zbirki, ki je obetala najboljšo natančnost. Da bi omogočili delovanje v realnem času smo sami implementirali nekaj že obstoječih funkcij iz knjižnice. Posneli smo podatke na Cognionics Quick-20 in dodatno naučili nevronsko mrežo na naših podatkih za boljšo klasifikacijo.
+
+
+\section{Elektroencefalografija}
+Elektroencefalografija je metoda za merjenje možganske električne aktivnosti. Meri električne potenciale na površini temena ki jih deloma generira možganska aktivnost. V zadnjem stoletju so znanstveniki s pomočjo EEG pridobili vpogled v različne nevrološke bolezni. V zadnjem času pa se pojavlja interes v modeliranju eeg signalov in uporabo le teh za nadzor fizičnih naprav. EEG signali so običajno razdeljeni v območja ki odražajo različne spektralne vrhove. Ta območja so običajno določena kot delta (1-4 Hz), theta (4-8 Hz), alpha (8-13 Hz), beta (13-20 Hz), in gamma (<20 Hz). 
+ \cite{nunez_electroencephalography_2016}
+
+\subsection{Sistem 10-20}
+Mednarodni sistem 10-20 standardizira mesta elektrod tako, da so te  nameščene v mrežo od naziona do iniona ter od desnega do levega sluhovoda v presledkih 10 in 20 odstotkov razdalje. Vsaka elektroda je označena z črko lokacijo: T-Temporal, F- Frontal, P-Parietal, C-Central in O-Occipital, ter z črko z za elektrode na sredini glave, lihimi številkami za levo polovico glave in sodimi za desno. \cite{klem_ten-twenty_1999}
+
+\section{Povezljivost}
+Povezljivost se nananaša na vzorce nastale zaradi anatomskih povezav možganov, statistične odvisnosti ali interakcij med posameznimi deli možganov.  Enote med katerimi se meri povezljivost so lahko različne: posamezni nevroni, nevronske populacije, v našem primeru pa regije možganske skorje. Možganska aktivnost je omejena s povezljivostjo, le ta pa je zato ključnega pomena za razumevanje delovanja možganov. V grobem poznamo dve vrsti povezljivosti: strukturno in funkcijsko. Strukturna povezanost se nanaša na to kako so deli možganov med seboj fizično povezani. Funkcijska povezljivost pa se nanaša na to kako različni deli možganov med seboj komunicrajo oziroma sodelujejo.\cite{sporns_brain_2007}
+
+\textcolor{red}{Mogoče tu bolj natančno o funkcijski povezljivosti, podnaslov?}

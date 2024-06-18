@@ -1,0 +1,523 @@
+\documentclass[12pt,a4paper,titlepage,openany]{report}
+\usepackage{style}
+
+% Glava dokumenta:
+
+\fancyhf{}
+\lhead[]{{\fontsize{9.3}{12}\selectfont
+Priimek I. Naslov zaključne naloge.\\
+\noindent Univerza na Primorskem, Fakulteta za matematiko, naravoslovje in informacijske tehnologije, leto}}
+\chead[]{\fancyplain{}{}}
+\rhead[]{\fancyplain{\thepage}
+{\thepage}}
+\cfoot[]{\fancyplain{}{}}
+\lfoot[]{\fancyplain{}{}}
+\rfoot[]{\fancyplain{}{}}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%% ZAČETEK DOKUMENTA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Naslovna stran %%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+\pagenumbering{Roman}
+\pagestyle{empty}
+\begin{center}
+\noindent \large UNIVERZA NA PRIMORSKEM\\
+\large FAKULTETA ZA MATEMATIKO, NARAVOSLOVJE IN\\
+INFORMACIJSKE TEHNOLOGIJE
+
+
+\normalsize
+\vspace{6cm}
+Zaključna naloga\\
+\textbf{\large Naslov zaključne naloge}\\
+\normalsize
+(Naslov zaključne naloge v angleškem jeziku)\\
+\end{center}
+
+\begin{flushleft}
+\vspace{5cm}
+\noindent Ime in priimek:
+% v zgornjo vrstico dopišite ime in priimek študenta
+\\
+\noindent Študijski program:
+% v zgornjo vrstico dopišite ime študijskega programa
+\\
+\noindent Mentor:
+% v zgornjo vrstico dopišite akademski naziv, ime in priimek mentorja
+\\
+\noindent Somentor:
+% če imate somentorja, v zgornjo vrstico dopišite akademski naziv, ime in priimek somentorja
+% če somentorja nimate, zbrišite zgornjo in spodnjo vrstico
+\\
+\end{flushleft}
+
+\vspace{4cm}
+\begin{center}
+\large \textbf{Koper, mesec leto}
+% dopišite mesec in leto oddaje zaključne naloge
+\end{center}
+\newpage
+
+\pagestyle{fancy}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Ključna dokumentacijska informacija (slo in ang) %%%%%%%%%%%
+
+\section*{Ključna dokumentacijska informacija}
+
+\medskip
+\begin{center}
+\fbox{\parbox{\linewidth}{
+\vspace{0.2cm}
+\noindent
+Ime in PRIIMEK:\vspace{0.5cm}\\
+Naslov zaključne naloge:\vspace{0.5cm}\\
+Kraj:\vspace{0.5cm}\\
+Leto:\vspace{0.5cm}\\
+Število listov: \hspace{2cm} Število slik: \hspace{2.6cm} Število tabel:\hspace{2cm}\vspace{0.5cm}\\
+Število prilog: \hspace{1.9cm} Število strani prilog: \hspace{1cm} Število referenc:\vspace{0.5cm}\\
+Mentor:\vspace{0.5cm}\\
+Somentor:\vspace{0.5cm}\\
+Ključne besede:\vspace{0.5cm}\\
+Math.~Subj.~Class.~(2010):\vspace{0.5cm}\\
+{\bf Izvleček:}\\
+Izvleček predstavlja kratek, a jedrnat prikaz vsebine naloge. V največ 250 besedah nakažemo problem, metode, rezultate, ključne ugotovitve in njihov pomen.
+\vspace{0.2cm}
+}}
+\end{center}
+
+\newpage
+
+\section*{Key words documentation}
+
+\medskip
+
+\begin{center}
+\fbox{\parbox{\linewidth}{
+\vspace{0.2cm}
+\noindent
+Name and SURNAME:\vspace{0.5cm}\\
+Title of final project paper:\vspace{0.5cm}\\
+Place:\vspace{0.5cm}\\
+Year:\vspace{0.5cm}\\
+Number of pages:\hspace{1.6cm} Number of figures:\hspace{2.2cm} Number of tables:\vspace{0.5cm}\\
+Number of appendices:\hspace{0.6cm} Number of appendix pages:\hspace{0.8cm}Number of references:\vspace{0.5cm}\\
+Mentor: title~First Name~Last Name, PhD\vspace{0.5cm}\\
+% opomba: za "title" vpišite eno od naslednjega:
+% Assist.~Prof. (če je naziv docent),
+% Assoc.~Prof. (če je naziv izredni profesor),
+% Prof. (če je naziv profesor)
+Co-Mentor:\vspace{0.5cm}\\
+Keywords:\vspace{0.5cm}\\
+Math.~Subj.~Class.~(2010):\vspace{0.5cm}\\
+{\bf Abstract:}
+\vspace{0.2cm}
+}}
+\end{center}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Zahvala %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\section*{Zahvala}
+
+
+Tu se zahvalimo sodelujočim pri zaključni nalogi, osebam ali ustanovam, ki so nam pri delu pomagale ali so delo omogočile. Zahvalimo se lahko tudi mentorju in morebitnemu somentorju.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Kazala %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
+% Dodamo kazala (po potrebi):
+\tableofcontents
+\addtocontents{toc}{\protect\thispagestyle{fancy}}
+\newpage
+\listoftables
+\addtocontents{lot}{\protect\thispagestyle{fancy}}
+\newpage
+\listoffigures
+\addtocontents{lof}{\protect\thispagestyle{fancy}}
+\newpage
+% ker priloge niso oštevilčene, tudi pikic do številk strani (ki jih ni) ne izpišemo
+\renewcommand{\cftdot}{}
+\listofappendices
+\thispagestyle{fancy}
+\newpage
+
+\chapter*{Seznam kratic}
+\thispagestyle{fancyplain}
+\begin{longtable}{@{}p{1cm}@{}p{\dimexpr\textwidth-1cm\relax}@{}}
+\nomenclature{$tj.$}{to je}
+\nomenclature{$npr.$}{na primer}
+\end{longtable}
+\newpage
+
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Poglavja: %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Namig: Za večjo preglednost datoteke lahko vsebino vsakega poglavja shranite v poseben .tex dokument
+% v isto mapo, kjer je shranjena osnovna .tex datoteka. Nato poglavja vstavite v dokument s klicem \include
+% Primer: PrvoPoglavje.tex in DrugoPoglavje.tex vstavimo tako:
+% \include{PrvoPoglavje}
+% \include{DrugoPoglavje}
+
+\chapter{Uvod}
+\thispagestyle{fancy}
+\pagenumbering{arabic}
+
+Tu opišemo problem, ki ga v zaključni nalogi obravnavamo. Predstavimo osnovne ideje in uvedemo
+osnovne definicije in oznake. V uvodu lahko tudi povzamemo matematična dejstva, ki jih bomo
+kasneje uporabili. Citiramo literaturo, ki je relevantna za obravnavane pojme, lahko tudi dodatno literaturo.
+
+
+\medskip
+\noindent Zgled citiranja:
+
+\medskip
+Minimiziranje pasovnosti matrik pomaga pri njihovem shranjevanju in pri računanju z njimi, npr.~pri Gaussovi eliminaciji. Bralec bo podrobnosti našel v~\cite{Chinn, George, Strang}.
+
+
+\chapter{Vložitve}
+\thispagestyle{fancy}
+
+Dodamo vezno besedilo.
+
+\section{Široke vložitve}\label{siroke}
+
+Dodamo vezno besedilo.
+
+\subsection{Podpoglavje poglavja Široke vložitve}
+
+Dodamo vezno besedilo.
+
+\begin{defi}
+Graf $G$ je {\em povezan}, če za vsaki dve točki $u,v\in V(G)$ obstaja vsaj ena $u$-$v$ pot v $G$.
+\end{defi}
+
+\begin{lema}
+Lema je pomožna trditev, ki služi za dokaz glavnega izreka.
+\end{lema}
+
+\begin{proof}
+Tu napišimo dokaz leme. Dokaz naj bo čim krajši, vendar razumljiv vsem študentom. Pazite na logično strukturo dokaza: Vsi koraki naj bodo utemeljeni.
+\end{proof}
+
+\begin{izr}
+Izrek je najpomemnejša trditev v poglavju. Izrekov naj bo čim manj, preostale trditve formuliramo kot leme ali kot trditve.
+\end{izr}
+
+\begin{proof}
+Tu napišemo dokaz izreka.
+\end{proof}
+
+\begin{posl}
+Posledica je ugotovitev, ki neposredno sledi iz glavnega izreka. Potrebuje le krajši dokaz (par vrstic). Če se ne da dokazati v par vrsticah, potem to ni več posledica, temveč lema ali trditev.
+\end{posl}
+
+\begin{prim}
+Z zgledom osvetlimo lemo ali glavni izrek. Zgled je lahko protiprimer k veljavnosti izreka, če mu izpustimo kakšno od hipotez.
+\end{prim}
+
+\newpage
+Takole se vstavlja slika:
+
+\bigskip
+\bigskip
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=0.5\linewidth]{graf.pdf}
+\end{center}
+\caption{Vhodni podatki.}\label{slika:podatki}
+\end{figure}
+
+\newpage
+ Takole se vstavlja tabela.
+
+\begin{table}[h!]
+\caption{Algoritem PLOGBAND}
+\label{tabela:algoritem}
+\fbox{%
+      \parbox{\linewidth}{%
+{\noindent \bf Algoritem PLOGBAND:}
+\vskip 5pt
+\indent Podatka: {\obeylines \indent \indent graf $G = G(V,E)$ na $n$ vozliščih in z $m$ povezavami,
+% \indent \indent nenegativno celo število $L$.}
+\indent \indent $L \in \N$.}
+\begin{enumerate}
+
+\item Za $1 \le j \le L$ naj bodo $p_j$ približno enakomerno
+(geometrijsko) razporejena števila med $1 - 1/\log\log n$ in $1/\log n$.
+Tj., vsa razmerja $p_j/p_{j+1}$ naj bodo približno enaka. (Natančne
+formule so v~razdelku \ref{siroke}, kjer je opisana vložitev naključnih podmnožic.)
+
+\item Uredi vozlišča glede na naraščajoče vrednosti $h(v)$. Vozlišča z enakimi
+vrednostmi $h$ uredi poljubno.
+
+\item Vrni urejeni seznam vozlišč kot linearno ureditev.
+\end{enumerate}
+}}
+\end{table}
+
+\noindent Takole navedemo sliko ali tabelo:
+
+\medskip
+Vse, kar potrebujemo za konec dokaza, je povzeto v Tabeli~\ref{tabela:algoritem}.
+
+\medskip
+Za primer vhodih podatkov glej Sliko~\ref{slika:podatki}.
+
+\medskip
+\noindent Podobno lahko označimo in navajamo razdelke, poglavja, izreke, ipd.
+
+
+\newpage
+Takole lahko zapišemo psevdokodo algoritma:
+
+\begin{algorithm}[h!]\label{algoritem1}
+\Vhod{Realni matriki $A$ in $B$ velikosti $n\times n$.}
+\Izhod{Matrika $C = A\cdot B$.}
+\caption{Množenje matrik}
+{
+    \Za{$i = 1, \ldots, n$}
+    {
+        \Za{$j = 1, \ldots, n$}
+        {
+            $C[i,j]:= A[i,1]\cdot B[1,j];$
+
+            \Za{$k = 2, \ldots, n$}
+            {
+                $C[i,j]:= C[i,j]+A[i,k]\cdot B[k,j]$;
+            }
+        }
+    }
+    \Ce{$n = 2$}
+    {
+       ne naredi nič
+    }
+}
+\Vrni{$C$;}
+\end{algorithm}
+
+
+\chapter{Naslov poglavja}
+\thispagestyle{fancy}
+
+Takole citiramo spletne vire:~\cite{splet1,splet2,splet3}.\\
+Takole citiramo članke, sprejete v objavo ali v tisku:~\cite{Novak,Novak2,Novak3,Novak4}.\\
+Takole citiramo članke, poslane v objavo:~\cite{Novak5,Novak6}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Zaključek %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Zaključek}
+\thispagestyle{fancy}
+
+V nekaj stavkih na kratko povzamemo, kaj smo v nalogi obravnavali.
+Po želji lahko navedemo še kakšne dodatne reference za bralca, ki bi ga zanimalo kaj več, ipd.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Literatura %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ \begin{thebibliography}{99}
+\thispagestyle{fancy}
+
+\bibitem{Blum}
+  \clanekVRevijiVecAvtorjev
+    {A.~Blum, G.~Konjevod}{R.~Ravi}
+    {Semidefinite relaxations for minimum bandwidth and other vertex-ordering problems}
+   {Theor.~Comp.~Sci.}{235}
+   {2000}{25--42}
+
+\bibitem{Bourgain}
+  \clanekVRevijiEnAvtor
+    {J.~Bourgain}
+    {On Lipschitz embedding of finite metric spaces in Hilbert space}
+   {Israel J.~Math}{52}
+   {1985}{46--52}
+
+\bibitem{Chinn}
+  \clanekVRevijiVecAvtorjev
+    {P.~Chinn, J.~Chv\'atalov\'a, A.~Dewdney}{N.~Gibbs}
+    {The bandwidth problem for graphs and matrices -- a survey}
+   {J.~Graph Theory}{6}
+   {1982}{223--254}
+
+\bibitem{Chvatalova}
+\doktorskaDisertacija
+    {J.~Chv\'atalov\'a}
+    {On the bandwidth problem for graphs}
+    {Ph.D.~dissertation, University of Waterloo, 1980}
+
+\bibitem{Frankl}
+  \clanekVRevijiVecAvtorjev
+    {P.~Frankl}{H.~Maehara}
+    {The Johnson-Lindenstrauss lemma and the sphericity of some graphs}
+   {J.~Comb.~Theory, Ser.~B}{44}
+   {1988}{355--362}
+
+\bibitem{Feige}
+  \clanekVRevijiEnAvtor
+    {U.~Feige}
+    {Approximating the bandwidth via volume respecting embeddings}
+    {J.~Comp.~Syst.~Sci.}{60}
+    {2000}{510--539}
+
+\bibitem{George}
+  \knjigaVecAvtorjev {A.~George}{J.~Liu}
+   {Computer Solution of Large Positive Definite Systems}
+    {Prentice-Hall, 1981}
+
+\bibitem{Grotschel}
+  \knjigaVecAvtorjev  {M.~Gr\"otschel, L.~Lov\'asz}{A.~Schrijver}
+   {Geometric Algorithms and Combinatorial Optimization}
+    {Springer-Verlag, Berlin, 1987}
+
+\bibitem{Kleitman}
+   \clanekVRevijiVecAvtorjev
+     {D.~Kleitman}{R.~Vohra}
+     {Computing the bandwidth of interval graphs}
+     {SIAM J.~Discrete Math.}{3}
+     {1990}{373--375}
+
+\bibitem{Knuth}
+  \knjigaEnAvtor     {D.~Knuth}
+   {The Art of Computer Programming, Vol.~2, Seminumerical Algorithms}
+    {Addison Wesley, Second Edition, 1981}
+
+\bibitem{Lagarias}
+\poglavjeVKnjigiEnAvtor
+   {J.~Lagarias}
+   {Point Lattices}
+   {R.~Graham, M.~Gr\"otschel, L.~Lov\'asz (ur.)}
+   {Handbook of Combinatorics, Volume~1}
+   {MIT Press, 1995}
+   {919--966}
+
+\bibitem{Linial}
+   \clanekVRevijiVecAvtorjev
+     {N.~Linial, E.~London}{Y.~Rabinovich}
+   {The geometry of graphs and some of its algorithmic applications}
+     {Combinatorica}{15}
+     {1995}{215--245}
+
+\bibitem{Novak}
+   \clanekVRevijiEnAvtorSprejetVObjavo
+     {J.~Novak}
+   {Polynomial approximation of rational manifolds. I}
+     {J.~Abstract~Approximation}
+
+\bibitem{Novak2}
+   \clanekVRevijiEnAvtorVTisku
+     {J.~Novak}
+   {Polynomial approximation of rational manifolds. II}
+     {J.~Abstract~Approximation}
+
+\bibitem{Novak3}
+   \clanekVRevijiVecAvtorjevSprejetVObjavo
+     {J.~Novak}{M.~Novak}
+   {Polynomial approximation of rational manifolds. III}
+     {J.~Abstract~Approximation}
+
+\bibitem{Novak4}
+   \clanekVRevijiVecAvtorjevVTisku
+     {J.~Novak}{M.~Novak}
+   {Polynomial approximation of rational manifolds. IV}
+     {J.~Abstract~Approximation}
+
+\bibitem{Novak5}
+   \clanekVRevijiEnAvtorPoslanVObjavo
+     {J.~Novak}
+   {Polynomial approximation of rational manifolds. V}
+     {2014}
+
+\bibitem{Novak6}
+   \clanekVRevijiVecAvtorjevPoslanVObjavo
+     {J.~Novak}{M.~Novak}
+   {Polynomial approximation of rational manifolds. VI}
+     {2014}
+
+\bibitem{Santalo}
+  \knjigaEnAvtor     {L.A.~Santalo}
+   {Integral Geometry and Geometric Probability}
+    {Encyclopedia of Mathematics and its Applications, Volume 1, Addison Wesley, 1976}
+
+\bibitem{Saxe}
+   \clanekVRevijiEnAvtor
+     {J.~Saxe}
+   {Dynamic programming algorithms for recognizing small-bandwidth graphs in polynomial time}
+     {SIAM J.~Alg.~Meth.}{1}
+     {1980}{363--369}
+
+\bibitem{Strang}
+  \knjigaEnAvtor     {G.~Strang}
+   {Linear Algebra and its Applications, Third Edition}
+    {Saunders College \hbox{Publishing}, Harcourt Brace Jovanovich College Publishers, 1988}
+
+\bibitem{Unger}
+\konferencniClanekEnAvtor
+    {W.~Unger}
+    {The complexity of the approximation of the bandwidth problem}
+    {Proc.~39th Annual IEEE Symposium on Foundations of Computer Science}
+    {1998}
+    {82--91}
+
+\bibitem{splet1}
+\spletniVirBrezAvtorja
+    {Miller--Rabin primality test}
+    {\newline http://en.wikipedia.org/wiki/Miller/\%E2\%80\%93Rabin\_primality\_test}
+    {25}{4}{2014}
+
+\bibitem{splet2}
+\spletniVirBrezAvtorjaZInstitucijo
+    {The Converse of Wilson's Theorem}{The Oxford Math Center}
+    {http://www.oxfordmathcenter.com/drupal7/node/382}
+    {25}{4}{2014}
+
+\bibitem{splet3}
+\spletniVirZAvtorjem
+    {T.~Tao}
+    {Algebraic probability spaces}
+    {http://terrytao.wordpress.com/}
+    {4}{7}{2014}
+
+% Ena vrstica mora biti tu prazna zaradi pravilnih navedb na strani, kjer so reference citirane.
+\end{thebibliography}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Priloge %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancyplain}
+\vspace*{\fill}
+     \begin{center}
+          \bf{\Huge{Priloge}}
+     \end{center}
+\vspace*{\fill}
+\thispagestyle{fancy}
+
+\appendix
+\thispagestyle{empty}
+\pagenumbering{gobble}
+
+\addtocontents{toc}{\setcounter{tocdepth}{-1}}
+\appendices{A Naslov prve priloge}
+\chapter{Naslov prve priloge}
+\thispagestyle{empty}
+Tu dodamo prvo prilogo.
+
+% pozor:
+% ukaz
+% \thispagestyle{empty}
+% mora biti prisoten na vsaki strani priloge (da se ne prikaže glava dokumenta)
+
+\appendices{B Naslov druge priloge}
+\chapter{Naslov druge priloge}
+\thispagestyle{empty}
+Tu dodamo drugo prilogo.
+
+% Pozor:
+% ukaz
+% \thispagestyle{empty}
+% mora biti prisoten na vsaki strani priloge (da se ne prikaže glava dokumenta)
+
+\addtocontents{toc}{\setcounter{tocdepth}{2}}
+\end{document}
