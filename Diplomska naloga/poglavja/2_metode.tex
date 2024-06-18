@@ -29,12 +29,23 @@ X_1(t) &= \sum_{j=1}^{p} A_{2,j} X_1(t-j) + \sum_{j=1}^{p} A_{3,j} X_2(t-j) + E_
 \cite{seth_granger_2007}
 
 \subsection{Kompleksni Pearsonov korelacijski koeficient}
-Pearsonov korelacijski koeficient je najpogosteje uporabljen linearni korelacijski koeficient. Zanj smo se odločili saj v članku  \citetitle{sverko_complex_2022} avtorji pokažejo da vsebuje informacije PLI in wPLI ki sta dve najbolj pogosto uporabljeni metodi povezljivosti. Za naš primer lahko uporabimo enačbo s kompleksnimi števili:
+Pearsonov korelacijski koeficient je najpogosteje uporabljen linearni korelacijski koeficient. Zanj smo se odločili saj v članku  \citetitle{sverko_complex_2022} avtorji pokažejo da vsebuje informacije PLI in wPLI ki sta dve najbolj pogosto uporabljeni metodi povezljivosti. V praksi nam pove, v kakšni meri sta fazi dveh signalov linearno povezani.
 
+Ker želimo opazovati faze EEG signala, ga potrebujemo pretvoriti v analitični signal ki vsebuje informacijo o fazi. Zaradi sledeče transformacijo, ki je definirana samo na ozkih frekvenčnih pasovih potrebujemo signale EEG predhodno filtrirati. Analitični signal $X_a$ kjer $HT(X(t))$ označuje hilbertovo transformacijo signala $X$.
 \begin{align*}
-r(X_1, X_2) &= \frac{\sum\limits_{n=1}^{N} X_{1,n} \cdot \overline{X_{2,n}}}{\sqrt{\sum\limits_{n=1}^{N} |X_{1,n}|^2} \cdot \sqrt{\sum\limits_{n=1}^{N} |X_{2,n}|^2}}.
+    X_a(t) = X(t) + i \cdot HT(X(t))
+\end{align*}
+
+
+
+\newpage
+Za računanje Kompleksnega Pearsonovega korelacijskega koeficienta v našem primer lahko uporabimo naslednjo enačbo kjer sta $X_1$ in $X_2$ analitična signal dolžine $N$. $\overline{X_2(n)}$ pa konjugirana vrednost $X_2(n)$
+\begin{align*}
+r(X_1, X_2) &= \frac{\sum\limits_{n=1}^{N} X_1(n) \cdot \overline{X_2(n)}}{\sqrt{\sum\limits_{n=1}^{N} |X_1(n)|^2} \cdot \sqrt{\sum\limits_{n=1}^{N} |X_2(n)|^2}}.
 \end{align*}
 \textcolor{red}{Kaj predstavlja pika na koncu enačbe?}
+
+
 
 
 \cite{sverko_complex_2022} 
@@ -42,7 +53,8 @@ r(X_1, X_2) &= \frac{\sum\limits_{n=1}^{N} X_{1,n} \cdot \overline{X_{2,n}}}{\sq
 \section{Klasifikacija}
 Na pridobljenih matrikah povezljivosti smo preizkusili več vrst klasifikacije in sicer: odločitvena drevesa, metodo k najbližjih sosedov (k-NN), logistično regresijo, podporne vektorske stroje (SVM) in nevronske mreže.
 \subsection{Classification learner}
-Classification learner je aplikacija v Matlabu za enostavno klasifikacijo podatkov. Podpira različne metode klasifikacije, navzkrižno validacijo in uporabo različnih podatkov za gradnjo in testiranje modela.
+Classification learner je aplikacija v Matlabu za enostavno klasifikacijo podatkov. Podpira različne metode klasifikacije, navzkrižno validacijo in uporabo različnih podatkov za gradnjo in testiranje modela. Z njo smo lahko hitro ocenili uspešnost računanja matric povezljivosti in primerjali delovanje različnih klasifikatorjev v primerjavi z našo nevronsko mrežo.
+\newpage
 \subsection{Nevronska mreža}
 Nevronska mreža je sestavljena iz vhodne plasti za slike dimenzij 19x19x1, polno povezanega sloja s 100 nevroni, Leaky ReLU sloja, dropout sloja z 50\% verjetnostjo opustitve nevronov, polno povezanega sloja z 10 nevroni, GELU sloja, dropout sloja z 50\% verjetnostjo opustitve nevronov, polno povezanega sloja s tremi nevroni in Softmax sloja.
 \begin{figure}[h!]
@@ -53,7 +65,18 @@ Nevronska mreža je sestavljena iz vhodne plasti za slike dimenzij 19x19x1, poln
 \end{figure}
 
 \section{Filtriranje}
-Knjižnica EEGLAB nam omogoča filtriranje signalov naprej in nazaj? kar v našem primeru ni primerno saj podatke prejemamo sekvenčno. Zato smo podatke filtrirali s pomočjo filtra z stanji ki nam omogoča filtriranje sekvenčnih podatkov. Ker pa filtra nista enakovredna, saj prvi ohranja zamike faz drugi pa ne, uporabljena metoda CPCC pa deluje na zamikih faz, smo izvedli dodatno testiranje da smo preverili če pristop deluje enako učinkovito.
+Knjižnica EEGLAB vsebuje samo filtre z ničelno fazo, ki filtrirajo najprej in nato nazaj po času, kar v našem primeru ni primerno saj podatke prejemamo sekvenčno, zato smo podatke filtrirali s pomočjo Butterworthovega filtra ki vsebuje stanja. Ker pa filtra nista enakovredna, saj prvi ne spreminja faz drugi pa jih zamakne, uporabljena metoda CPCC pa deluje na zamikih faz, smo izvedli dodatno testiranje da smo preverili če pristop deluje enako učinkovito.
+
+\section{Izbira metode povezljivosti}
+\textcolor{red}{Mogoče že v rezultati?}\\
+Ker je kompleksni Pearsonov korelacijski koeficient izračunan iz analitičnih signalov ga lahko definiramo samo za ozke frekvenčne pasove. Pri računanju Grangerjevega indexa vzročnosti te omejitve ni, tako da smo ga lahko računali na celotnem frekvenčnem območju do 45Hz. Prav tako se je pojavilo vprašanje koliko dolg epoho EEG signala bomo potrebovali za uspešno klasifikacijo, kot možnosti smo vzeli prvo sekundo, prvi dve sekundi, drugi dve sekundi in štiri sekunde. Natančnost klasifikacije smo ocenili z zgoraj navedeno nevronsko mrežo. Za najboljšo metodo se je izkazal kompleksni Pearsonov korelacijski koeficient na območju 13-30Hz z najdalšimi epohami, 4s.
+\begin{figure}[h!]
+    \begin{center}
+    \includegraphics[width=0.5\linewidth]{slike/Comparison.png}
+    \end{center}
+    \caption{Primerjava območij in dolžin epoh.}
+\end{figure}
+
 
 
 
