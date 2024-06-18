@@ -5,7 +5,12 @@ frequencyBands = [0 4;4 8;8 13;13 20;20 40];
 timeRanges =[0 1; 0 2; 2 4; 0 4];
 
 baseUrl = 'C:\Users\rozma\Downloads\MMD\files\';
-resultsFolder ='./resultsComparisons';
+
+%generate results folder
+functionName = dbstack().name;
+resultsFolder =['./results_',functionName];
+mkdir(resultsFolder)
+delete(fullfile(resultsFolder, '*'));
 
 resultsCPCC = zeros(size(frequencyBands,1),size(timeRanges,1));
 resultsGC = zeros(1,size(timeRanges,1));

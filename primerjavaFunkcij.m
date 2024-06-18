@@ -1,10 +1,11 @@
 %variables
-numberOfSubjects = 50;
+numberOfSubjects = 1;
 frequencyBands = [13 20];
 timeRanges =[0 4];
 
 baseUrl = 'C:\Users\rozma\Downloads\MMD\files\';
-resultsFolder ='./resultsPrimerjavaFunkcij';
+
+
 
 resultsEEGLAB = zeros(size(frequencyBands,1),size(timeRanges,1));
 resultsMY = zeros(1,size(timeRanges,1));
@@ -18,6 +19,10 @@ markersMY = cell(size(frequencyBands,1),size(timeRanges,1));
 numberOfChannels = 19;
 GCorder = 12;
 
+%generate results folder
+functionName = dbstack().name;
+resultsFolder =['./results_',functionName];
+mkdir(resultsFolder)
 delete(fullfile(resultsFolder, '*'));
 
 frequencyLabels = cell(1,1);

@@ -4,7 +4,13 @@ name = 'MMDS data';
 region = '13-20Hz';
 epoch = '0s-4s';
 
-resultsDirectory = './results';
+
+%generate results folder
+functionName = dbstack().name;
+resultsFolder =['./results_',functionName];
+mkdir(resultsFolder)
+delete(fullfile(resultsFolder, '*'));
+
 diaryFile = 'diary.txt';
 dataMatrixName = 'finalData';
 
@@ -15,9 +21,9 @@ confusionPlotNameRetrained = ['Confusion_',region,'_',epoch,'_retrained','.png']
 netNameRetrained = ['Net_',region,'_',epoch,'_retrained','.mat'];
 
 %clean results directory, initiate diary
-delete(fullfile(resultsDirectory, '*'));
-edit(fullfile(resultsDirectory, diaryFile))
-diary(fullfile(resultsDirectory, diaryFile))
+delete(fullfile(resultsFolder, '*'));
+edit(fullfile(resultsFolder, diaryFile))
+diary(fullfile(resultsFolder, diaryFile))
 
 %load data
 %data -> MMDS data
@@ -42,14 +48,14 @@ netStarter = dlnetwork(layers);
 
 [accuracy, netTrained, confusionFigure ] = foldEvaluation(data,markers,netStarter);
 
-saveas(confusionFigure, fullfile(resultsDirectory,confusionPlotName))
-save(fullfile(resultsDirectory,netName), 'netTrained')
+saveas(confusionFigure, fullfile(resultsFolder,confusionPlotName))
+save(fullfile(resultsFolder,netName), 'netTrained')
 
 %additionaly train on my data
 [accuracy, netRetrained, confusionFigure ] = foldEvaluation(my_data,my_markers,netTrained);
 
-saveas(confusionFigure, fullfile(resultsDirectory,confusionPlotNameRetrained))
-save(fullfile(resultsDirectory,netNameRetrained), 'netRetrained')
+saveas(confusionFigure, fullfile(resultsFolder,confusionPlotNameRetrained))
+save(fullfile(resultsFolder,netNameRetrained), 'netRetrained')
 
 print('done')
 
