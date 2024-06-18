@@ -60,7 +60,7 @@ function result = liveFunction(dataChunk)
     %get data needed for calculation from history
     chunk = chunk_history(:,history_len-(sampleRateInput*epoch_len)+1:history_len);
     
-    matrix = liveProcessing(chunk);
+    [matrix,eeg_filter] = liveProcessing(chunk,reorderIndex,eeg_filter);
     result = liveClasification(matrix);
 
 end
