@@ -1,6 +1,6 @@
 %variables
 %tests CPCC for all combinations, GC for all time ranges
-numberOfSubjects = 30;
+numberOfSubjects = 50;
 frequencyBands = [0 4;4 8;8 13;13 20;20 40];
 timeRanges =[0 1; 0 2; 2 4; 0 4];
 
@@ -82,10 +82,10 @@ for locIndx = 1:length(locations)
             dataChunk = EEG_Epoch.data(:,:,chunkInx);
     
             %rerefrence
-            dataChunk = rereferenceChunk(dataChunk, n_chanels);
+            dataChunk = rereferenceChunk(dataChunk, numberOfChannels);
             
             %calculateGC
-            conn = calculateGC(dataChunk, n_chanels, GCorder);
+            conn = calculateGC(dataChunk, numberOfChannels, GCorder);
             
             %save
             data(:,:,counter) = conn;
@@ -133,10 +133,10 @@ for locIndx = 1:length(locations)
                 dataChunk = EEG_Epoch.data(:,:,chunkInx);
         
                 %rerefrence
-                dataChunk = rereferenceChunk(dataChunk, n_chanels);
+                dataChunk = rereferenceChunk(dataChunk, numberOfChannels);
                 
                 %hilbert and calculate CPCC 
-                conn = calculateCPCC(dataChunk, n_chanels);
+                conn = calculateCPCC(dataChunk, numberOfChannels);
                 
                 %save
                 data(:,:,counter) = conn;
