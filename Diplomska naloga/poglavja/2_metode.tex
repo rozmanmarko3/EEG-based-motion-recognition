@@ -1,8 +1,8 @@
 \chapter{Metode}
 
 \section{Razvojno okolje}
-Ves razvoj je potekal v programskem okolju MATLAB. Ta poleg samega programskega jezika vsebuje velik nabor že implementiranh funkcij, napredne aplikacije za strojno učenje in knjžnice ki omogočajo povezave z laboratorjskimi napravami. V njem sta ustvarjeni funkciji za računanje matric Grangerjevega indexa vzročnosti
-in matric Kompleksnega Pearsonov korelacijskega koeficienta. V njem so ustvarjene nevronske mreže in uporabljeno je za ostale klasifikatorje. Prav tako smo v njem napisali funkcijo za zajemanje podatkov iz naprave Cognionics Quick-20, funkcijo ki v realnem času razpoznava gibanji.
+Ves razvoj je potekal v programskem okolju MATLAB. Ta poleg samega programskega jezika vsebuje velik nabor že implementiranh funkcij, napredne aplikacije za strojno učenje in knjžnice ki omogočajo povezave z laboratorjskimi napravami. V njem sta ustvarjeni funkciji za računanje matrik Grangerjevega indexa vzročnosti
+in matrik Kompleksnega Pearsonov korelacijskega koeficienta. V njem so ustvarjene nevronske mreže in uporabljeno je za ostale klasifikatorje. Prav tako smo v njem napisali funkcijo za zajemanje podatkov iz naprave Cognionics Quick-20, funkcijo ki v realnem času razpoznava gibanji.
     
 \subsection{EEGLAB}
 EEGLAB je interaktivna matlab orodjarna, za procesiranje in obdelavo elektrofizioloških podatkov. Omogoča rereferenciranje EEG signalov, izbiro določenih elektrod, deljenje podatkov na epohe glede na dogodke in filtriranje frekvenc. Omogoča interakcijo preko uporabniškega vmesnika. Vse akcije v vmesniku se prevedejo v ukaze ki jih lahko uporabimo v svoji kodi. Pri izdelavi naloge smo največ uporabljali funkcije branja .edf datotek, filtriranja frekvenc signalov in deljanja posnetkov na manjše dele.\cite{noauthor_eeglab_nodate}
@@ -12,6 +12,9 @@ Lab streaming layer je odprtokodna vmesna programska oprema ki omogoča pošilja
 
 \section{EEG Motor Movement/Imagery Dataset}
 EEG Motor Movement/Imagery Dataset je prosto dostopna zbirka več kot 1500 eno in dve minutnih posnetkov 109 prostovoljcev ki opravljajo različne naloge. Za nas relevantni so posnetki serij 3, 5 in 7 v katerih prostovoljci stiskajo in sproščajo levo ali desno pest. Posnetki so shranjeni v formatu EDF+ ki vsebuje posnetke EEG in oznake dogodkov. Snemanje je bilo opravljeno s frekvenco 160Hz in 64 elektrodnim sistemom EEG.\cite{schalk_eeg_2009,schalk_bci2000_2004}
+
+\subsection{Classification learner}
+Classification learner je aplikacija v Matlabu za enostavno klasifikacijo podatkov. Podpira različne metode klasifikacije, navzkrižno validacijo in uporabo različnih podatkov za gradnjo in testiranje modela. Z njo smo lahko hitro ocenili uspešnost računanja matrik povezljivosti in primerjali delovanje različnih klasifikatorjev v primerjavi z našo nevronsko mrežo.
 
 \section{Metode povezljivosti}
 \subsection{Grangerjev index vzročnosti}
@@ -36,12 +39,9 @@ Ker želimo opazovati faze EEG signala, ga potrebujemo pretvoriti v analitični 
     X_a(t) = X(t) + i \cdot HT(X(t))
 \end{align*}
 
-
-
-\newpage
 Za računanje Kompleksnega Pearsonovega korelacijskega koeficienta v našem primer lahko uporabimo naslednjo enačbo kjer sta $X_1$ in $X_2$ analitična signal dolžine $N$. $\overline{X_2(n)}$ pa konjugirana vrednost $X_2(n)$
 \begin{align*}
-r(X_1, X_2) &= \frac{\sum\limits_{n=1}^{N} X_1(n) \cdot \overline{X_2(n)}}{\sqrt{\sum\limits_{n=1}^{N} |X_1(n)|^2} \cdot \sqrt{\sum\limits_{n=1}^{N} |X_2(n)|^2}}.
+r(X_1, X_2) &= \frac{\sum\limits_{n=1}^{N}(X_1(n) \cdot \overline{X_2(n)})}{\sqrt{\sum\limits_{n=1}^{N} |X_1(n)|^2} \cdot \sqrt{\sum\limits_{n=1}^{N} |X_2(n)|^2}}.
 \end{align*}
 \textcolor{red}{Kaj predstavlja pika na koncu enačbe?}
 
@@ -51,12 +51,12 @@ r(X_1, X_2) &= \frac{\sum\limits_{n=1}^{N} X_1(n) \cdot \overline{X_2(n)}}{\sqrt
 \cite{sverko_complex_2022} 
 
 \section{Klasifikacija}
-Na pridobljenih matrikah povezljivosti smo preizkusili več vrst klasifikacije in sicer: odločitvena drevesa, metodo k najbližjih sosedov (k-NN), logistično regresijo, podporne vektorske stroje (SVM) in nevronske mreže.
-\subsection{Classification learner}
-Classification learner je aplikacija v Matlabu za enostavno klasifikacijo podatkov. Podpira različne metode klasifikacije, navzkrižno validacijo in uporabo različnih podatkov za gradnjo in testiranje modela. Z njo smo lahko hitro ocenili uspešnost računanja matric povezljivosti in primerjali delovanje različnih klasifikatorjev v primerjavi z našo nevronsko mrežo.
-\newpage
+Na matrikah povezljivosti pridobljenih z metodo Kompleksnega Pearsonovega korelacijskega koeficienta iz podatkov zbirke in naših posnetkov smo izvedli več različnih klasifikacije in sicer: odločitvena drevesa, metodo k najbližjih sosedov (k-NN), logistično regresijo, podporne vektorske stroje (SVM) in nevronske mreže.
+
+Želeli smo preizkusiti kako uspešno bi klasifikacija delovala na podatkih zbirke in kako uspešno bi delovala na naših podatkih, zato smo klasifikacijo izvajali dvakrat. Enkrat na podatkih zbirke in enkrat na naših podatkih. Ker nevronska mreža za učenje potrebuje več podatkov kot jih lahko zagotovimo iz naših posnetkov smo jo za namene klasifikacije naših posnetkov naučili na podatkih MMID in nato dodatno naučili na naših podatkih. 
+
 \subsection{Nevronska mreža}
-Nevronska mreža je sestavljena iz vhodne plasti za slike dimenzij 19x19x1, polno povezanega sloja s 100 nevroni, Leaky ReLU sloja, dropout sloja z 50\% verjetnostjo opustitve nevronov, polno povezanega sloja z 10 nevroni, GELU sloja, dropout sloja z 50\% verjetnostjo opustitve nevronov, polno povezanega sloja s tremi nevroni in Softmax sloja.
+Nevronska mreža je sestavljena iz vhodne plasti za slike dimenzij 19x19x1, polno povezanega sloja s 100 nevroni, Leaky ReLU sloja, dropout sloja z 50\% verjetnostjo opustitve nevronov, polno povezanega sloja z 10 nevroni, GELU sloja, dropout sloja z 50\% verjetnostjo opustitve nevronov, polno povezanega sloja s tremi nevroni in Softmax sloja. 
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.5\linewidth]{slike/Neural network.png}
@@ -64,12 +64,9 @@ Nevronska mreža je sestavljena iz vhodne plasti za slike dimenzij 19x19x1, poln
 \caption{Nevronska mreža.}
 \end{figure}
 
-\section{Filtriranje}
-Knjižnica EEGLAB vsebuje samo filtre z ničelno fazo, ki filtrirajo najprej in nato nazaj po času, kar v našem primeru ni primerno saj podatke prejemamo sekvenčno, zato smo podatke filtrirali s pomočjo Butterworthovega filtra ki vsebuje stanja. Ker pa filtra nista enakovredna, saj prvi ne spreminja faz drugi pa jih zamakne, uporabljena metoda CPCC pa deluje na zamikih faz, smo izvedli dodatno testiranje da smo preverili če pristop deluje enako učinkovito.
-
 \section{Izbira metode povezljivosti}
 \textcolor{red}{Mogoče že v rezultati?}\\
-Ker je kompleksni Pearsonov korelacijski koeficient izračunan iz analitičnih signalov ga lahko definiramo samo za ozke frekvenčne pasove. Pri računanju Grangerjevega indexa vzročnosti te omejitve ni, tako da smo ga lahko računali na celotnem frekvenčnem območju do 45Hz. Prav tako se je pojavilo vprašanje koliko dolg epoho EEG signala bomo potrebovali za uspešno klasifikacijo, kot možnosti smo vzeli prvo sekundo, prvi dve sekundi, drugi dve sekundi in štiri sekunde. Natančnost klasifikacije smo ocenili z zgoraj navedeno nevronsko mrežo. Za najboljšo metodo se je izkazal kompleksni Pearsonov korelacijski koeficient na območju 13-30Hz z najdalšimi epohami, 4s.
+Ker je kompleksni Pearsonov korelacijski koeficient izračunan iz analitičnih signalov ga lahko definiramo samo za ozke frekvenčne pasove. Pri računanju Grangerjevega indexa vzročnosti te omejitve ni, tako da smo ga lahko računali na celotnem frekvenčnem območju do 45Hz. Prav tako se je pojavilo vprašanje koliko dolgo epoho EEG signala bomo potrebovali za uspešno klasifikacijo. Kot možnosti smo vzeli prvo sekundo, prvi dve sekundi, drugi dve sekundi in prve štiri sekunde po dogodku. Natančnost klasifikacije smo ocenili z zgoraj navedeno nevronsko mrežo. Za najboljšo metodo se je izkazal kompleksni Pearsonov korelacijski koeficient na območju 13-30Hz z najdalšimi epohami, 4s.
 \begin{figure}[h!]
     \begin{center}
     \includegraphics[width=0.5\linewidth]{slike/Comparison.png}

@@ -6,14 +6,14 @@ Za končno raziskavo smo imeli na voljo 7368 primerov stanj iz podatkovne zbirke
 
 \section{Rezultati na MMID}
 \subsection{Classification learner}
-Z uporabo aplikacije clasifiacation learner smo testirali več načinov klasifikacije. Dosegli so naslednje natančnosti:
+Z uporabo aplikacije clasifiacation learner smo testirali več načinov klasifikacije, vendar noben ni bil zelo uspešen. Najbolj uspešna je bila logistična regresija z 49\%.
 \begin{table}[h]
 \centering
 \begin{tabular}{|c|c|}
 \hline
 Metoda klasifikacije & natančnost \\
 \hline
-odločitvena drevo & 40\% \\
+odločitvena drevo & 40\%  \\
 \hline
 k-NN & 41\% \\
 \hline
@@ -21,45 +21,52 @@ logistična regresija & 49\% \\
 \hline
 SVM & 45\% \\
 \hline
-nevronska mreža & 51\% \\
-\hline
 \end{tabular}
 \caption{Natančnosti klasifikacij}
 \end{table}
+
+Nato smo poskusili z nevronsko mrežo ki je dosegla 52\% natančnost.
 
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.5\linewidth]{slike/Confusion_13-20Hz_0s-4s.png}
 \end{center}
-\caption{Matrika zmede nevronske mreže.}
+\caption{Matrika zmede nevronske mreže naučene na podatkih zbirke.}
 \end{figure}
 
 
 
 \section{Rezultati na lastnih podatkih}
-S svojimi podatki smo dodatno naučili nevronsko mrežo. Ker se naprave na katerih so podatki snemani razlikujejo je natančnost klasifikacije padla na 42\%
+Da bi se približali pogojem v realnem času, smo nevronsko mrežo dodatno naučili na naših podatkih. Zaradi različnih pogojev snemanja in natančnosti naprav na katerih so podatki snemani je natančnost klasifikacije pričakovano padla.
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.5\linewidth]{slike/Confusion_13-20Hz_0s-4s_retrained.png}
 \end{center}
-\caption{Natančnost klasifikacije na lastnih podatkih.}
+\caption{Matrika zmede nevronske mreže dodatno naučene na naših podatkih.}
 \end{figure}
 \section{Preizkus v realnem času}
 
-\section{Primerjava funkcij}
-Da bi preverili ali filtra vrneta enake rezultate z našimi metodami, smo uporabili povezljivostno metodo CPCC na območju beta in naučili nevronski mreži na podatkih filtriranih z funkcijo eeglaba in filtrom ki smo ga uporabili za implementacijo v realnem času. Obe nevronski nevronski mreži sta imeli 54\% natančnost.
+\section{Primerjava filtrov}
+Knjižnica EEGLAB vsebuje samo filtre z ničelno fazo, ki filtrirajo naprej in nato nazaj po času, kar v našem primeru ni primerno saj podatke prejemamo sekvenčno, zato smo podatke filtrirali s pomočjo Butterworthovega filtra ki vsebuje stanja. Stanja nam omogočajo filtriranje sekvenčnih podatkov saj preprečijo napako na začetku filtra kjer le ta potrebuje predpostaviti začetno staje vseh signalov 0. Ker filtra nista enakovredna saj prvi ne spreminja faz drugi pa jih zamakne, uporabljena metoda CPCC pa deluje na zamikih faz, smo izvedli dodatno testiranje, da smo preverili če pristop deluje enako učinkovito.
 \begin{figure}[h!]
-\begin{center}
-\includegraphics[width=0.5\linewidth]{slike/Confusion_eeglab.png}
-\end{center}
-\caption{EEGLAB filtriranje.}
+    \begin{center}
+    \includegraphics[width=0.5\linewidth]{slike/ComparisonFilters.png}
+    \end{center}
+    \caption{Primerjava klasifikacije CPCC z nevronsko mrežo za epoho 0-4s za različne frekvenčne pasove \textcolor{red}{ val $= eeglab - Butterworth$ testirano za 30 ljudi * 3 serije} }
 \end{figure}
 
 \begin{figure}[h!]
-\begin{center}
-\includegraphics[width=0.5\linewidth]{slike/Confusion_my.png}
-\end{center}
-\caption{Filtriranje v realnem času.}
-\end{figure}
+    \begin{center}
+    \includegraphics[width=0.5\linewidth]{slike/Confusion_eeglab.png}
+    \end{center}
+    \caption{Matrika zmede nevronske mreže naučene na podatkih fitriranih s filtrom z ničelno fazo.}
+    \end{figure}
+    
+    \begin{figure}[h!]
+    \begin{center}
+    \includegraphics[width=0.5\linewidth]{slike/Confusion_my.png}
+    \end{center}
+    \caption{Matrika zmede nevronske mreže naučene na podatkih fitriranih z Butterworthovim filtrom.}
+    \end{figure}
 
 

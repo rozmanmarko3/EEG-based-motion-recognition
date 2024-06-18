@@ -1,6 +1,6 @@
 %variables
-numberOfSubjects = 1;
-frequencyBands = [13 20];
+numberOfSubjects = 30;
+frequencyBands = [0.1 4;4 8;8 13;13 20;20 40];
 timeRanges =[0 4];
 
 baseUrl = 'C:\Users\rozma\Downloads\MMD\files\';
