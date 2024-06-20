@@ -1,6 +1,6 @@
 \chapter{Metode}
 
-\section{Razvojno okolje}
+\section{Razvojno okolje MATLAB}
 Ves razvoj je potekal v programskem okolju MATLAB. Ta poleg samega programskega jezika vsebuje velik nabor že implementiranh funkcij, napredne aplikacije za strojno učenje in knjžnice ki omogočajo povezave z laboratorjskimi napravami. V njem sta ustvarjeni funkciji za računanje matrik Grangerjevega indexa vzročnosti
 in matrik Kompleksnega Pearsonov korelacijskega koeficienta, prav tako so v njem ustvarjene nevronske mreže in uporabljeno je za ostale klasifikatorje in funkcijo za zajemanje podatkov iz naprave Cognionics Quick-20 ter funkcijo ki v realnem času razpoznava gibanje.
     
@@ -10,11 +10,11 @@ EEGLAB je interaktivna matlab orodjarna, za procesiranje in obdelavo elektrofizi
 \subsection{Lab streaming layer}
 Lab streaming layer je odprtokodna vmesna programska oprema ki omogoča pošiljanje, prejemanje, sinhronizacijo in snemanje tokov podatkov. Omogoča enostavno povezovanje EEG naprave z programsko opremo MATLAB. Knjižnjico je potrebno prenesti in nato zgraditi na svojem računalniku.  \cite{noauthor_lsl-website_nodate}
 
-\section{EEG Motor Movement/Imagery Dataset}
-EEG Motor Movement/Imagery Dataset je prosto dostopna zbirka več kot 1500 eno in dve minutnih posnetkov 109 prostovoljcev ki opravljajo različne naloge. Za nas relevantni so posnetki serij 3, 5 in 7 v katerih prostovoljci stiskajo in sproščajo levo ali desno pest. Posnetki so shranjeni v formatu EDF+ ki vsebuje posnetke EEG in oznake dogodkov. Snemanje je bilo opravljeno s frekvenco 160Hz in 64 elektrodnim sistemom EEG.\cite{schalk_eeg_2009,schalk_bci2000_2004}
-
 \subsection{Classification learner}
 Classification learner je aplikacija v okolju MATLAB za enostavno klasifikacijo podatkov. Podpira različne metode klasifikacije, navzkrižno validacijo in uporabo različnih podatkov za gradnjo in testiranje modela. Z njo smo lahko hitro ocenili uspešnost računanja matrik povezljivosti in primerjali delovanje različnih klasifikatorjev v primerjavi z našo nevronsko mrežo.
+
+\section{EEG Motor Movement/Imagery Dataset}
+EEG Motor Movement/Imagery Dataset je prosto dostopna zbirka več kot 1500 eno in dve minutnih posnetkov 109 prostovoljcev ki opravljajo različne naloge. Za nas relevantni so posnetki serij 3, 5 in 7 v katerih prostovoljci stiskajo in sproščajo levo ali desno pest. Posnetki so shranjeni v formatu EDF+ ki vsebuje posnetke EEG in oznake dogodkov. Snemanje je bilo opravljeno s frekvenco 160Hz in 64 elektrodnim sistemom EEG.\cite{schalk_eeg_2009,schalk_bci2000_2004}
 
 \section{Metode povezljivosti}
 \subsection{Grangerjev index vzročnosti}
@@ -64,15 +64,7 @@ Nevronska mreža je sestavljena iz vhodne plasti za slike dimenzij 19x19x1, poln
 \caption{Nevronska mreža.}
 \end{figure}
 
-\section{Izbira metode povezljivosti}
-\textcolor{red}{Mogoče že v rezultati?}\\
-Ker je kompleksni Pearsonov korelacijski koeficient izračunan iz analitičnih signalov ga lahko definiramo samo za ozke frekvenčne pasove. Pri računanju Grangerjevega indexa vzročnosti te omejitve ni, tako da smo ga lahko računali na celotnem frekvenčnem območju do 45Hz. Prav tako se je pojavilo vprašanje koliko dolgo epoho EEG signala bomo potrebovali za uspešno klasifikacijo. Kot možnosti smo vzeli prvo sekundo, prvi dve sekundi, drugi dve sekundi in prve štiri sekunde po dogodku. Natančnost klasifikacije smo ocenili z zgoraj navedeno nevronsko mrežo. Za najboljšo metodo se je izkazal kompleksni Pearsonov korelacijski koeficient na območju 13-30Hz z najdalšimi epohami, 4s.
-\begin{figure}[h!]
-    \begin{center}
-    \includegraphics[width=0.5\linewidth]{slike/Comparison.png}
-    \end{center}
-    \caption{Primerjava območij in dolžin epoh.}
-\end{figure}
+
 
 
 
