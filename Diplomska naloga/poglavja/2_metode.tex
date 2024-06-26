@@ -11,7 +11,7 @@ in matrik Kompleksnega Pearsonov korelacijskega koeficienta, prav tako so v njem
     \end{figure}
     
 \subsection{EEGLAB}
-EEGLAB je interaktivna matlab orodjarna, za procesiranje in obdelavo elektrofizioloških podatkov. Omogoča rereferenciranje EEG signalov, izbiro določenih elektrod, deljenje podatkov na epohe glede na dogodke in filtriranje frekvenc. Omogoča interakcijo preko uporabniškega vmesnika. Vse akcije v vmesniku se prevedejo v ukaze ki jih lahko uporabimo v svoji kodi. Pri izdelavi naloge smo največ uporabljali funkcije branja .edf datotek, filtriranja frekvenc signalov in deljanja posnetkov na manjše dele.\cite{noauthor_eeglab_nodate}
+EEGLAB je interaktivna matlab orodjarna, za procesiranje in obdelavo elektrofizioloških podatkov. Omogoča rereferenciranje EEG signalov, izbiro določenih elektrod, deljenje podatkov na epohe glede na dogodke in filtriranje frekvenc. Omogoča interakcijo preko uporabniškega vmesnika. Vse akcije v vmesniku se prevedejo v ukaze ki jih lahko uporabimo v svoji kodi. Pri izdelavi naloge smo največ uporabljali funkcije branja .edf datotek, filtriranja frekvenc signalov in deljanja posnetkov na manjše dele.\cite{EEGLAB}
 \begin{figure}[h!]
     \begin{center}
     \includegraphics[width=1\linewidth]{slike/EEGLAB.png}
@@ -20,7 +20,7 @@ EEGLAB je interaktivna matlab orodjarna, za procesiranje in obdelavo elektrofizi
     \end{figure}
 
 \subsection{Lab streaming layer}
-Lab streaming layer je odprtokodna vmesna programska oprema ki omogoča pošiljanje, prejemanje, sinhronizacijo in snemanje tokov podatkov. Omogoča enostavno povezovanje EEG naprave z programsko opremo MATLAB. Knjižnjico je potrebno prenesti in nato zgraditi na svojem računalniku.  \cite{noauthor_lsl-website_nodate}
+Lab streaming layer je odprtokodna vmesna programska oprema ki omogoča pošiljanje, prejemanje, sinhronizacijo in snemanje tokov podatkov. Omogoča enostavno povezovanje EEG naprave z programsko opremo MATLAB. Knjižnjico je potrebno prenesti in nato zgraditi na svojem računalniku.  \cite{Lslwebsite}
 
 \subsection{Classification learner}
 Classification learner je aplikacija v okolju MATLAB za enostavno klasifikacijo podatkov. Podpira različne metode klasifikacije, prečno preverjanje in uporabo različnih podatkov za gradnjo in testiranje modela. Aplikacija podpira klasifikacijo podatkov iz dvo dimenzionalnih matrik kjer vrstice ali stolpci predstavljajo spremenjlivke. Oznake podatkov lahko podamo kot določeno vrstico ali stolpec matrike ali v ločeni spremenljivki. Zaradi omejitev aplikacije smo pred klasifikacijo matrike povezljivosti prevorili v vektorje in te združili v matriko podatkov. Z aplikacijo smo lahko hitro ocenili uspešnost računanja matrik povezljivosti in primerjali delovanje različnih klasifikatorjev v primerjavi z našo nevronsko mrežo.
@@ -32,7 +32,7 @@ Classification learner je aplikacija v okolju MATLAB za enostavno klasifikacijo 
     \end{figure}
 
 \section{EEG Motor Movement/Imagery Dataset}
-EEG Motor Movement/Imagery Dataset(MMID) je prosto dostopna zbirka več kot 1500 eno in dve minutnih posnetkov 109 prostovoljcev. Zbirka za vsakega prostovoljca vsebuje dva izhodiščna posnetka in po tri posnetke opravljajanja štiri različnh nalog: stiskanje in sproščanje leve ali desne pesti(naloga 1), namišljeno stiskanje in sproščanje leve ali desne pesti(naloga 2), stiskanje in sproščanje obeh pesti ali obeh stopal(naloga 3), namišljeno stiskanje in sproščanje obeh pesti ali obeh stopal(naloga 4). Za nas relevantni so posnetki serij 3, 7 in 11 v katerih prostovoljci opravljajo prvo nalogo. Posnetki so shranjeni v formatu EDF+ ki vsebuje posnetke EEG in oznake dogodkov. Snemanje je bilo opravljeno z sistemom BCI2000 z 64 elektrodami postavljenimi po mednarodnem sistemu 10-10 brez elektrod Nz, F9, F10, FT9, FT10, A1, A2, TP9, TP10, P9, in P10.\cite{schalk_eeg_2009,schalk_bci2000_2004}
+EEG Motor Movement/Imagery Dataset(MMID) je prosto dostopna zbirka več kot 1500 eno in dve minutnih posnetkov 109 prostovoljcev. Zbirka za vsakega prostovoljca vsebuje dva izhodiščna posnetka in po tri posnetke opravljajanja štiri različnh nalog: stiskanje in sproščanje leve ali desne pesti(naloga 1), namišljeno stiskanje in sproščanje leve ali desne pesti(naloga 2), stiskanje in sproščanje obeh pesti ali obeh stopal(naloga 3), namišljeno stiskanje in sproščanje obeh pesti ali obeh stopal(naloga 4). Za nas relevantni so posnetki serij 3, 7 in 11 v katerih prostovoljci opravljajo prvo nalogo. Posnetki so shranjeni v formatu EDF+ ki vsebuje posnetke EEG in oznake dogodkov. Snemanje je bilo opravljeno z sistemom BCI2000 z 64 elektrodami postavljenimi po mednarodnem sistemu 10-10 brez elektrod Nz, F9, F10, FT9, FT10, A1, A2, TP9, TP10, P9, in P10.\cite{sschalkBCI2000GeneralpurposeBraincomputer2004,schalkEEGMotorMovement2009}
 
 \begin{table}[h]
 \centering
@@ -93,10 +93,11 @@ X_1(t) &= \sum_{j=1}^{p} A_{2,j} X_1(t-j) + \sum_{j=1}^{p} A_{3,j} X_2(t-j) + E_
 
 \textcolor{red}{Mogoče razlaga kaj so A-ji. Ali je pravilno razloženo?}
 
-\cite{seth_granger_2007}
+\cite{sethGrangerCausality2007}
 
 \subsection{Kompleksni Pearsonov korelacijski koeficient}
-Pearsonov korelacijski koeficient je najpogosteje uporabljen linearni korelacijski koeficient. Zanj smo se odločili saj v članku  \citetitle{sverko_complex_2022} avtorji pokažejo da vsebuje informacije PLI in wPLI ki sta dve najbolj pogosto uporabljeni metodi povezljivosti. V praksi nam pove, v kakšni meri sta fazi dveh signalov linearno povezani.
+Pearsonov korelacijski koeficient je najpogosteje uporabljen linearni korelacijski koeficient. Zanj smo se odločili saj v članku  \citetitle{sverkoComplexPearsonCorrelation2022}\cite{sverkoComplexPearsonCorrelation2022} 
+avtorji pokažejo da vsebuje informacije PLI in wPLI ki sta dve najbolj pogosto uporabljeni metodi povezljivosti. V praksi nam pove, v kakšni meri sta fazi dveh signalov linearno povezani.
 
 Ker želimo opazovati faze EEG signala, ga potrebujemo pretvoriti v analitični signal ki vsebuje informacijo o fazi. Zaradi sledeče transformacijo, ki je definirana samo na ozkih frekvenčnih pasovih potrebujemo signale EEG predhodno filtrirati. Analitični signal $X_a$ kjer $HT(X(t))$ označuje hilbertovo transformacijo signala $X$.
 \begin{align*}
@@ -107,7 +108,6 @@ Za računanje Kompleksnega Pearsonovega korelacijskega koeficienta v našem prim
 \begin{align*}
 r(X_1, X_2) &= \frac{\sum\limits_{n=1}^{N}(X_1(n) \cdot \overline{X_2(n)})}{\sqrt{\sum\limits_{n=1}^{N} |X_1(n)|^2} \cdot \sqrt{\sum\limits_{n=1}^{N} |X_2(n)|^2}}
 \end{align*}
-\cite{sverko_complex_2022} 
 
 \section{Klasifikacija}
 Želeli smo preizkusiti kako uspešno bi klasifikacija delovala na podatkih zbirke in kako uspešno bi delovala na naših podatkih, zato smo klasifikacijo izvajali dvakrat. Enkrat na podatkih zbirke in enkrat na naših podatkih. Ker nevronska mreža za učenje potrebuje več podatkov kot jih lahko zagotovimo iz naših posnetkov smo jo za namene klasifikacije naših posnetkov naučili na podatkih MMID in nato dodatno naučili na naših podatkih. 
