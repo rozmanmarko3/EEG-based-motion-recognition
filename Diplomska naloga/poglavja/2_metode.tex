@@ -23,7 +23,7 @@ EEGLAB je interaktivna matlab orodjarna, za procesiranje in obdelavo elektrofizi
 Lab streaming layer je odprtokodna vmesna programska oprema ki omogoča pošiljanje, prejemanje, sinhronizacijo in snemanje tokov podatkov. Omogoča enostavno povezovanje EEG naprave z programsko opremo MATLAB. Knjižnjico je potrebno prenesti in nato zgraditi na svojem računalniku.  \cite{noauthor_lsl-website_nodate}
 
 \subsection{Classification learner}
-Classification learner je aplikacija v okolju MATLAB za enostavno klasifikacijo podatkov. Podpira različne metode klasifikacije, prečno preverjanje in uporabo različnih podatkov za gradnjo in testiranje modela. Z njo smo lahko hitro ocenili uspešnost računanja matrik povezljivosti in primerjali delovanje različnih klasifikatorjev v primerjavi z našo nevronsko mrežo.
+Classification learner je aplikacija v okolju MATLAB za enostavno klasifikacijo podatkov. Podpira različne metode klasifikacije, prečno preverjanje in uporabo različnih podatkov za gradnjo in testiranje modela. Aplikacija podpira klasifikacijo podatkov iz dvo dimenzionalnih matrik kjer vrstice ali stolpci predstavljajo spremenjlivke. Oznake podatkov lahko podamo kot določeno vrstico ali stolpec matrike ali v ločeni spremenljivki. Zaradi omejitev aplikacije smo pred klasifikacijo matrike povezljivosti prevorili v vektorje in te združili v matriko podatkov. Z aplikacijo smo lahko hitro ocenili uspešnost računanja matrik povezljivosti in primerjali delovanje različnih klasifikatorjev v primerjavi z našo nevronsko mrežo.
 \begin{figure}[h!]
     \begin{center}
     \includegraphics[width=1\linewidth]{slike/ClasificationLearner.png}
@@ -32,7 +32,7 @@ Classification learner je aplikacija v okolju MATLAB za enostavno klasifikacijo 
     \end{figure}
 
 \section{EEG Motor Movement/Imagery Dataset}
-EEG Motor Movement/Imagery Dataset(MMID) je prosto dostopna zbirka več kot 1500 eno in dve minutnih posnetkov 109 prostovoljcev. Zbirka za vsakega prostovoljca vsebuje dva izhodiščna posnetka in po tri posnetke opravljajanja štiri različnh nalog: stiskanje in sproščanje leve ali desne pesti(naloga 1), namišljeno stiskanje in sproščanje leve ali desne pesti(naloga 2), stiskanje in sproščanje obeh pesti ali obeh stopal(naloga 3), namišljeno stiskanje in sproščanje obeh pesti ali obeh stopal(naloga 4). Za nas relevantni so posnetki serij 3, 7 in 11 v katerih prostovoljci opravljajo prvo nalogo. Posnetki so shranjeni v formatu EDF+ ki vsebuje posnetke EEG in oznake dogodkov. Snemanje je bilo opravljeno s frekvenco 160Hz in 64 elektrodnim sistemom EEG.\cite{schalk_eeg_2009,schalk_bci2000_2004}
+EEG Motor Movement/Imagery Dataset(MMID) je prosto dostopna zbirka več kot 1500 eno in dve minutnih posnetkov 109 prostovoljcev. Zbirka za vsakega prostovoljca vsebuje dva izhodiščna posnetka in po tri posnetke opravljajanja štiri različnh nalog: stiskanje in sproščanje leve ali desne pesti(naloga 1), namišljeno stiskanje in sproščanje leve ali desne pesti(naloga 2), stiskanje in sproščanje obeh pesti ali obeh stopal(naloga 3), namišljeno stiskanje in sproščanje obeh pesti ali obeh stopal(naloga 4). Za nas relevantni so posnetki serij 3, 7 in 11 v katerih prostovoljci opravljajo prvo nalogo. Posnetki so shranjeni v formatu EDF+ ki vsebuje posnetke EEG in oznake dogodkov. Snemanje je bilo opravljeno z sistemom BCI2000 z 64 elektrodami postavljenimi po mednarodnem sistemu 10-10 brez elektrod Nz, F9, F10, FT9, FT10, A1, A2, TP9, TP10, P9, in P10.\cite{schalk_eeg_2009,schalk_bci2000_2004}
 
 \begin{table}[h]
 \centering
@@ -69,12 +69,17 @@ EEG Motor Movement/Imagery Dataset(MMID) je prosto dostopna zbirka več kot 1500
 \hline
 14 & naloga 4 &namišljeno stiskanje in sproščanje obeh pesti ali obeh stopal  \\
 
-
 \hline
 \end{tabular}
 \caption{Naloge in opisi nalog, ki jih prostovoljci opravljajo v posnetkih zbirke podtakov MMID.}
 \end{table}
 
+\begin{figure}[h!]
+    \begin{center}
+    \includegraphics[width=1\linewidth]{slike/64electrodeSystem.png}
+    \end{center}
+    \caption{Postavitev elektrod po mednarodnem sistemu 10-10 brez elektrod Nz, F9, F10, FT9, FT10, A1, A2, TP9, TP10, P9, in P10, ki je blia uporabljena za snemanje zbirke MMID.}
+    \end{figure}
 \section{Metode povezljivosti}
 \subsection{Grangerjev index vzročnosti}
 Grangerjev index vzročnosti je statistična metoda za preverjanje ali ena časovna vrsta nosi informacije o drugi. Metoda je bila razvita v šestdesedih letih devetnajstega stoletja za uporabo ekonomiji.
@@ -112,12 +117,12 @@ Na matrikah povezljivosti pridobljenih iz podatkov zbirke in naših posnetkov sm
 
 
 \subsection{Nevronska mreža}
-Nevronska mreža je sestavljena iz vhodne plasti za slike dimenzij 19x19x1, polno povezanega sloja s 100 nevroni, Leaky ReLU sloja, dropout sloja z 50\% verjetnostjo opustitve nevronov, polno povezanega sloja z 10 nevroni, GELU sloja, dropout sloja z 50\% verjetnostjo opustitve nevronov, polno povezanega sloja s tremi nevroni in Softmax sloja. 
+Nevronska mreža je sestavljena iz vhodne plasti za slike dimenzij 19x19x1, polno povezane plasti s 100 nevroni, Leaky ReLU plasti, dropout plasti z 50\% verjetnostjo opustitve nevronov, polno povezane plasti z 10 nevroni, GELU plasti, dropout plasti z 50\% verjetnostjo opustitve nevronov, polno povezane plasti s tremi nevroni in Softmax plasti. 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[width=0.5\linewidth]{slike/Neural network.png}
+\includegraphics[width=0.8\linewidth]{slike/Neural network.png}
 \end{center}
-\caption{Nevronska mreža.}
+\caption{Prikaz plasti nevronske mreže v MATLAB alikaciji Deep Network Designer. Od zgoraj navzdol: plast za slike, polno povezana, Leaky ReLU, dropout, polno povezana, GELU, dropout, polno povezana in Softmax.}
 \end{figure}
 
 

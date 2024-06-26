@@ -1,23 +1,24 @@
 \chapter{Rezultati}
 \section{Delitev podatkov}
-Za končno raziskavo smo imeli na voljo 7368 primerov stanj iz podatkovne zbirke EEG Motor Movement/Imagery Dataset. Primere stanj smo skrčili na enakomerno razporeditev, z 2456 primeri vsakega stanja. Sami smo posneli neka minut posnetkov, 186 primerov stanj od tega 62 primerov vsakega stanja. Za učenje nevronskih mrež smo uporabljali množice za učenje z 75\% podatkov in množice za testiranje z 25\% podatkov.
+Za končno raziskavo smo izbrali posnetke serij 3, 7 in 11 iz MMID. Vsaka serija vsebuje 109 posnetkov, vsak posnetk 30 primerov stanj, vse skupaj smo jih pridobili 9854. Primere stanj smo skrčili na enakomerno razporeditev, z 2456 primeri vsakega stanja. Sami smo posneli neka minut posnetkov. Vse skupaj 250 primerov stanj, ki smo jih skrčili na enakomerno razporeditev, 62 primerov vsakega stanja. Za učenje nevronskih mrež smo uporabljali množice za učenje z 75\% podatkov in množice za testiranje z 25\% podatkov. Podatki so bili naključno razporejeni med učno in testno množico. Ker smo podatke delili naključno, se lahko posnetki stanj enega prostovoljca pojavijo v učni in testni množici. Pri dodatnem učenju mreže smo uporabili posnetke ene osebe za učenje in testiranje. To skupaj pomeni da sistem ne deluje intersubject. 
 
 \section{Izbira metode povezljivosti}
 Ker je kompleksni Pearsonov korelacijski koeficient izračunan iz analitičnih signalov ga lahko definiramo samo za ozke frekvenčne pasove. Pri računanju Grangerjevega indexa vzročnosti te omejitve ni, tako da smo ga lahko računali na celotnem frekvenčnem območju do 45Hz. Prav tako se je pojavilo vprašanje koliko dolgo epoho EEG signala bomo potrebovali za uspešno klasifikacijo. Kot možnosti smo vzeli prvo sekundo, prvi dve sekundi, drugi dve sekundi in prve štiri sekunde po dogodku. Točnost klasifikacije smo ocenili z zgoraj navedeno nevronsko mrežo. Za najboljšo metodo se je izkazal kompleksni Pearsonov korelacijski koeficient na območju 13-30Hz z najdalšimi epohami, 4s.
 \begin{figure}[h!]
     \begin{center}
-    \includegraphics[width=0.5\linewidth]{slike/Comparison.png}
+    \includegraphics[width=1\linewidth]{slike/Comparison.png}
     \end{center}
     \caption{Primerjava območij in dolžin epoh.}
 \end{figure}
 
-\section{Primerjava filtrov}
+\newpage
+\subsection{Primerjava filtrov}
 Knjižnica EEGLAB vsebuje samo filtre z ničelno fazo, ki filtrirajo naprej in nato nazaj po času, kar v našem primeru ni primerno saj podatke prejemamo sekvenčno, zato smo podatke filtrirali s pomočjo Butterworthovega filtra ki vsebuje stanja. Stanja nam omogočajo filtriranje sekvenčnih podatkov saj preprečijo napako na začetku filtra kjer le ta potrebuje predpostaviti začetno staje vseh signalov 0. Ker filtra nista enakovredna saj prvi ne spreminja faz drugi pa jih zamakne, uporabljena metoda CPCC pa deluje na zamikih faz, smo izvedli dodatno testiranje, da smo preverili če pristop deluje enako učinkovito.
 \begin{figure}[h!]
     \begin{center}
-    \includegraphics[width=0.5\linewidth]{slike/ComparisonFilters.png}
+    \includegraphics[width=1 \linewidth]{slike/ComparisonFilters.png}
     \end{center}
-    \caption{Primerjava klasifikacije CPCC z nevronsko mrežo za epoho 0-4s za različne frekvenčne pasove \textcolor{red}{ val $= eeglab - Butterworth$ testirano za 30 ljudi * 3 serije} }
+    \caption{Primerjava klasifikacije CPCC z nevronsko mrežo za epoho 0-4s za različne frekvenčne pasove}
 \end{figure}
 
 \begin{figure}[h!]
@@ -35,7 +36,7 @@ Knjižnica EEGLAB vsebuje samo filtre z ničelno fazo, ki filtrirajo naprej in n
     \end{figure}
 
 
-
+\newpage
 \section{Rezultati na MMID}
 \subsection{Classification learner}
 Z uporabo aplikacije clasifiacation learner smo testirali več načinov klasifikacije in dosegl 49\% točnost. 

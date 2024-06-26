@@ -1,9 +1,4 @@
 
-delitev podatkov
-	več o primerih kako so izbrani
-	intersubject
-primerjava filtrov v 3.2.3
-	dva stolpca za en in za drug filter, lahko stolpični diagram
 
 izvedba v realnem času
 	brez eeglaba
@@ -11,23 +6,19 @@ izvedba v realnem času
 
 Primerjava ali se z klasifikacijo da ločiti gibanje.
 
-opis cognionics quick-20
 Slike enlektroencefalografije
-Primer signalov
 
 povezljivost dodatno na usmerjeno in neusmerjeno več o funkcijski, brez podnaslova
-razvojno okolje več o matlabu? slike
+
 viri za matlab in eeglab.
-več o MMID vrste posnetkov, kateri sorelavnatni za nas. Tabela?
-EEG Sistem z 64 elektrodami - dodaj ime.
-podaljšanje clasification learner, kako podatki urejeni, kaj podpira
 
 Granger causality
 	poudarek da je a2 drugačen kot a1 ker 
 	aji dobljeni z vektorsko avtoregresijo - lahko iz ppt, cohen(referenca knjige: https://www.amazon.com/Analyzing-Neural-Time-Data-Practice/dp/0262019876)
+
 nevronska mreža -> arhitektura nevronske mreže
 kako je realizirana -> deep learning toolbox
-rezširitev opis slik, povečanje da so fonti slik enaki kot fonti besedila
+
 nn v clasificationlearnerju
 podaljšat opise slik, vseh.
 

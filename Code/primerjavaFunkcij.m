@@ -205,7 +205,7 @@ end
 
 %%
 %train networks for MY
-for frequencyBandIndx = 1
+for frequencyBandIndx = 1:size(frequencyBands,1)
     for timeRangeIndx = 1:size(timeRanges,1)
 
             layers = [
@@ -226,7 +226,7 @@ for frequencyBandIndx = 1
         markers = markersMY{frequencyBandIndx,timeRangeIndx};
         [accuracy, netTrained, confusionFigure] = foldEvaluation(data,markers, netStarter);
         
-        saveas(confusionFigure,fullfile(resultsFolder,['Confusion my ', timeLabels{timeRangeIndx},'.png']))
+        saveas(confusionFigure,fullfile(resultsFolder,['Confusion my ', frequencyLabels{frequencyBandIndx},'.png']))
         close(confusionFigure)
         resultsMY(frequencyBandIndx,timeRangeIndx) = accuracy;
 
