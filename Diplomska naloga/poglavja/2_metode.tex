@@ -1,5 +1,4 @@
 \chapter{Metode}
-
 \section{Razvojno okolje MATLAB}
 Ves razvoj je potekal v programskem okolju MATLAB. Ta poleg samega programskega jezika vsebuje velik nabor že implementiranh funkcij, napredne aplikacije za strojno učenje in knjžnice ki omogočajo povezave z laboratorjskimi napravami. V njem sta ustvarjeni funkciji za računanje matrik Grangerjevega indexa vzročnosti
 in matrik Kompleksnega Pearsonov korelacijskega koeficienta, prav tako so v njem ustvarjene nevronske mreže in uporabljeno je za ostale klasifikatorje in funkcijo za zajemanje podatkov iz naprave Cognionics Quick-20 ter funkcijo ki v realnem času razpoznava gibanje.
@@ -84,14 +83,11 @@ EEG Motor Movement/Imagery Dataset(MMID) je prosto dostopna zbirka več kot 1500
 \subsection{Grangerjev index vzročnosti}
 Grangerjev index vzročnosti je statistična metoda za preverjanje ali ena časovna vrsta nosi informacije o drugi. Metoda je bila razvita v šestdesedih letih devetnajstega stoletja za uporabo ekonomiji.
 
-Za dve časovni vrsti $X_1$ in $X_2$, in $p$ kot število prejšnjih vrednosti ki jih upoštevamo pri računanju, lahko izračunamo $E_1$ in $E_1$ ki so napake pri predvidevanju naslednje vrednosti v vrsti $X_1$. V kolikor je varianca vrednosti $E_2$ manjša kot varianca vrednosti $E_1$ lahko predvidevamo da časovna vrsta $X_2$ nosi informacije o časovni vrsti $X_1$
+Za dve časovni vrsti $X_1$ in $X_2$, in $p$ kot število prejšnjih vrednosti ki jih upoštevamo pri računanju, lahko izračunamo $E_1$ in $E_1$ ki so napake pri predvidevanju naslednje vrednosti v vrsti $X_1$. V kolikor je varianca vrednosti $E_2$ manjša kot varianca vrednosti $E_1$ lahko predvidevamo da časovna vrsta $X_2$ nosi informacije o časovni vrsti $X_1$. $A_1$, $A_2$ in $A_3$ so koeficienti avto-regresivnega modela.
 \begin{align*}
 X_1(t) &= \sum_{j=1}^{p} A_{1,j} X_1(t-j) + E_1(t)\\
 X_1(t) &= \sum_{j=1}^{p} A_{2,j} X_1(t-j) + \sum_{j=1}^{p} A_{3,j} X_2(t-j) + E_2(t)
 \end{align*}
-
-
-\textcolor{red}{Mogoče razlaga kaj so A-ji. Ali je pravilno razloženo?}
 
 \cite{sethGrangerCausality2007}
 
@@ -113,7 +109,7 @@ r(X_1, X_2) &= \frac{\sum\limits_{n=1}^{N}(X_1(n) \cdot \overline{X_2(n)})}{\sqr
 Želeli smo preizkusiti kako uspešno bi klasifikacija delovala na podatkih zbirke in kako uspešno bi delovala na naših podatkih, zato smo klasifikacijo izvajali dvakrat. Enkrat na podatkih zbirke in enkrat na naših podatkih. Ker nevronska mreža za učenje potrebuje več podatkov kot jih lahko zagotovimo iz naših posnetkov smo jo za namene klasifikacije naših posnetkov naučili na podatkih MMID in nato dodatno naučili na naših podatkih. 
 
 \subsection{Classification learner}
-Na matrikah povezljivosti pridobljenih iz podatkov zbirke in naših posnetkov smo izvedli več različnih klasifikacije in sicer: odločitvena drevesa, metodo k najbližjih sosedov (k-NN), logistično regresijo, podporne vektorske stroje (SVM) in nevronske mreže.
+Na matrikah povezljivosti pridobljenih iz podatkov zbirke in naših posnetkov smo izvedli več različnih vrst klasifikacije in sicer: odločitvena drevesa, metodo k najbližjih sosedov (k-NN), logistično regresijo, podporne vektorske stroje (SVM) in nevronske mreže.
 
 
 \subsection{Nevronska mreža}

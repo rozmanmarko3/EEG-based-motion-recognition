@@ -42,17 +42,40 @@ Knjižnica EEGLAB vsebuje samo filtre z ničelno fazo, ki filtrirajo naprej in n
 Z uporabo aplikacije clasifiacation learner smo testirali več načinov klasifikacije in dosegl 49\% točnost. 
 \begin{table}[h]
 \centering
-\begin{tabular}{|c|c|}
+\begin{tabular}{|l|l|c|}
 \hline
-Metoda klasifikacije & točnost \\
-\hline
-odločitvena drevo & 40\%  \\
-\hline
-k-NN & 41\% \\
-\hline
-logistična regresija & 49\% \\
-\hline
-SVM & 45\% \\
+vrsta klasifikacije & metoda & točnost [\%] \\
+\hline SVM&Quadratic SVM&53\\
+\hline SVM&Linear SVM&53\\
+\hline SVM&Medium Gaussian SVM&53\\
+\hline Ensemble&Subspace Discriminant&53\\
+\hline SVM&Cubic SVM&52\\
+\hline Kernel&SVM Kernel&52\\
+\hline Kernel&Logistic Regression Kernel&52\\
+\hline SVM&Coarse Gaussian SVM&50\\
+\hline Efficient Logistic Regression&Efficient Logistic Regression&49\\
+\hline Neural Network&Wide Neural Network&49\\
+\hline Neural Network&Medium Neural Network&47\\
+\hline Efficient Linear SVM&Efficient Linear SVM&46\\
+\hline Neural Network&Trilayered Neural Network&45\\
+\hline Neural Network&Bilayered Neural Network&45\\
+\hline Naive Bayes&Kernel Naive Bayes&45\\
+\hline Neural Network&Narrow Neural Network&45\\
+\hline Ensemble&Bagged Trees&44\\
+\hline KNN&Coarse KNN&44\\
+\hline Ensemble&Boosted Trees&43\\
+\hline Ensemble&RUSBoosted Trees&42\\
+\hline Tree&Medium Tree&41\\
+\hline Tree&Fine Tree&41\\
+\hline KNN&Cosine KNN&41\\
+\hline Tree&Coarse Tree&41\\
+\hline KNN&Medium KNN&40\\
+\hline KNN&Weighted KNN&40\\
+\hline Ensemble&Subspace KNN&40\\
+\hline KNN&Cubic KNN&40\\
+\hline KNN&Fine KNN&38\\
+\hline SVM&Fine Gaussian SVM&37\\
+
 \hline
 \end{tabular}
 \caption{Točnost klasifikacij}
