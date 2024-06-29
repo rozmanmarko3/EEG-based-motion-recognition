@@ -39,7 +39,7 @@ Knjižnica EEGLAB vsebuje samo filtre z ničelno fazo, ki filtrirajo naprej in n
 \newpage
 \section{Rezultati na MMID}
 \subsection{Classification learner}
-Z uporabo aplikacije clasifiacation learner smo testirali več načinov klasifikacije in dosegl 49\% točnost. 
+Z uporabo aplikacije clasifiacation learner smo testirali več načinov klasifikacije. Iz rezultatov predstavljenih v spodnji tabeli lahko razberemo da so se za najoblj uspešne izkazale metode podpornih vekotrjev(SVM), vendar so te metode računsko zahtevne kar otežuje izvedbo v realnem času. Dober kandidat bi lahko bila odločitvena drevesa saj so enostavna za treniranje in iterpretacijo, vendar so le ta dosegla 41\% točnost. Nevronske mreže ki jih podpira aplikacija so enostavne, vendar pa je njihova interpretacija težja. Ker ne omogočajo klasifikacije matrik izgubimo prostorske povezave med posameznimi elektrodami. \textcolor{red}{Je to res?} Dosegle so 49\% točnost.
 \begin{table}[h]
 \centering
 \begin{tabular}{|l|l|c|}
@@ -78,11 +78,11 @@ vrsta klasifikacije & metoda & točnost [\%] \\
 
 \hline
 \end{tabular}
-\caption{Točnost klasifikacij}
+\caption{Točnost vseh testiranih klasifikacijskih metod va plikaciji Clasification Learner.}
 \end{table}
 
 \subsection{Nevronska mreža}
-Nato smo poskusili z nevronsko mrežo ki je dosegla 52\% točnost.
+Nato smo poskusili z našo nevronsko mrežo ki klasificira matrike
 
 \begin{figure}[h!]
 \begin{center}
