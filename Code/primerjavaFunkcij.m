@@ -1,5 +1,5 @@
 %variables
-numberOfSubjects = 109;
+numberOfSubjects = 30;
 frequencyBands = [0.1 4;4 8;8 13;13 20;20 40];
 timeRanges =[0 4];
 
@@ -168,9 +168,11 @@ for frequencyBandIndx = 1:size(frequencyBands,1)
     end
 end
 %downsample MY
-for timeRangeIndx = 1:size(timeRanges,1)
-    [dataMY{1,timeRangeIndx}, markersMY{1,timeRangeIndx}] = downSample(dataMY{1,timeRangeIndx}, markersMY{1,timeRangeIndx});
-    disp('down')
+for frequencyBandIndx = 1:size(frequencyBands,1)
+    for timeRangeIndx = 1:size(timeRanges,1)
+        [dataMY{frequencyBandIndx,timeRangeIndx}, markersMY{frequencyBandIndx,timeRangeIndx}] = downSample(dataMY{frequencyBandIndx,timeRangeIndx}, markersMY{frequencyBandIndx,timeRangeIndx});
+        disp('down')
+    end
 end
 
 %%

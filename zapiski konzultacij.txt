@@ -1,39 +1,7 @@
-
-
-izvedba v realnem času
-	brez eeglaba
-
-
-Primerjava ali se z klasifikacijo da ločiti gibanje.
-
-Slike enlektroencefalografije
-
 povezljivost dodatno na usmerjeno in neusmerjeno več o funkcijski, brez podnaslova
 
-viri za matlab in eeglab.
-
-Granger causality
-	poudarek da je a2 drugačen kot a1 ker 
-	aji dobljeni z vektorsko avtoregresijo - lahko iz ppt, cohen(referenca knjige: https://www.amazon.com/Analyzing-Neural-Time-Data-Practice/dp/0262019876)
-
-nevronska mreža -> arhitektura nevronske mreže
-kako je realizirana -> deep learning toolbox
-
-nn v clasificationlearnerju
-podaljšat opise slik, vseh.
-
-	
-
-
-
-
-Zaključki
-	tukaj ugotovitve o rezultatih, ne umes
-poudarke da je CPCC boljši kot granger
-
-omemba da je učeno na istih osebah v zaključku
-
 cross validation -> prečno preverjanje
-prevodi z https://terminoloski.slovenscina.eu/
+
+
 Slika kako elektrode vplivajo na klasifikacijo z nn
 Mogoče testirati na podatkih kjer se pesti vedno premikajo.

@@ -1,6 +1,6 @@
 \chapter{Rezultati}
 \section{Delitev podatkov}
-Za končno raziskavo smo izbrali posnetke serij 3, 7 in 11 iz MMID. Vsaka serija vsebuje 109 posnetkov, vsak posnetk 30 primerov stanj, vse skupaj smo jih pridobili 9854. Primere stanj smo skrčili na enakomerno razporeditev, z 2456 primeri vsakega stanja. Sami smo posneli neka minut posnetkov. Vse skupaj 250 primerov stanj, ki smo jih skrčili na enakomerno razporeditev, 62 primerov vsakega stanja. Za učenje nevronskih mrež smo uporabljali množice za učenje z 75\% podatkov in množice za testiranje z 25\% podatkov. Podatki so bili naključno razporejeni med učno in testno množico. Ker smo podatke delili naključno, se lahko posnetki stanj enega prostovoljca pojavijo v učni in testni množici. Pri dodatnem učenju mreže smo uporabili posnetke ene osebe za učenje in testiranje. To skupaj pomeni da sistem ne deluje intersubject. 
+Za končno raziskavo smo izbrali posnetke serij 3, 7 in 11 iz MMID. Vsaka serija vsebuje 109 posnetkov, vsak posnetk 30 primerov stanj, vse skupaj smo jih pridobili 9854. Primere stanj smo skrčili na enakomerno razporeditev, z 2456 primeri vsakega stanja. Sami smo posneli neka minut posnetkov. Vse skupaj 250 primerov stanj, ki smo jih skrčili na enakomerno razporeditev, 62 primerov vsakega stanja. Za učenje nevronskih mrež smo uporabljali množice za učenje z 75\% podatkov in množice za testiranje z 25\% podatkov. Podatki so bili naključno razporejeni med učno in testno množico. Ker smo podatke delili naključno, se lahko posnetki stanj enega prostovoljca pojavijo v učni in testni množici. Pri dodatnem učenju mreže smo uporabili posnetke ene osebe za učenje in testiranje. To skupaj pomeni da sistem ne deluje medosebno. 
 
 \section{Izbira metode povezljivosti}
 Ker je kompleksni Pearsonov korelacijski koeficient(CPCC) izračunan iz analitičnih signalov ga lahko definiramo samo za ozke frekvenčne pasove. Pri računanju Grangerjevega indexa vzročnosti(GC) te omejitve ni, tako da smo ga lahko računali na celotnem frekvenčnem območju do 45Hz. Prav tako se je pojavilo vprašanje koliko dolgo epoho EEG signala bomo potrebovali za uspešno klasifikacijo. Kot možnosti smo vzeli prvo sekundo, prvi dve sekundi, drugi dve sekundi in prve štiri sekunde po dogodku. Točnost klasifikacije smo ocenili z zgoraj navedeno nevronsko mrežo. Za najboljšo metodo se je izkazal kompleksni Pearsonov korelacijski koeficient na območju 13-30Hz z najdalšimi epohami, 4s. Celotno območje primerjav razvidno iz slike \ref{slika:primerjava_obmocij}.
@@ -87,9 +87,9 @@ vrsta klasifikacije & metoda & točnost [\%] \\
 
 \begin{figure}
     \begin{center}
-    \includegraphics[width=0.8\linewidth]{slike/Confusion_13-20Hz_0s-4s.png}
+    \includegraphics[width=0.8\linewidth]{slike/ConfusionSVM.png}
     \end{center}
-    \caption{Matrika zmede metode Quadratic SVM. V zelenih poljih vidna točnost za posamezna stanja. Od zgoraj navzdol: skrčena desna pest, skrčena leva pest, stanje mirovanja.}
+    \caption{Matrika zmede metode Quadratic SVM. V poljih vidno število klasificiranih stanj. Od zgoraj navzdol: skrčena desna pest, skrčena leva pest, stanje mirovanja.}
     \label{slika:SVM_matrika}
     \end{figure}
 
@@ -107,14 +107,17 @@ Nato smo poskusili z zgoraj navedeno nevronsko mrežo, ki klasificira matrike po
 
 
 \section{Rezultati na lastnih podatkih}
-Da bi se približali pogojem v realnem času, smo nevronsko mrežo dodatno naučili na naših podatkih. Zaradi različnih pogojev snemanja in đnčnosti naprav na katerih so podatki snemani je točnost klasifikacije pričakovano padla.
+Da bi se približali pogojem v realnem času, smo nevronsko mrežo dodatno naučili na naših podatkih. Zaradi različnih pogojev snemanja in natančnosti naprav na katerih so podatki snemani je točnost klasifikacije pričakovano padla. Ker nimamo velikega števila posnetkov smo podatke razdelili na pet delov in mrežo natrenirali petkrat. Vsakič smo uporabili en del za testiranje in štiri za učenje. Predstavljeni podatki so seštevek vseh teh testiranj.
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.5\linewidth]{slike/Confusion_13-20Hz_0s-4s_retrained.png}
+\includegraphics[width=0.8\linewidth]{slike/Confusion_13-20Hz_0s-4s_retrained.png}
 \end{center}
-\caption{Matrika zmede nevronske mreže dodatno naučene na naših podatkih.}
+\caption{Matrika zmede nevronskih mrež dodatno naučenih na naših podatkih.}
 \end{figure}
+
+
 \section{Preizkus v realnem času}
+
 
 
 
