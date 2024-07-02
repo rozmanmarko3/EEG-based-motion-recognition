@@ -3,44 +3,47 @@
 Za končno raziskavo smo izbrali posnetke serij 3, 7 in 11 iz MMID. Vsaka serija vsebuje 109 posnetkov, vsak posnetk 30 primerov stanj, vse skupaj smo jih pridobili 9854. Primere stanj smo skrčili na enakomerno razporeditev, z 2456 primeri vsakega stanja. Sami smo posneli neka minut posnetkov. Vse skupaj 250 primerov stanj, ki smo jih skrčili na enakomerno razporeditev, 62 primerov vsakega stanja. Za učenje nevronskih mrež smo uporabljali množice za učenje z 75\% podatkov in množice za testiranje z 25\% podatkov. Podatki so bili naključno razporejeni med učno in testno množico. Ker smo podatke delili naključno, se lahko posnetki stanj enega prostovoljca pojavijo v učni in testni množici. Pri dodatnem učenju mreže smo uporabili posnetke ene osebe za učenje in testiranje. To skupaj pomeni da sistem ne deluje intersubject. 
 
 \section{Izbira metode povezljivosti}
-Ker je kompleksni Pearsonov korelacijski koeficient izračunan iz analitičnih signalov ga lahko definiramo samo za ozke frekvenčne pasove. Pri računanju Grangerjevega indexa vzročnosti te omejitve ni, tako da smo ga lahko računali na celotnem frekvenčnem območju do 45Hz. Prav tako se je pojavilo vprašanje koliko dolgo epoho EEG signala bomo potrebovali za uspešno klasifikacijo. Kot možnosti smo vzeli prvo sekundo, prvi dve sekundi, drugi dve sekundi in prve štiri sekunde po dogodku. Točnost klasifikacije smo ocenili z zgoraj navedeno nevronsko mrežo. Za najboljšo metodo se je izkazal kompleksni Pearsonov korelacijski koeficient na območju 13-30Hz z najdalšimi epohami, 4s.
-\begin{figure}[h!]
+Ker je kompleksni Pearsonov korelacijski koeficient(CPCC) izračunan iz analitičnih signalov ga lahko definiramo samo za ozke frekvenčne pasove. Pri računanju Grangerjevega indexa vzročnosti(GC) te omejitve ni, tako da smo ga lahko računali na celotnem frekvenčnem območju do 45Hz. Prav tako se je pojavilo vprašanje koliko dolgo epoho EEG signala bomo potrebovali za uspešno klasifikacijo. Kot možnosti smo vzeli prvo sekundo, prvi dve sekundi, drugi dve sekundi in prve štiri sekunde po dogodku. Točnost klasifikacije smo ocenili z zgoraj navedeno nevronsko mrežo. Za najboljšo metodo se je izkazal kompleksni Pearsonov korelacijski koeficient na območju 13-30Hz z najdalšimi epohami, 4s. Celotno območje primerjav razvidno iz slike \ref{slika:primerjava_obmocij}.
+\begin{figure}
     \begin{center}
     \includegraphics[width=1\linewidth]{slike/Comparison.png}
     \end{center}
-    \caption{Primerjava območij in dolžin epoh.}
+    \caption{Primerjava točnosti po območij in epohah za CPCC in GC. Od zgoraj navzdol CPCC po pasovih delta, theta, alpha, beta in gamma. Spodnja vrstica Grangerjev index vzorčnosti. Epohe od leve proti desni: prva sekunda, prvi dve sekundi, drugi dve sekundi, prve štiri sekunde.}
+    \label{slika:primerjava_obmocij}
 \end{figure}
 
 \newpage
 \subsection{Primerjava filtrov}
-Knjižnica EEGLAB vsebuje samo filtre z ničelno fazo, ki filtrirajo naprej in nato nazaj po času, kar v našem primeru ni primerno saj podatke prejemamo sekvenčno, zato smo podatke filtrirali s pomočjo Butterworthovega filtra ki vsebuje stanja. Stanja nam omogočajo filtriranje sekvenčnih podatkov saj preprečijo napako na začetku filtra kjer le ta potrebuje predpostaviti začetno staje vseh signalov 0. Ker filtra nista enakovredna saj prvi ne spreminja faz drugi pa jih zamakne, uporabljena metoda CPCC pa deluje na zamikih faz, smo izvedli dodatno testiranje, da smo preverili če pristop deluje enako učinkovito.
-\begin{figure}[h!]
+Knjižnica EEGLAB vsebuje samo filtre z ničelno fazo, ki filtrirajo naprej in nato nazaj po času, kar v našem primeru ni primerno saj podatke prejemamo sekvenčno, zato smo podatke filtrirali s pomočjo Butterworthovega filtra ki vsebuje stanja. Stanja nam omogočajo filtriranje sekvenčnih podatkov saj preprečijo napako na začetku filtra kjer le ta potrebuje predpostaviti začetno staje vseh signalov 0. Ker filtra nista enakovredna saj prvi ne spreminja faz drugi pa jih zamakne, uporabljena metoda CPCC pa deluje na zamikih faz, smo izvedli dodatno testiranje, da smo preverili če pristop deluje enako učinkovito. Klasifikacija matrik pridobljenih z Butterwothovim filtrom(slika \ref{slika:butterwothov_filter_matrika}) v primerjavi z filtrom z ničelno fazo(slika \ref{slika:nicelna_faza_filter_matrika}) je bila primerljivo točna za frekvenčni pas beta(slika \ref{slika:primerjava_filtrov}) iz česar lahko sklepamo, da je filtriranje z Butterwithovim filtrom primerno.
+\begin{figure}
     \begin{center}
     \includegraphics[width=1 \linewidth]{slike/ComparisonFilters.png}
     \end{center}
-    \caption{Primerjava klasifikacije CPCC z nevronsko mrežo za epoho 0-4s za različne frekvenčne pasove}
+    \caption{Primerjava točnosti klasifikacije glede na tip filtra. Uporabljena metoda CPCC za epoho prvih štirih sekund za frekvenčne pasove delta, theta, alpha, beta in gamma. Klasificirano z zgoraj navedeno nevronsko mrežo. Modra predstavlja Butterwothov filter, oranžna predstavlja filter z ničelno fazo.}
+    \label{slika:primerjava_filtrov}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}
     \begin{center}
-    \includegraphics[width=0.5\linewidth]{slike/Confusion_eeglab.png}
+    \includegraphics[width=0.8\linewidth]{slike/Confusion eeglabCPCC at 13-20 Hz 0-4 s.png}
     \end{center}
-    \caption{Matrika zmede nevronske mreže naučene na podatkih fitriranih s filtrom z ničelno fazo.}
+    \caption{Matrika zmede nevronske mreže naučene na podatkih fitriranih s filtrom z ničelno fazo.Uporabljena metoda CPCC za epoho prvih štirih sekund za frekvenčni pas beta. V zelenih poljih vidna točnost za posamezna stanja. Od zgoraj navzdol: skrčena desna pest, skrečena leva pest, stanje mirovanja. }
+    \label{slika:nicelna_faza_filter_matrika}
     \end{figure}
     
-    \begin{figure}[h!]
+\begin{figure}
     \begin{center}
-    \includegraphics[width=0.5\linewidth]{slike/Confusion_my.png}
+    \includegraphics[width=0.8\linewidth]{slike/Confusion my CPCC at 13-20 Hz.png}
     \end{center}
-    \caption{Matrika zmede nevronske mreže naučene na podatkih fitriranih z Butterworthovim filtrom.}
+    \caption{Matrika zmede nevronske mreže naučene na podatkih fitriranih z Butterworthovim filtrom. Uporabljena metoda CPCC za epoho prvih štirih sekund za frekvenčni pas beta. V zelenih poljih vidna točnost za posamezna stanja. Od zgoraj navzdol: skrčena desna pest, skrečena leva pest, stanje mirovanja.}
+    
+    \label{slika:butterwothov_filter_matrika}
     \end{figure}
 
-
-\newpage
 \section{Rezultati na MMID}
 \subsection{Classification learner}
-Z uporabo aplikacije clasifiacation learner smo testirali več načinov klasifikacije. Iz rezultatov predstavljenih v spodnji tabeli lahko razberemo da so se za najoblj uspešne izkazale metode podpornih vekotrjev(SVM), vendar so te metode računsko zahtevne kar otežuje izvedbo v realnem času. Dober kandidat bi lahko bila odločitvena drevesa saj so enostavna za treniranje in iterpretacijo, vendar so le ta dosegla 41\% točnost. Nevronske mreže ki jih podpira aplikacija so enostavne, vendar pa je njihova interpretacija težja. Ker ne omogočajo klasifikacije matrik izgubimo prostorske povezave med posameznimi elektrodami. \textcolor{red}{Je to res?} Dosegle so 49\% točnost.
-\begin{table}[h]
+Z uporabo aplikacije clasifiacation learner smo testirali več načinov klasifikacije. Iz rezultatov predstavljenih v tabeli \ref{tabela:primerjava_tocnosti} lahko razberemo, da so se za najbolj uspešne izkazale metode podpornih vekotrjev(SVM), vendar so te metode računsko zahtevne kar otežuje izvedbo v realnem času. Dober kandidat bi lahko bila odločitvena drevesa saj so enostavna za treniranje in iterpretacijo, vendar so le ta dosegla 41\% točnost. Nevronske mreže ki jih podpira aplikacija so enostavne, vendar pa je njihova interpretacija težja. Ker ne omogočajo klasifikacije matrik izgubimo prostorske povezave med posameznimi elektrodami. \textcolor{red}{Je to res?} Dosegle so 49\% točnost.
+\begin{table}
 \centering
 \begin{tabular}{|l|l|c|}
 \hline
@@ -78,24 +81,34 @@ vrsta klasifikacije & metoda & točnost [\%] \\
 
 \hline
 \end{tabular}
-\caption{Točnost vseh testiranih klasifikacijskih metod va plikaciji Clasification Learner.}
+\caption{Točnost vseh testiranih klasifikacijskih metod v aplikaciji Clasification Learner.}
+\label{tabela:primerjava_tocnosti}
 \end{table}
 
-\subsection{Nevronska mreža}
-Nato smo poskusili z našo nevronsko mrežo ki klasificira matrike
+\begin{figure}
+    \begin{center}
+    \includegraphics[width=0.8\linewidth]{slike/Confusion_13-20Hz_0s-4s.png}
+    \end{center}
+    \caption{Matrika zmede metode Quadratic SVM. V zelenih poljih vidna točnost za posamezna stanja. Od zgoraj navzdol: skrčena desna pest, skrčena leva pest, stanje mirovanja.}
+    \label{slika:SVM_matrika}
+    \end{figure}
 
-\begin{figure}[h!]
+\subsection{Nevronska mreža}
+Nato smo poskusili z zgoraj navedeno nevronsko mrežo, ki klasificira matrike povezljivosti. Mreža je dosegla malo višjo točnost kot metode iz aplikacije clasification learner. V primerjavi z najbolšo metodo aplikaije SVM, ki je dosegla 53\% točnost, je mreža dosegla 56\% točnost. Če primerjamo matriko zmede nevronske mreže z matriko zmede metode SVM (sliki \ref{slika:nevronska_mreza_matrika} in \ref{slika:SVM_matrika} ), opazimo, da obe metodi bolj natančno razlikujeta stanje mirovanja od obeh stanj gibanja, medtem ko je razlikovanje med stanji gibanja med seboj manj natančno.
+
+\begin{figure}
 \begin{center}
-\includegraphics[width=0.5\linewidth]{slike/Confusion_13-20Hz_0s-4s.png}
+\includegraphics[width=0.8\linewidth]{slike/Confusion_13-20Hz_0s-4s.png}
 \end{center}
-\caption{Matrika zmede nevronske mreže naučene na podatkih zbirke.}
+\caption{Matrika zmede nevronske mreže. V zelenih poljih vidna točnost za posamezna stanja. Od zgoraj navzdol: skrčena desna pest, skrčena leva pest, stanje mirovanja.}
+\label{slika:nevronska_mreza_matrika}
 \end{figure}
 
 
 
 \section{Rezultati na lastnih podatkih}
 Da bi se približali pogojem v realnem času, smo nevronsko mrežo dodatno naučili na naših podatkih. Zaradi različnih pogojev snemanja in đnčnosti naprav na katerih so podatki snemani je točnost klasifikacije pričakovano padla.
-\begin{figure}[h!]
+\begin{figure}
 \begin{center}
 \includegraphics[width=0.5\linewidth]{slike/Confusion_13-20Hz_0s-4s_retrained.png}
 \end{center}
