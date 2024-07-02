@@ -83,18 +83,16 @@ Zaključna naloga\\
 \fbox{\parbox{\linewidth}{
 \vspace{0.2cm}
 \noindent
-Ime in PRIIMEK:\vspace{0.5cm}\\
-Naslov zaključne naloge:\vspace{0.5cm}\\
-Kraj:\vspace{0.5cm}\\
-Leto:\vspace{0.5cm}\\
-Število listov: \hspace{2cm} Število slik: \hspace{2.6cm} Število tabel:\hspace{2cm}\vspace{0.5cm}\\
-Število prilog: \hspace{1.9cm} Število strani prilog: \hspace{1cm} Število referenc:\vspace{0.5cm}\\
-Mentor:\vspace{0.5cm}\\
-Somentor:\vspace{0.5cm}\\
-Ključne besede:\vspace{0.5cm}\\
-Math.~Subj.~Class.~(2010):\vspace{0.5cm}\\
+Ime in PRIIMEK: Marko ROZMAN\vspace{0.5cm}\\
+Naslov zaključne naloge: Razpoznavanje gibanja na osnovi elektroencefalografije\vspace{0.5cm}\\
+Kraj: Koper\vspace{0.5cm}\\
+Leto: 2024\vspace{0.5cm}\\
+Število listov: 34\hspace{2cm} Število slik: 15\hspace{2.6cm} Število tabel: 2\hspace{2cm}\vspace{0.5cm}\\
+Število referenc: 14\vspace{0.5cm}\\
+Mentor: doc. dr. Peter Rogelj\vspace{0.5cm}\\
+Ključne besede: elektroencefalografija, Grangerjev index vzročnosti, kompleksni Pearsonov korelacijski koeficient, nevronska mreža, klasifikacija  \vspace{0.5cm}\\
 {\bf Izvleček:}\\
-Izvleček predstavlja kratek, a jedrnat prikaz vsebine naloge. V največ 250 besedah nakažemo problem, metode, rezultate, ključne ugotovitve in njihov pomen.
+Namen naloge je spoznati metode za razpoznavanje gibanja na osnovi elektroencefalografije. Gibanje smo razpoznavali iz podatkov EEG Motor Movement/Imagery Dataset in podatkov ki smo jih posneli sami na napravi Cognionics Quick-20. Iz posnetkov smo izračunali matrice povezljivosti z Grangerjevim indexom vzorčnosti in kompleksnim Pearsonovim korelacijskim koeficientom ki smo jih nato klasificirali z različnimi algorimi, vključno z nevronskimi mrežami. Naši rezultati kažejo da je v določenih primerih klasifikacija bolj točena z uporabo kompleksnega Pearsonovega korelacijskega koeficienta. 
 \vspace{0.2cm}
 }}
 \end{center}
@@ -135,9 +133,9 @@ Math.~Subj.~Class.~(2010):\vspace{0.5cm}\\
 
 \newpage
 \section*{Zahvala}
+Iskreno se zahvaljujem svojemu mentorju, doc. dr. Petru Roglju, za neprecenljivo podporo in vodenje pri pisanju diplomske naloge. Njegova strokovna pomoč pri izbiri metod, implementaciji ter pisanju je bila ključnega pomena na vsakem koraku. Hvaležen sem za priložnost dela s fizično napravo in za redne konzultacije ob sredah, ki so pripomogle k jasnosti in uspešnosti mojega dela.
 
-
-Tu se zahvalimo sodelujočim pri zaključni nalogi, osebam ali ustanovam, ki so nam pri delu pomagale ali so delo omogočile. Zahvalimo se lahko tudi mentorju in morebitnemu somentorju.
+Prav tako se iz srca zahvaljujem prijateljem in družini za njihovo neomajno podporo in spodbudo skozi celoten proces.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Kazala %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
@@ -161,9 +159,16 @@ Tu se zahvalimo sodelujočim pri zaključni nalogi, osebam ali ustanovam, ki so 
 \chapter*{Seznam kratic}
 \thispagestyle{fancyplain}
 \begin{longtable}{@{}p{1cm}@{}p{\dimexpr\textwidth-1cm\relax}@{}}
-\nomenclature{$tj.$}{to je}
-\nomenclature{$npr.$}{na primer}
-\nomenclature{PLI}{phase lag lndex}
+
+\nomenclature{$EEG$}{electroencephalography}
+\nomenclature{$MMID$}{Motor Movement/Imagery Dataset} 
+\nomenclature{$PLI$}{phase lag index}
+\nomenclature{$wPLI$}{weighted phase lag index}
+\nomenclature{$k-NN$}{k nearest neighbours}
+\nomenclature{$SVM$}{support vector machine}
+\nomenclature{$CPCC$}{complex Pearson correlation coefficient}
+\nomenclature{$GC$}{Granger causality}
+
 \end{longtable}
 \newpage
 
