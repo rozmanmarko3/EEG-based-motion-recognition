@@ -2,7 +2,10 @@
 \section{Delitev podatkov}
 Za končno raziskavo smo izbrali posnetke serij 3, 7 in 11 iz MMID. Vsaka serija vsebuje 109 posnetkov, vsak posnetk 30 primerov stanj, vse skupaj smo jih pridobili 9854. Primere stanj smo skrčili na enakomerno razporeditev, z 2456 primeri vsakega stanja. Sami smo posneli neka minut posnetkov. Vse skupaj 250 primerov stanj, ki smo jih skrčili na enakomerno razporeditev, 62 primerov vsakega stanja. Za učenje nevronskih mrež smo uporabljali množice za učenje z 75\% podatkov in množice za testiranje z 25\% podatkov. Podatki so bili naključno razporejeni med učno in testno množico. Ker smo podatke delili naključno, se lahko posnetki stanj enega prostovoljca pojavijo v učni in testni množici. Pri dodatnem učenju mreže smo uporabili posnetke ene osebe za učenje in testiranje. To skupaj pomeni da sistem ne deluje medosebno. 
 
-\section{Izbira metode povezljivosti}
+
+\section{Rezultati na MMID}
+Za izbiro metode povezljivosti, načina filtriranja, dolžine epohe in frekvenčnega pasu smo uporabili podatkovno zbirko MMID. 
+\subsection{Izbira metode povezljivosti}
 Ker je kompleksni Pearsonov korelacijski koeficient(CPCC) izračunan iz analitičnih signalov ga lahko definiramo samo za ozke frekvenčne pasove. Pri računanju Grangerjevega indexa vzročnosti(GC) te omejitve ni, tako da smo ga lahko računali na celotnem frekvenčnem območju do 45Hz. Prav tako se je pojavilo vprašanje koliko dolgo epoho EEG signala bomo potrebovali za uspešno razvrščanje. Kot možnosti smo vzeli prvo sekundo, prvi dve sekundi, drugi dve sekundi in prve štiri sekunde po dogodku. Točnost razvrščanja smo ocenili z zgoraj navedeno nevronsko mrežo. Za najboljšo metodo se je izkazal kompleksni Pearsonov korelacijski koeficient na območju 13-30Hz z najdalšimi epohami, 4s. Celotno območje primerjav razvidno iz slike \ref{slika:primerjava_obmocij}.
 \begin{figure}
     \begin{center}
@@ -31,8 +34,6 @@ Knjižnica EEGLAB vsebuje samo filtre z ničelno fazo, ki filtrirajo naprej in n
     \label{slika:filter_matrika}
     \end{figure}
 
-
-\section{Rezultati na MMID}
 \subsection{Rezulatati z okoljem classification learner}
 Z uporabo aplikacije clasifiacation learner smo testirali več načinov razvrščanja. Iz rezultatov predstavljenih v tabeli \ref{tabela:primerjava_tocnosti} lahko razberemo, da so se za najbolj uspešne izkazale metode podpornih vekotrjev(SVM), vendar so te metode računsko zahtevne kar otežuje izvedbo v realnem času. Dober kandidat bi lahko bila odločitvena drevesa saj so enostavna za treniranje in iterpretacijo, vendar so le ta dosegla 41\% točnost. Nevronske mreže ki jih podpira aplikacija so enostavne, vendar pa je njihova interpretacija težja. Dosegle so 49\% točnost.
 \begin{table}
@@ -86,20 +87,20 @@ vrsta razvrščanja & metoda & točnost [\%] \\
     \end{figure}
 
 \subsection{Rezultati z uporabo lastne nevronske mreže}
-Nato smo poskusili z zgoraj navedeno nevronsko mrežo, ki razvršča matrike povezljivosti. Mreža je dosegla malo višjo točnost kot metode iz aplikacije clasification learner. V primerjavi z najbolšo metodo aplikaije SVM, ki je dosegla 53\% točnost, je mreža dosegla 56\% točnost. Če primerjamo matriko zmede nevronske mreže z matriko zmede metode SVM (sliki \ref{slika:nevronska_mreza_matrika} in \ref{slika:SVM_matrika} ), opazimo, da obe metodi bolj natančno razlikujeta stanje mirovanja od obeh stanj gibanja, medtem ko je razlikovanje med stanji gibanja med seboj manj natančno.
+Nato smo poskusili z zgoraj navedeno nevronsko mrežo, ki razvršča matrike povezljivosti. Mreža je dosegla enako točnost kot metode iz aplikacije clasification learner in sicer 52\%. Če primerjamo matriko zmede nevronske mreže z matriko zmede metode SVM (sliki \ref{slika:nevronska_mreza_matrika} in \ref{slika:SVM_matrika} ), opazimo, da obe metodi bolj natančno razlikujeta stanje mirovanja od obeh stanj gibanja, medtem ko je razlikovanje med stanji gibanja med seboj manj natančno.
 
 \begin{figure}
 \begin{center}
 \includegraphics[width=0.8\linewidth]{slike/Confusion_13-20Hz_0s-4s.png}
 \end{center}
-\caption{Matrika zmede nevronske mreže. V zelenih poljih vidna točnost za posamezna stanja. Od zgoraj navzdol: skrčena desna pest, skrčena leva pest, stanje mirovanja.}
+\caption{Matrika zmede lastne nevronske mreže. V zelenih poljih vidna točnost za posamezna stanja. Od zgoraj navzdol: skrčena desna pest, skrčena leva pest, stanje mirovanja.}
 \label{slika:nevronska_mreza_matrika}
 \end{figure}
 
 
 
 \section{Rezultati na lastnih podatkih}
-Da bi se približali pogojem v realnem času, smo nevronsko mrežo dodatno naučili na naših podatkih. Zaradi različnih pogojev snemanja in natančnosti naprav na katerih so podatki snemani je točnost razvrščanja pričakovano padla. Ker nimamo velikega števila posnetkov smo podatke razdelili na pet delov in mrežo natrenirali petkrat. Vsakič smo uporabili en del za testiranje in štiri za učenje. Predstavljeni podatki so seštevek vseh teh testiranj.
+Da bi se približali pogojem v realnem času, smo nevronsko mrežo dodatno naučili na naših podatkih. Zaradi različnih pogojev snemanja in natančnosti naprav na katerih so podatki snemani je točnost razvrščanja pričakovano padla. Dosegli smo 43\% točnost. Ker nimamo velikega števila posnetkov smo uporabili petkratno prečno preverjanje. 
 \begin{figure}
 \begin{center}
 \includegraphics[width=0.8\linewidth]{slike/Confusion_13-20Hz_0s-4s_retrained.png}
@@ -108,9 +109,15 @@ Da bi se približali pogojem v realnem času, smo nevronsko mrežo dodatno nauč
 \end{figure}
 
 
-\section{Preizkus v realnem času}
+\section{Sprotno razpoznavanje}
+Po razvoju pristopov na zbirkah podatkov smo implementirali sprotno razpoznavanje. Uporabili smo programsko opremo Lab Streaming Layer, da smo prenašali podatke iz napreave Quick-20 v okolje MATLAB. Tam smo podatke hranili. Vsako sekundo smo izračunali povezljivost in jo razvrstili. Rezultat razvrščanja smo izpisali na zaslon. Na natačnost sprotnega razvrščanja matrik povezljivosti ene osebe vpliva veliko stvari. Nanj vpliva razpoloženje osebe, namestitev naprave in sam dogodek ki ga razvrščamo. Točnost razvrščanja je padla, vendar smo pokazali da je le to mogoče.
 
-
+\begin{figure}
+    \begin{center}
+    \includegraphics[width=1\linewidth]{slike/razpoznavanje.png}
+    \end{center}
+    \caption{Prikaz sprotnega razpoznavanja. Dodan izpis razvrščanja iz okolja MATLAB.}
+    \end{figure}
 
 
 

@@ -109,12 +109,12 @@ Na matrikah povezljivosti pridobljenih iz podatkov zbirke in naših posnetkov sm
 
 
 \subsection{Razvrščanje z lastno nevronsko mrežo}
-Nevronska mreža je sestavljena iz vhodne plasti za slike dimenzij 19x19x1, polno povezane plasti s 100 nevroni, Leaky ReLU plasti, dropout plasti z 50\% verjetnostjo opustitve nevronov, polno povezane plasti z 10 nevroni, GELU plasti, dropout plasti z 50\% verjetnostjo opustitve nevronov, polno povezane plasti s tremi nevroni in Softmax plasti. Mreža je realizirana z pomočjo MATLAB orodjarne Deep Learning Toolbox. Lastna implementacija nevronske mreže nam omogoča enostavnejšo interpretacijo podatkov in nudi možnost podrobnejše nadaljne analize.
+Nevronska mreža je sestavljena iz vhodne plasti za slike dimenzij 19x19x1, polno povezane plasti s 100 nevroni, Leaky ReLU(usmerjena liearna enota) plasti, dropout(izpust) plasti z 50\% verjetnostjo izpustitve nevronov, polno povezane plasti z 10 nevroni, GELU plasti, dropout(izpust) plasti z 50\% verjetnostjo izpustitve nevronov, polno povezane plasti s tremi nevroni in softmax plasti. Mreža je realizirana z pomočjo MATLAB orodjarne Deep Learning Toolbox. Lastna implementacija nevronske mreže nam omogoča enostavnejšo interpretacijo podatkov in nudi možnost podrobnejše nadaljne analize.
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.8\linewidth]{slike/Neural network.png}
 \end{center}
-\caption{Arhitektura nevronske mreže v MATLAB alikaciji Deep Network Designer. Od zgoraj navzdol: plast za slike, polno povezana, Leaky ReLU, dropout, polno povezana, GELU, dropout, polno povezana in Softmax.}
+\caption{Arhitektura nevronske mreže v MATLAB alikaciji Deep Network Designer. Od zgoraj navzdol: plast za slike, polno povezana, Leaky ReLU(usmerjena liearna enota), dropout(izpust), polno povezana, GELU, dropout(izpust), polno povezana in Softmax.}
 \end{figure}
 
 

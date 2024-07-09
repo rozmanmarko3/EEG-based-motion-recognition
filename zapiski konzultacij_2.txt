@@ -2,20 +2,9 @@ ključne informacije
  
 petkratno prečno preverjanje
 
-
 2.3.1
 Enačba za granger povezljivost, z logaritmi
 
-2.4.2 klasifikacija z nevronsko mrežo
-	prevodi imen plasti, z oklepaji slovenskih
-	dropout -> izpust
-
-Rezultati
-	rezultati na zbirki
-		izbira metode
-		priemrjava filtrov
-	rezultati na lastnih podatkih
-	preizkus v realnem času
 
 3.5 komentar zaradi oseb razpoloženja odvisno. Pričakujemo da če nimamo dost podatkov bodo rezultati slabši. Bistveno pa je da je mogoče z metodami.
 
