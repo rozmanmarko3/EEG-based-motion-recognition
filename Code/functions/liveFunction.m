@@ -1,6 +1,8 @@
 function result = liveFunction(dataChunk)
-    persistent chunk_history eeg_filter iteration_number reorderIndex
+    persistent chunk_history eeg_filter iteration_number reorderIndex net
     %holds chunk history, persistant filters, iteration number...
+
+    dataChunk = dataChunk(1:19,:);
 
     epoch_len = 4;
     low = 13;
@@ -19,14 +21,19 @@ function result = liveFunction(dataChunk)
     
     %initialize history on first pass
     if isempty(chunk_history)
-        chunk_history = zeros(num_of_channels,sampleRateInput*historyLength);
+        chunk_history = zeros(num_of_channels,sampleRate*historyLength);
     end
     
+    %net
+    if isempty(net)
+        load("C:\Razno\EEG-based-motion-recognition\Code\results_trainModel\Net_13-20Hz_0s-4s_retrained.mat");
+        net = netRetrained;
+    end
     
     %load filter on first pass
     if  isempty(eeg_filter)
         
-        Wn = [2*low/sampleRateInput, 2*high/sampleRateInput];
+        Wn = [2*low/sampleRate, 2*high/sampleRate];
         
         [b, a] = butter(filterOrder, Wn, 'bandpass');
         
@@ -58,10 +65,14 @@ function result = liveFunction(dataChunk)
     end
     
     %get data needed for calculation from history
-    chunk = chunk_history(:,history_len-(sampleRateInput*epoch_len)+1:history_len);
+    chunk = chunk_history(:,history_len-(sampleRate*epoch_len)+1:history_len);
     
     [matrix,eeg_filter] = liveProcessing(chunk,reorderIndex,eeg_filter);
-    result = liveClasification(matrix);
 
+    scores = predict(net,reshape(matrix,19,19,1));
+    result = scores2label(scores,{'Mirovanje','Leva','Desna'});
+    
+    %scores = trainedModel.predictFcn(reshape(matrix,361,1));
+    %result = scores;
 end
 

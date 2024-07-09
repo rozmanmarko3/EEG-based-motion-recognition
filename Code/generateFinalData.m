@@ -24,7 +24,7 @@ n_chanels = 19;
 numberOfSubjects = 109;
 
 baseUrl = 'C:\Users\rozma\Downloads\MMD\files\';
-mojPosnetekUrl = 'C:\Users\rozma\Downloads\MMD\mojPosnetek\skupaj.mat';
+mojPosnetekUrl = 'C:\Razno\EEG-based-motion-recognition\Code\skupaj2.mat';
 
 %filter setup
 Wn = [2*low/desired_sampling_rate, 2*high/desired_sampling_rate];
@@ -127,7 +127,7 @@ end
 
 %remove matrices at the start of each recording, they are broken by the
 %filter starting at 0
-remove = [1,11,61,111,164,255];
+remove = [1];
 my_data(:,:,remove) = [];
 my_markers(remove) = [];
 

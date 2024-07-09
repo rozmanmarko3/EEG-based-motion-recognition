@@ -46,16 +46,38 @@ layers = [
 
 netStarter = dlnetwork(layers);
 
-[accuracy, netTrained, confusionFigure ] = foldEvaluation(data,markers,netStarter);
+%%
+[accuracy, netTrained, confusionFigure ] = trainNetwork(data,markers,netStarter);
 
 saveas(confusionFigure, fullfile(resultsFolder,confusionPlotName))
 save(fullfile(resultsFolder,netName), 'netTrained')
 
-%additionaly train on my data
-[accuracy, netRetrained, confusionFigure ] = foldEvaluation(my_data,my_markers,netTrained);
+%%
+% additionaly train on my data
+[accuracy, netRetrained, confusionFigure ] = trainNetwork(my_data,my_markers,netStarter);
 
 saveas(confusionFigure, fullfile(resultsFolder,confusionPlotNameRetrained))
 save(fullfile(resultsFolder,netNameRetrained), 'netRetrained')
 
 print('done')
 
+
+%mreža trenirana na mmid 53%
+    %dotrenirana na premikanje 33%
+    %dotrenirana na stanje 42%
+    %dotrenirana na oboje 36%
+
+%mreža trenirana direktno na podatkih
+    %premikanje 33%
+    %stanje 42%
+    %oboje 40%
+
+%svm direktno na podatkih
+    %premikanje linear svm 54%
+    %stanje 38%
+    %oboje 44%
+
+%nn v clasification learner direktno na podatkih
+    %premikanje 50%
+    %stanje 43%
+    %oboje 44%
