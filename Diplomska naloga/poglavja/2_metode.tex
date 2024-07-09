@@ -1,6 +1,6 @@
 \chapter{Podatki in metode}
 \section{Razvojno okolje MATLAB}
-Ves razvoj je potekal v programskem okolju MATLAB. Ta poleg samega programskega jezika vsebuje velik nabor že implementiranh funkcij, napredne aplikacije za strojno učenje in knjžnice ki omogočajo povezave z laboratorjskimi napravami. V njem sta ustvarjeni funkciji za računanje matrik Grangerjevega indexa vzročnosti
+Ves razvoj je potekal v programskem okolju MATLAB. Ta poleg samega programskega jezika vsebuje velik nabor že implementiranh funkcij, napredne aplikacije za strojno učenje in knjižnice ki omogočajo povezave z laboratorijskimi napravami. V njem sta ustvarjeni funkciji za računanje matrik Grangerjevega indeksa vzročnosti
 in matrik Kompleksnega Pearsonov korelacijskega koeficienta, prav tako so v njem ustvarjene nevronske mreže in uporabljeno je za ostala razvrščanja in funkcijo za zajemanje podatkov iz naprave Cognionics Quick-20 ter funkcijo ki v realnem času razpoznava gibanje. \cite{MATLAB}
 \begin{figure}[h!]
     \begin{center}
@@ -10,7 +10,7 @@ in matrik Kompleksnega Pearsonov korelacijskega koeficienta, prav tako so v njem
     \end{figure}
     
 \subsection{EEGLAB}
-EEGLAB je interaktivna matlab orodjarna, za procesiranje in obdelavo elektrofizioloških podatkov. Omogoča rereferenciranje EEG signalov, izbiro določenih elektrod, deljenje podatkov na epohe glede na dogodke in filtriranje frekvenc. Omogoča interakcijo preko uporabniškega vmesnika. Vse akcije v vmesniku se prevedejo v ukaze. Grafični vmesnik je uporaben za enostavne analize. Za avtomatizacijo pa njegove funkcije uporabimo v svoji kodi z ustreznimi ukazi. Pri izdelavi naloge smo največ uporabljali funkcije branja .edf datotek, filtriranja frekvenc signalov in deljanja posnetkov na manjše dele.\cite{EEGLAB}
+EEGLAB je interaktivna matlab orodjarna, za procesiranje in obdelavo elektrofizioloških podatkov. Omogoča rereferenciranje EEG signalov, izbiro določenih elektrod, deljenje podatkov na epohe glede na dogodke in filtriranje frekvenc. Omogoča interakcijo preko uporabniškega vmesnika. Vse akcije v vmesniku se prevedejo v ukaze. Grafični vmesnik je uporaben za enostavne analize. Za avtomatizacijo pa njegove funkcije uporabimo v svoji kodi z ustreznimi ukazi. Pri izdelavi naloge smo največ uporabljali funkcije branja .edf datotek, filtriranja frekvenc signalov in deljenja posnetkov na manjše dele.\cite{EEGLAB}
 \begin{figure}[h!]
     \begin{center}
     \includegraphics[width=1\linewidth]{slike/EEGLAB.png}
@@ -19,10 +19,10 @@ EEGLAB je interaktivna matlab orodjarna, za procesiranje in obdelavo elektrofizi
     \end{figure}
 
 \subsection{Lab streaming layer}
-Lab streaming layer je odprtokodna vmesna programska oprema ki omogoča pošiljanje, prejemanje, sinhronizacijo in snemanje tokov podatkov znotraj lokalnega omrežja. Med drugim je na voljo v obliki MATLAB knjižnice, ki omogoča preprosto integracijo EEG naprav s programsko opremo MATLAB. Knjižnjico je potrebno prenesti in nato zgraditi na svojem računalniku.  \cite{Lslwebsite}
+Lab streaming layer je odprtokodna vmesna programska oprema ki omogoča pošiljanje, prejemanje, sinhronizacijo in snemanje tokov podatkov znotraj lokalnega omrežja. Med drugim je na voljo v obliki MATLAB knjižnice, ki omogoča preprosto integracijo EEG naprav s programsko opremo MATLAB. Knjižnico je potrebno prenesti in nato zgraditi na svojem računalniku.  \cite{Lslwebsite}
 
 \subsection{Classification learner}
-Classification learner je aplikacija v okolju MATLAB za enostavno razvrščanje podatkov. Podpira različne metode razvrščanja, prečno preverjanje in uporabo različnih podatkov za gradnjo in testiranje modela. Aplikacija podpira razvrščanje podatkov iz dvo dimenzionalnih matrik kjer vrstice ali stolpci predstavljajo spremenjlivke. Oznake podatkov lahko podamo kot določeno vrstico ali stolpec matrike ali v ločeni spremenljivki. Zaradi omejitev aplikacije smo pred razvrščanjem matrike povezljivosti prevorili v vektorje in te združili v matriko podatkov. Z aplikacijo smo lahko hitro ocenili uspešnost računanja matrik povezljivosti in primerjali delovanje različnih razvrščanj v primerjavi z našo nevronsko mrežo.
+Classification learner je aplikacija v okolju MATLAB za enostavno razvrščanje podatkov. Podpira različne metode razvrščanja, prečno preverjanje in uporabo različnih podatkov za gradnjo in testiranje modela. Aplikacija podpira razvrščanje podatkov iz dvo dimenzionalnih matrik kjer vrstice ali stolpci predstavljajo spremenljivke. Oznake podatkov lahko podamo kot določeno vrstico ali stolpec matrike ali v ločeni spremenljivki. Zaradi omejitev aplikacije smo pred razvrščanjem matrike povezljivosti pretvorili v vektorje in te združili v matriko podatkov. Z aplikacijo smo lahko hitro ocenili uspešnost računanja matrik povezljivosti in primerjali delovanje različnih razvrščanj v primerjavi z našo nevronsko mrežo.
 \begin{figure}[h!]
     \begin{center}
     \includegraphics[width=1\linewidth]{slike/ClasificationLearner.png}
@@ -31,7 +31,7 @@ Classification learner je aplikacija v okolju MATLAB za enostavno razvrščanje 
     \end{figure}
 
 \section{Podatkovna zbirka\\ EEG Motor Movement/Imagery Dataset}
-EEG Motor Movement/Imagery Dataset(MMID) je prosto dostopna zbirka več kot 1500 eno in dve minutnih posnetkov 109 prostovoljcev. Zbirka za vsakega prostovoljca vsebuje dva izhodiščna posnetka in po tri posnetke opravljajanja štiri različnh nalog: stiskanje in sproščanje leve ali desne pesti(naloga 1), namišljeno stiskanje in sproščanje leve ali desne pesti(naloga 2), stiskanje in sproščanje obeh pesti ali obeh stopal(naloga 3), namišljeno stiskanje in sproščanje obeh pesti ali obeh stopal(naloga 4). Za nas relevantni so posnetki serij 3, 7 in 11 v katerih prostovoljci opravljajo prvo nalogo. Posnetki so shranjeni v formatu EDF+ ki vsebuje posnetke EEG in oznake dogodkov. Snemanje je bilo opravljeno z sistemom BCI2000 z 64 elektrodami postavljenimi po mednarodnem sistemu 10-10(slika \ref{slika:mednarodni_sistem_10}) brez elektrod Nz, F9, F10, FT9, FT10, A1, A2, TP9, TP10, P9, in P10.\cite{schalkBCI2000GeneralpurposeBraincomputer2004,schalkEEGMotorMovement2009}
+EEG Motor Movement/Imagery Dataset(MMID) je prosto dostopna zbirka več kot 1500 eno in dve minutnih posnetkov 109 prostovoljcev. Zbirka za vsakega prostovoljca vsebuje dva izhodiščna posnetka in po tri posnetke opravljanja štirih različnih nalog: stiskanje in sproščanje leve ali desne pesti(naloga 1), namišljeno stiskanje in sproščanje leve ali desne pesti(naloga 2), stiskanje in sproščanje obeh pesti ali obeh stopal(naloga 3), namišljeno stiskanje in sproščanje obeh pesti ali obeh stopal(naloga 4). Za nas relevantni so posnetki serij 3, 7 in 11 v katerih prostovoljci opravljajo prvo nalogo. Posnetki so shranjeni v formatu EDF+ ki vsebuje posnetke EEG in oznake dogodkov. Snemanje je bilo opravljeno z sistemom BCI2000 z 64 elektrodami postavljenimi po mednarodnem sistemu 10-10(slika \ref{slika:mednarodni_sistem_10}) brez elektrod Nz, F9, F10, FT9, FT10, A1, A2, TP9, TP10, P9, in P10.\cite{schalkBCI2000GeneralpurposeBraincomputer2004,schalkEEGMotorMovement2009}
 
 \begin{table}[h]
 \centering
@@ -40,7 +40,7 @@ EEG Motor Movement/Imagery Dataset(MMID) je prosto dostopna zbirka več kot 1500
 \hline
 Številka serije & Naloga &Opis naloge \\
 \hline
-1 & izhodišče & odpte oči  \\
+1 & izhodišče & odprte oči  \\
 \hline
 2 & izhodišče & zaprte oči  \\
 \hline
@@ -70,17 +70,17 @@ EEG Motor Movement/Imagery Dataset(MMID) je prosto dostopna zbirka več kot 1500
 
 \hline
 \end{tabular}
-\caption{Naloge in opisi nalog, ki jih prostovoljci opravljajo v posnetkih zbirke podtakov MMID.}
+\caption{Naloge in opisi nalog, ki jih prostovoljci opravljajo v posnetkih zbirke podatkov MMID.}
 \end{table}
 
 
 \section{Metode povezljivosti}
-Metode povezljivosti se uporabljajo za anlizo delovanja možganov saj nam v nasprotju z direktnim razvrščanjem EEG signalov omogočajo identifikacojo specifičnih vzorcev. S tem pridobimo globlji vpogled v delovanje možganov.
+Metode povezljivosti se uporabljajo za analizo delovanja možganov, saj nam v nasprotju z direktnim razvrščanjem EEG signalov omogočajo identifikacijo specifičnih vzorcev. S tem pridobimo globlji vpogled v delovanje možganov.
 
-\subsection{Grangerjev index vzročnosti}
-Grangerjev index vzročnosti je statistična metoda za preverjanje ali ena časovna vrsta nosi informacije o drugi. Metoda je bila razvita v šestdesedih letih devetnajstega stoletja za uporabo ekonomiji.\cite{cohenAnalyzingNeuralTime2014}
+\subsection{Grangerjev indeks vzročnosti}
+Grangerjev indeks vzročnosti je statistična metoda za preverjanje, ali ena časovna vrsta nosi informacije o drugi. Metoda je bila razvita v šestdesetih letih devetnajstega stoletja za uporabo ekonomiji.\cite{cohenAnalyzingNeuralTime2014}
 
-Za dve časovni vrsti $X_1$ in $X_2$, in $p$ kot število prejšnjih vrednosti ki jih upoštevamo pri računanju, lahko izračunamo $E_1$ in $E_1$ ki so napake pri predvidevanju naslednje vrednosti v vrsti $X_1$. V kolikor je varianca vrednosti $E_2$ manjša kot varianca vrednosti $E_1$ lahko predvidevamo da časovna vrsta $X_2$ nosi informacije o časovni vrsti $X_1$. $A_1$, $A_2$ in $A_3$ so koeficienti avto-regresivnega modela. \cite{sethGrangerCausality2007}
+Za dve časovni vrsti $X_1$ in $X_2$ ter $p$ kot število prejšnjih vrednosti, ki jih upoštevamo pri računanju, lahko izračunamo $E_1$ in $E_1$ ki so napake pri predvidevanju naslednje vrednosti v vrsti $X_1$. V kolikor je varianca vrednosti $E_2$ manjša kot varianca vrednosti $E_1$ lahko predvidevamo, da časovna vrsta $X_2$ nosi informacije o časovni vrsti $X_1$. $A_1$, $A_2$ in $A_3$ so koeficienti avto-regresivnega modela. \cite{sethGrangerCausality2007}
 \begin{align*}
 X_1(t) &= \sum_{j=1}^{p} A_{1,j} X_1(t-j) + E_1(t)\\
 X_1(t) &= \sum_{j=1}^{p} A_{2,j} X_1(t-j) + \sum_{j=1}^{p} A_{3,j} X_2(t-j) + E_2(t)
@@ -91,7 +91,7 @@ X_1(t) &= \sum_{j=1}^{p} A_{2,j} X_1(t-j) + \sum_{j=1}^{p} A_{3,j} X_2(t-j) + E_
 Pearsonov korelacijski koeficient je najpogosteje uporabljen linearni korelacijski koeficient. Zanj smo se odločili saj v članku  \citetitle{sverkoComplexPearsonCorrelation2022}
 avtorji pokažejo da vsebuje informacije Phase Locking Value(PLV) in Weighted Phase Lag Index(wPLI) ki sta dve najbolj pogosto uporabljeni metodi povezljivosti. V praksi nam pove, v kakšni meri sta fazi dveh signalov linearno povezani.\cite{sverkoComplexPearsonCorrelation2022} 
 
-Ker želimo opazovati faze EEG signala, ga potrebujemo pretvoriti v analitični signal ki vsebuje informacijo o fazi. Zaradi sledeče transformacijo, ki je definirana samo na ozkih frekvenčnih pasovih potrebujemo signale EEG predhodno filtrirati. Analitični signal $X_a$ kjer $HT(X(t))$ označuje hilbertovo transformacijo signala $X$.\cite{sverkoComplexPearsonCorrelation2022} 
+Ker želimo opazovati faze EEG signala, ga potrebujemo pretvoriti v analitični signal ki vsebuje informacijo o fazi. Zaradi sledeče transformacijo, ki je definirana samo na ozkih frekvenčnih pasovih potrebujemo signale EEG predhodno filtrirati. Analitični signal $X_a$ kjer $HT(X(t))$ označuje Hilbertovo transformacijo signala $X$.\cite{sverkoComplexPearsonCorrelation2022} 
 \begin{align*}
     X_a(t) = X(t) + i \cdot HT(X(t))
 \end{align*}
@@ -109,12 +109,12 @@ Na matrikah povezljivosti pridobljenih iz podatkov zbirke in naših posnetkov sm
 
 
 \subsection{Razvrščanje z lastno nevronsko mrežo}
-Nevronska mreža je sestavljena iz vhodne plasti za slike dimenzij 19x19x1, polno povezane plasti s 100 nevroni, Leaky ReLU(usmerjena liearna enota) plasti, dropout(izpust) plasti z 50\% verjetnostjo izpustitve nevronov, polno povezane plasti z 10 nevroni, GELU plasti, dropout(izpust) plasti z 50\% verjetnostjo izpustitve nevronov, polno povezane plasti s tremi nevroni in softmax plasti. Mreža je realizirana z pomočjo MATLAB orodjarne Deep Learning Toolbox. Lastna implementacija nevronske mreže nam omogoča enostavnejšo interpretacijo podatkov in nudi možnost podrobnejše nadaljne analize.
+Nevronska mreža je sestavljena iz vhodne plasti za slike dimenzij 19x19x1, polno povezane plasti s 100 nevroni, Leaky ReLU(usmerjena linearna enota) plasti, dropout(izpust) plasti z 50\% verjetnostjo izpustitve nevronov, polno povezane plasti z 10 nevroni, GELU plasti, dropout(izpust) plasti z 50\% verjetnostjo izpustitve nevronov, polno povezane plasti s tremi nevroni in softmax plasti. Mreža je realizirana z pomočjo MATLAB orodjarne Deep Learning Toolbox. Lastna implementacija nevronske mreže nam omogoča enostavnejšo interpretacijo podatkov in nudi možnost podrobnejše nadaljnje analize.
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.8\linewidth]{slike/Neural network.png}
 \end{center}
-\caption{Arhitektura nevronske mreže v MATLAB alikaciji Deep Network Designer. Od zgoraj navzdol: plast za slike, polno povezana, Leaky ReLU(usmerjena liearna enota), dropout(izpust), polno povezana, GELU, dropout(izpust), polno povezana in Softmax.}
+\caption{Arhitektura nevronske mreže v MATLAB aplikaciji Deep Network Designer. Od zgoraj navzdol: plast za slike, polno povezana, Leaky ReLU(usmerjena linearna enota), dropout(izpust), polno povezana, GELU, dropout(izpust), polno povezana in Softmax.}
 \end{figure}
 
 
