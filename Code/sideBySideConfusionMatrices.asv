@@ -1,0 +1,42 @@
+% Define the confusion matrices
+confusionMatrix1 = [
+    425, 117, 128;
+    145, 374, 285;
+    98, 177, 255
+];
+
+confusionMatrix2 = [
+    442, 122, 161;
+    111, 355, 238;
+    115, 191, 269
+];
+
+% Define target and output arrays for each confusion matrix
+targets1 = repelem(eye(3), 1, sum(confusionMatrix1, 'all')/3);
+outputs1 = zeros(size(targets1));
+index = 1;
+for i = 1:3
+    for j = 1:3
+        outputs1(i, index:index + confusionMatrix1(i,j) - 1) = j;
+        index = index + confusionMatrix1(i,j);
+    end
+end
+
+targets2 = repelem(eye(3), 1, sum(confusionMatrix2, 'all')/3);
+outputs2 = zeros(size(targets2));
+index = 1;
+for i = 1:3
+    for j = 1:3
+        outputs2(i, index:index + confusionMatrix2(i,j) - 1) = j;
+        index = index + confusionMatrix2(i,j);
+    end
+end
+
+% Plot the confusion matrices
+figure;
+plotconfusion(targets1, outputs1, 'EEGLAB', targets2, outputs2, 'Butterw');
+
+% Customize the plot appearance
+set(findobj(gca, 'type', 'text'), 'fontsize', 12); % Adjust font size
+title('Comparison of Two Confusion Matrices', 'FontSize', 14); % Title
+

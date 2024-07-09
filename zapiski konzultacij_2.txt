@@ -1,28 +1,7 @@
-Napake v besedilu
 ključne informacije
-
-matrice -> matrike, točna 
-
-poudariti da se razlike pokažejo z povezljivostjo
-
+ 
 petkratno prečno preverjanje
 
-omemba da je izhodišče 33%
-7:45 v galebu za posnetke
-
-slika 11 in 12 skupaj v eno vrstico.
-
-slika 13 v enoten prikaz 
-
-Uvod
-sprememba slike v staro različico cognionics quick 20
-https://www.manualslib.com/manual/2823961/Cognionics-Quick-20.html#manual
-
-
-slika Sistema 10-10 v uvod pod eeg.
-
-2.3
-stavek pod metodami povezljivosti
 
 2.3.1
 Enačba za granger povezljivost, z logaritmi

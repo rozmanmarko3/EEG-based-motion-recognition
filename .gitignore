@@ -4,3 +4,4 @@ Code/results_*
 Diplomska naloga/build/*
 !Diplomska naloga/build/*.pdf
 Code/ClassificationLearnerSession_finalData_allModels.mat
+Code/sideBySideConfusionMatrices.m

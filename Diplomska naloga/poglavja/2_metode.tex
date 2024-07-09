@@ -31,7 +31,7 @@ Classification learner je aplikacija v okolju MATLAB za enostavno razvrščanje 
     \end{figure}
 
 \section{Podatkovna zbirka\\ EEG Motor Movement/Imagery Dataset}
-EEG Motor Movement/Imagery Dataset(MMID) je prosto dostopna zbirka več kot 1500 eno in dve minutnih posnetkov 109 prostovoljcev. Zbirka za vsakega prostovoljca vsebuje dva izhodiščna posnetka in po tri posnetke opravljajanja štiri različnh nalog: stiskanje in sproščanje leve ali desne pesti(naloga 1), namišljeno stiskanje in sproščanje leve ali desne pesti(naloga 2), stiskanje in sproščanje obeh pesti ali obeh stopal(naloga 3), namišljeno stiskanje in sproščanje obeh pesti ali obeh stopal(naloga 4). Za nas relevantni so posnetki serij 3, 7 in 11 v katerih prostovoljci opravljajo prvo nalogo. Posnetki so shranjeni v formatu EDF+ ki vsebuje posnetke EEG in oznake dogodkov. Snemanje je bilo opravljeno z sistemom BCI2000 z 64 elektrodami postavljenimi po mednarodnem sistemu 10-10 brez elektrod Nz, F9, F10, FT9, FT10, A1, A2, TP9, TP10, P9, in P10.\cite{schalkBCI2000GeneralpurposeBraincomputer2004,schalkEEGMotorMovement2009}
+EEG Motor Movement/Imagery Dataset(MMID) je prosto dostopna zbirka več kot 1500 eno in dve minutnih posnetkov 109 prostovoljcev. Zbirka za vsakega prostovoljca vsebuje dva izhodiščna posnetka in po tri posnetke opravljajanja štiri različnh nalog: stiskanje in sproščanje leve ali desne pesti(naloga 1), namišljeno stiskanje in sproščanje leve ali desne pesti(naloga 2), stiskanje in sproščanje obeh pesti ali obeh stopal(naloga 3), namišljeno stiskanje in sproščanje obeh pesti ali obeh stopal(naloga 4). Za nas relevantni so posnetki serij 3, 7 in 11 v katerih prostovoljci opravljajo prvo nalogo. Posnetki so shranjeni v formatu EDF+ ki vsebuje posnetke EEG in oznake dogodkov. Snemanje je bilo opravljeno z sistemom BCI2000 z 64 elektrodami postavljenimi po mednarodnem sistemu 10-10(slika \ref{slika:mednarodni_sistem_10}) brez elektrod Nz, F9, F10, FT9, FT10, A1, A2, TP9, TP10, P9, in P10.\cite{schalkBCI2000GeneralpurposeBraincomputer2004,schalkEEGMotorMovement2009}
 
 \begin{table}[h]
 \centering
@@ -73,13 +73,10 @@ EEG Motor Movement/Imagery Dataset(MMID) je prosto dostopna zbirka več kot 1500
 \caption{Naloge in opisi nalog, ki jih prostovoljci opravljajo v posnetkih zbirke podtakov MMID.}
 \end{table}
 
-\begin{figure}[h!]
-    \begin{center}
-    \includegraphics[width=1\linewidth]{slike/64electrodeSystem.png}
-    \end{center}
-    \caption{Postavitev elektrod po mednarodnem sistemu 10-10. \cite{HttpsWwwPhysionet}}
-    \end{figure}
+
 \section{Metode povezljivosti}
+Metode povezljivosti se uporabljajo za anlizo delovanja možganov saj nam v nasprotju z direktnim razvrščanjem EEG signalov omogočajo identifikacojo specifičnih vzorcev. S tem pridobimo globlji vpogled v delovanje možganov.
+
 \subsection{Grangerjev index vzročnosti}
 Grangerjev index vzročnosti je statistična metoda za preverjanje ali ena časovna vrsta nosi informacije o drugi. Metoda je bila razvita v šestdesedih letih devetnajstega stoletja za uporabo ekonomiji.\cite{cohenAnalyzingNeuralTime2014}
 

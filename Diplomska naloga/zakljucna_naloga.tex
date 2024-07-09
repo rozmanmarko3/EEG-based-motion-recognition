@@ -92,7 +92,7 @@ Leto: 2024\vspace{0.5cm}\\
 Mentor: doc. dr. Peter Rogelj\vspace{0.5cm}\\
 Ključne besede: elektroencefalografija, Grangerjev index vzročnosti, kompleksni Pearsonov korelacijski koeficient, nevronska mreža, razvrščanje  \vspace{0.5cm}\\
 {\bf Izvleček:}\\
-Namen naloge je spoznati metode za razpoznavanje gibanja na osnovi elektroencefalografije. Gibanje smo razpoznavali iz podatkov EEG Motor Movement/Imagery Dataset in podatkov ki smo jih posneli sami na napravi Cognionics Quick-20. Iz posnetkov smo izračunali matrike povezljivosti z Grangerjevim indexom vzorčnosti in kompleksnim Pearsonovim korelacijskim koeficientom ki smo jih nato razvrstili z različnimi algorimi, vključno z nevronskimi mrežami. Naši rezultati kažejo da je v določenih primerih razvrščanje bolj točno z uporabo kompleksnega Pearsonovega korelacijskega koeficienta. 
+Namen naloge je spoznati metode za razpoznavanje gibanja na osnovi elektroencefalografije. Gibanje smo razpoznavali iz podatkov EEG Motor Movement/Imagery Dataset in podatkov ki smo jih posneli sami na napravi Cognionics Quick-20. Iz posnetkov smo izračunali matrike povezljivosti z Grangerjevim indexom vzorčnosti in kompleksnim Pearsonovim korelacijskim koeficientom ki smo jih nato razvrstili z različnimi algorimi, vključno z nevronskimi mrežami. Naši rezultati pokažejo, da je gibanje mogoče razvrstiti z značilkami, ki izhajajo iz možganske povezljivosti. V določenih primerih je razvrščanje bolj točno z uporabo značilk pridobljenih z uporabo kompleksnega Pearsonovega korelacijskega koeficienta. 
 \vspace{0.2cm}
 }}
 \end{center}
@@ -150,15 +150,11 @@ Prav tako se iz srca zahvaljujem prijateljem in družini za njihovo neomajno pod
 \listoffigures
 \addtocontents{lof}{\protect\thispagestyle{fancy}}
 \newpage
-% ker priloge niso oštevilčene, tudi pikic do številk strani (ki jih ni) ne izpišemo
-\renewcommand{\cftdot}{}
-\listofappendices
-\thispagestyle{fancy}
-\newpage
+
 
 \chapter*{Seznam kratic}
 \thispagestyle{fancyplain}
-\begin{longtable}{@{}p{1cm}@{}p{\dimexpr\textwidth-1cm\relax}@{}}
+\begin{longtable}{@{}p{2cm}@{}p{\dimexpr\textwidth-2cm\relax}@{}}
 
 \nomenclature{$EEG$}{electroencephalography}
 \nomenclature{$MMID$}{Motor Movement/Imagery Dataset} 
