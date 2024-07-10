@@ -14,7 +14,13 @@ style=numeric,
 sorting=ynt
 ]{biblatex}
 
-\addbibresource{bibliografija.bib}
+\bibliography{bibliografija.bib}
+
+\usepackage{url}
+\usepackage{breakurl}
+\setcounter{biburlnumpenalty}{100}
+\setcounter{biburlucpenalty}{100}
+\setcounter{biburllcpenalty}{100}
 
 
 % Glava dokumenta:
@@ -92,7 +98,7 @@ Leto: 2024\vspace{0.5cm}\\
 Mentor: doc. dr. Peter Rogelj\vspace{0.5cm}\\
 Ključne besede: elektroencefalografija, Grangerjev indeks vzročnosti, kompleksni Pearsonov korelacijski koeficient, nevronska mreža, razvrščanje  \vspace{0.5cm}\\
 {\bf Izvleček:}\\
-Namen naloge je spoznati metode za razpoznavanje gibanja na osnovi elektroencefalografije. Gibanje smo razpoznavali iz podatkov EEG Motor Movement/Imagery Dataset in podatkov ki smo jih posneli sami na napravi Cognionics Quick-20. Iz posnetkov smo izračunali matrike povezljivosti z Grangerjevim indeksom vzorčnosti in kompleksnim Pearsonovim korelacijskim koeficientom ki smo jih nato razvrstili z različnimi algoritmi, vključno z nevronskimi mrežami. Naši rezultati pokažejo, da je gibanje mogoče razvrstiti z značilkami, ki izhajajo iz možganske povezljivosti. V določenih primerih je razvrščanje bolj točno z uporabo značilk pridobljenih z uporabo kompleksnega Pearsonovega korelacijskega koeficienta. 
+Namen naloge je preveriti zmožnost razpoznavanja gibanja na osnovi ocenjene možganske povezljivosti temelječe na podatkih elektroencefalografije. Gibanje smo razpoznavali iz podatkov EEG Motor Movement/Imagery Dataset in podatkov ki smo jih posneli sami na napravi Cognionics Quick-20. Iz posnetkov smo izračunali matrike povezljivosti z Grangerjevim indeksom vzorčnosti in kompleksnim Pearsonovim korelacijskim koeficientom ki smo jih nato razvrstili z različnimi algoritmi, vključno z nevronskimi mrežami. Naši rezultati pokažejo, da je gibanje mogoče razvrstiti z značilkami, ki izhajajo iz možganske povezljivosti. Ob uporabi optimalnega frekvenčnega pasu, ki je v našem primeru 13-20Hz, je razvrščanje bolj točno z uporabo značilk, pridobljenih z uporabo kompleksnega Pearsonovega korelacijskega koeficienta, čeprav ta, za razliko od Grangerjevega indeksa vzorčnosti ne podaja informacije o usmerjenosti povezav.
 \vspace{0.2cm}
 }}
 \end{center}
@@ -156,7 +162,7 @@ Prav tako se iz srca zahvaljujem prijateljem in družini za njihovo neomajno pod
 \thispagestyle{fancyplain}
 \begin{longtable}{@{}p{2cm}@{}p{\dimexpr\textwidth-2cm\relax}@{}}
 
-\nomenclature{$EEG$}{electroencephalography}
+\nomenclature{$EEG$}{elektroencefalografija}
 \nomenclature{$MMID$}{Motor Movement/Imagery Dataset} 
 \nomenclature{$PLI$}{phase lag index}
 \nomenclature{$wPLI$}{weighted phase lag index}
