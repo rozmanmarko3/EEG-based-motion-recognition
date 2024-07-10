@@ -1,15 +1,15 @@
 \chapter{Rezultati}
+\section{Točnost razvrščanja}
+Pri interpretaciji točnosti razvrščanja stanj je potrebno upoštevati, da razvrščamo tri različna stanja. Zato so že rezultati okoli 50\% bistveno nad nivojem naključnosti, ki je v primeru treh različnih stanj 33\%.
 \section{Delitev podatkov}
 Za končno raziskavo smo izbrali posnetke serij 3, 7 in 11 iz MMID. Vsaka serija vsebuje 109 posnetkov, vsak posnetek 30 primerov stanj, vse skupaj smo jih pridobili 9854. Primere stanj smo skrčili na enakomerno razporeditev, z 2456 primeri vsakega stanja. Sami smo posneli nekaj minut posnetkov. Vse skupaj 250 primerov stanj, ki smo jih skrčili na enakomerno razporeditev, 62 primerov vsakega stanja. Za učenje nevronskih mrež smo uporabljali množice za učenje s 75\% podatkov in množice za testiranje s 25\% podatkov. Podatki so bili naključno razporejeni med učno in testno množico. Ker smo podatke delili naključno, se lahko različni posnetki stanj istega prostovoljca pojavijo v učni in testni množici. Pri dodatnem učenju mreže smo uporabili posnetke ene osebe za učenje in testiranje. To skupaj pomeni da sistem ne deluje medosebno.
 
 
-
-
 \section{Rezultati na MMID}
-Za izbiro metode povezljivosti, načina filtriranja, dolžine epohe in frekvenčnega pasu smo uporabili podatkovno zbirko MMID. Pri interpretaciji točnosti razvrščanja stanj je treba upoštevati, da razvrščamo tri različna stanja. Zato so že rezultati okoli 50\% bistveno nad nivojem naključnosti, ki je v primeru treh različnih stanj 33\%.
+Za izbiro metode povezljivosti, načina filtriranja, dolžine epohe in frekvenčnega pasu smo uporabili podatkovno zbirko MMID.
 
 \subsection{Izbira metode povezljivosti}
-Ker je kompleksni Pearsonov korelacijski koeficient(CPCC) izračunan iz analitičnih signalov ga lahko definiramo samo za ozke frekvenčne pasove. Pri računanju Grangerjevega indeksa vzročnosti(GC) te omejitve ni, tako da smo ga lahko računali na celotnem frekvenčnem območju do 45Hz. Prav tako se je pojavilo vprašanje koliko dolgo epoho EEG signala bomo potrebovali za uspešno razvrščanje. Kot možnosti smo vzeli prvo sekundo, prvi dve sekundi, drugi dve sekundi in prve štiri sekunde po dogodku. Točnost razvrščanja smo ocenili z zgoraj navedeno nevronsko mrežo. Za najboljšo metodo se je izkazal kompleksni Pearsonov korelacijski koeficient na območju 13-20Hz z najdaljšimi epohami, 4s. Celotno območje primerjav razvidno iz slike \ref{slika:primerjava_obmocij}.
+Ker je kompleksni Pearsonov korelacijski koeficientizračunan iz analitičnih signalov ga lahko definiramo samo za ozke frekvenčne pasove. Pri računanju Grangerjevega indeksa vzročnosti te omejitve ni, tako da smo ga lahko računali na celotnem frekvenčnem območju do 45Hz. Prav tako se je pojavilo vprašanje koliko dolgo epoho EEG signala bomo potrebovali za uspešno razvrščanje. Kot možnosti smo vzeli prvo sekundo, prvi dve sekundi, drugi dve sekundi in prve štiri sekunde po dogodku. Točnost razvrščanja smo ocenili z zgoraj navedeno nevronsko mrežo. Za najboljšo metodo se je izkazal kompleksni Pearsonov korelacijski koeficient na območju 13-20Hz z najdaljšimi epohami, 4s. Celotno območje primerjav razvidno iz slike \ref{slika:primerjava_obmocij}.
 \begin{figure}
     \begin{center}
     \includegraphics[width=1\linewidth]{slike/Comparison.png}
@@ -25,7 +25,7 @@ Knjižnica EEGLAB vsebuje samo filtre z ničelno fazo, ki filtrirajo naprej in n
     \begin{center}
     \includegraphics[width=1 \linewidth]{slike/ComparisonFilters.png}
     \end{center}
-    \caption[Točnost razvrščanja glede na tip filtra in frekvenčno območe.]{Primerjava točnosti razvrščanja glede na tip filtra. Uporabljena metoda CPCC za epoho prvih štirih sekund za frekvenčne pasove delta, theta, alpha, beta in gamma. Razvrščanje z zgoraj navedeno nevronsko mrežo. Modra predstavlja Butterwothov filter, oranžna predstavlja filter z ničelno fazo.}
+    \caption[Točnost razvrščanja glede na tip filtra in frekvenčno območje.]{Primerjava točnosti razvrščanja glede na tip filtra. Uporabljena metoda CPCC za epoho prvih štirih sekund za frekvenčne pasove delta, theta, alpha, beta in gamma. Razvrščanje z zgoraj navedeno nevronsko mrežo. Modra predstavlja Butterwothov filter, oranžna predstavlja filter z ničelno fazo.}
     \label{slika:primerjava_filtrov}
 \end{figure}
 
