@@ -80,12 +80,19 @@ Metode povezljivosti se uporabljajo za analizo delovanja možganov, saj nam v na
 \subsection{Grangerjev indeks vzročnosti}
 Grangerjev indeks vzročnosti je statistična metoda za preverjanje, ali ena časovna vrsta nosi informacije o drugi. Metoda je bila razvita v šestdesetih letih devetnajstega stoletja za uporabo ekonomiji.\cite{cohenAnalyzingNeuralTime2014}
 
-Za dve časovni vrsti $X_1$ in $X_2$ ter $p$ kot število prejšnjih vrednosti, ki jih upoštevamo pri računanju, lahko izračunamo $E_1$ in $E_1$ ki so napake pri predvidevanju naslednje vrednosti v vrsti $X_1$. V kolikor je varianca vrednosti $E_2$ manjša kot varianca vrednosti $E_1$ lahko predvidevamo, da časovna vrsta $X_2$ nosi informacije o časovni vrsti $X_1$. $A_1$, $A_2$ in $A_3$ so koeficienti avto-regresivnega modela. \cite{sethGrangerCausality2007}
+Za dve časovni vrsti $X_1$ in $X_2$ ter $p$ kot število prejšnjih vrednosti, ki jih upoštevamo pri računanju, lahko izračunamo $E_1$ in $E_1$ ki so napake pri predvidevanju naslednje vrednosti v vrsti $X_1$. $A_1$, $A_2$ in $A_3$ so koeficienti avto-regresivnega modela. \cite{sethGrangerCausality2007}
 \begin{align*}
 X_1(t) &= \sum_{j=1}^{p} A_{1,j} X_1(t-j) + E_1(t)\\
 X_1(t) &= \sum_{j=1}^{p} A_{2,j} X_1(t-j) + \sum_{j=1}^{p} A_{3,j} X_2(t-j) + E_2(t)
 \end{align*}
 
+V kolikor je varianca vrednosti $E_2$ manjša kot varianca vrednosti $E_1$ lahko predvidevamo, da časovna vrsta $X_2$ nosi informacije o časovni vrsti $X_1$.  \cite{sethGrangerCausality2007}
+
+Sam indeks vzorčnosti pa izračunamo po formuli:
+
+\begin{align*}
+GC &= \log \left( \frac{\mathrm{varianca}(E_1)}{\mathrm{varianca}(E_2)} \right)
+\end{align*}
 
 \subsection{Kompleksni Pearsonov korelacijski koeficient}
 Pearsonov korelacijski koeficient je najpogosteje uporabljen linearni korelacijski koeficient. Zanj smo se odločili saj v članku  \citetitle{sverkoComplexPearsonCorrelation2022}
