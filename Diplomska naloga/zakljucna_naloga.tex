@@ -15,12 +15,33 @@ sorting=ynt
 ]{biblatex}
 
 \bibliography{bibliografija.bib}
+\defbibheading{bibliography}[\refname]{\section*{#1}}
 
 \usepackage{url}
 \usepackage{breakurl}
 \setcounter{biburlnumpenalty}{100}
 \setcounter{biburlucpenalty}{100}
 \setcounter{biburllcpenalty}{100}
+
+\usepackage{textcase}
+
+% upercase
+\newcommand{\uppercaseChapter}[1]{\chapter{\MakeUppercase{#1}}}
+
+\newcommand{\uppercaseSection}[1]{\section{\MakeUppercase{#1}}}
+
+\setlength{\voffset}{-10mm}
+
+\usepackage{tocloft}
+
+\setlength{\cftbeforetoctitleskip}{3mm}
+\setlength{\cftaftertoctitleskip}{8mm}
+
+\setlength{\cftbeforelottitleskip}{3mm}
+\setlength{\cftafterlottitleskip}{9mm}
+
+\setlength{\cftbeforeloftitleskip}{3mm}
+\setlength{\cftafterloftitleskip}{9mm}
 
 
 % Glava dokumenta:
@@ -43,6 +64,8 @@ Rozman M. Razpoznavanje gibanja na osnovi elektroencefalografije.\\
 
 
 \begin{document}
+
+
 \pagenumbering{Roman}
 \pagestyle{empty}
 \begin{center}
@@ -74,7 +97,7 @@ Zaključna naloga\\
 
 \vspace{4cm}
 \begin{center}
-\large \textbf{Koper, Julij 2024}
+\large \textbf{Koper, 2024}
 % dopišite mesec in leto oddaje zaključne naloge
 \end{center}
 \newpage
@@ -93,7 +116,7 @@ Ime in PRIIMEK: Marko ROZMAN\vspace{0.5cm}\\
 Naslov zaključne naloge: Razpoznavanje gibanja na osnovi elektroencefalografije\vspace{0.5cm}\\
 Kraj: Koper\vspace{0.5cm}\\
 Leto: 2024\vspace{0.5cm}\\
-Število listov: 33\hspace{2cm} Število slik: 15\hspace{2.6cm} Število tabel: 2\hspace{2cm}\vspace{0.5cm}\\
+Število listov: 23\hspace{2cm} Število slik: 15\hspace{2.6cm} Število tabel: 2\hspace{2cm}\vspace{0.5cm}\\
 Število referenc: 15\vspace{0.5cm}\\
 Mentor: doc. dr. Peter Rogelj\vspace{0.5cm}\\
 Ključne besede: elektroencefalografija, Grangerjev indeks vzročnosti, kompleksni Pearsonov korelacijski koeficient, nevronska mreža, razvrščanje  \vspace{0.5cm}\\
@@ -105,7 +128,7 @@ Namen naloge je preveriti zmožnost razpoznavanja gibanja na osnovi ocenjene mo�
 
 \newpage
 
-\section*{Key words documentation}
+\section*{Key document information}
 
 \medskip
 
@@ -117,7 +140,7 @@ Name and SURNAME: Marko ROZMAN\vspace{0.5cm}\\
 Title of final project paper: Movement recognition based on electroencephalography\vspace{0.5cm}\\
 Place: Koper\vspace{0.5cm}\\
 Year: 2024\vspace{0.5cm}\\
-Number of pages: 33\hspace{1.6cm} Number of figures: 15\hspace{2.2cm} Number of tables: 2\vspace{0.5cm}\\
+Number of pages: 23\hspace{1.6cm} Number of figures: 15\hspace{2.2cm} Number of tables: 2\vspace{0.5cm}\\
 Number of references: 15\vspace{0.5cm}\\
 Mentor: Assist. Prof. Peter Rogelj, PhD\vspace{0.5cm}\\
 % opomba: za "title" vpišite eno od naslednjega:
@@ -158,8 +181,8 @@ Prav tako se iz srca zahvaljujem prijateljem in družini za njihovo neomajno pod
 \addtocontents{lof}{\protect\thispagestyle{fancy}}
 \newpage
 
+\chapter*{SEZNAM KRATIC}
 
-\chapter*{Seznam kratic}
 \thispagestyle{fancyplain}
 \begin{longtable}{@{}p{2cm}@{}p{\dimexpr\textwidth-2cm\relax}@{}}
 
@@ -193,7 +216,8 @@ Prav tako se iz srca zahvaljujem prijateljem in družini za njihovo neomajno pod
 
 \include{poglavja/4_zakljucek}
 
-\printbibliography
-
+\uppercaseChapter{Literatura in viri}
+\thispagestyle{fancy}
+\printbibliography[title={~}]
 \addtocontents{toc}{\setcounter{tocdepth}{2}}
 \end{document}

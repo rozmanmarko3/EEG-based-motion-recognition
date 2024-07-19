@@ -1,11 +1,12 @@
-\chapter{Rezultati}
-\section{Točnost razvrščanja}
+\uppercaseChapter{Rezultati}
+\thispagestyle{fancy}
+\uppercaseSection{Točnost razvrščanja}
 Pri interpretaciji točnosti razvrščanja stanj je potrebno upoštevati, da razvrščamo tri različna stanja, zato so že rezultati okoli 50\% bistveno nad nivojem naključnosti, ki je v primeru treh različnih stanj 33\%.
-\section{Delitev podatkov}
+\uppercaseSection{Delitev podatkov}
 Za končno raziskavo smo izbrali posnetke serij 3, 7 in 11 iz MMID. Vsaka serija vsebuje 109 posnetkov, vsak posnetek 30 primerov stanj, vse skupaj smo jih pridobili 9854. Primere stanj smo skrčili na enakomerno razporeditev z 2456 primeri vsakega stanja. Sami smo posneli nekaj minut posnetkov. Posneli smo vsega skupaj 250 primerov stanj, ki smo jih skrčili na enakomerno razporeditev, 62 primerov vsakega stanja. Za učenje nevronskih mrež smo uporabljali množice za učenje s 75\% podatkov in množice za testiranje s 25\% podatkov. Podatki so bili naključno razporejeni med učno in testno množico. Ker smo podatke delili naključno, se lahko različni posnetki stanj istega prostovoljca pojavijo v učni in testni množici. Pri dodatnem učenju mreže smo uporabili posnetke ene osebe za učenje in testiranje. To skupaj pomeni, da sistem ne deluje medosebno.
 
 
-\section{Rezultati na MMID}
+\uppercaseSection{Rezultati na MMID}
 Za izbiro metode povezljivosti, načina filtriranja, dolžine epohe in frekvenčnega pasu smo uporabili podatkovno zbirko MMID.
 
 \subsection{Izbira metode povezljivosti}
@@ -40,6 +41,8 @@ Knjižnica EEGLAB vsebuje samo filtre z ničelno fazo, ki filtrirajo naprej in n
 \subsection{Rezultati z okoljem Classification Learner}
 Z uporabo aplikacije Clasifiacation Learner smo testirali več načinov razvrščanja. Iz rezultatov predstavljenih v tabeli \ref{tabela:primerjava_tocnosti} lahko razberemo, da so se za najbolj uspešne izkazale metode podpornih vektorjev (SVM), vendar so te metode računsko zahtevne, kar otežuje izvedbo v realnem času. Dober kandidat bi lahko bila odločitvena drevesa, saj so enostavna za učenje in interpretacijo, vendar so le ta dosegla 41\% točnost. Nevronske mreže ki jih podpira aplikacija so enostavne, vendar pa je njihova interpretacija težja.  Dosegle so 49\% točnost.
 \begin{table}
+\caption{Točnost vseh testiranih metod razvrščanja v aplikaciji Clasification Learner.}
+\vspace{3mm}
 \centering
 \begin{tabular}{|l|l|c|}
 \hline
@@ -77,7 +80,7 @@ vrsta razvrščanja & metoda & točnost [\%] \\
 
 \hline
 \end{tabular}
-\caption{Točnost vseh testiranih metod razvrščanja v aplikaciji Clasification Learner.}
+
 \label{tabela:primerjava_tocnosti}
 \end{table}
 
@@ -102,7 +105,7 @@ Nato smo poskusili z zgoraj navedeno nevronsko mrežo, ki razvršča matrike pov
 
 
 
-\section{Rezultati na lastnih podatkih}
+\uppercaseSection{Rezultati na lastnih podatkih}
 Da bi se približali delovanju v realnem času, smo nevronsko mrežo dodatno naučili na naših podatkih. Zaradi različnih pogojev snemanja in natančnosti naprav, na katerih so podatki bili posneti, točnost razvrščanja pričakovano padla. Dosegli smo 43\% točnost. Ker nimamo velikega števila posnetkov smo uporabili petkratno prečno preverjanje. 
 \begin{figure}
 \begin{center}
@@ -112,7 +115,7 @@ Da bi se približali delovanju v realnem času, smo nevronsko mrežo dodatno nau
 \end{figure}
 
 
-\section{Sprotno razpoznavanje}
+\uppercaseSection{Sprotno razpoznavanje}
 Po razvoju pristopov na zbirkah podatkov smo implementirali sprotno razpoznavanje. Za prenos podatkov iz naprave Quick-20 v okolje MATLAB smo uporabili programsko opremo Lab Streaming Layer. V okolju MATLAB smo podatke združevali in iz njih vsako sekundo izračunali matriko povezljivosti z metodo CPCC za frekvenčno območje beta, filtrirano z Butterwithovim filtrom. Matriko povezljivosti smo razvrstili in rezultat razvrščanja izpisali na zaslon. Na natančnost sprotnega razvrščanja matrik povezljivosti ene osebe vpliva veliko dejavnikov. Nanj vpliva razpoloženje osebe, namestitev naprave, sam dogodek, ki ga razvrščamo, pa tudi motnje v okolju, ki vplivajo na osebo in napravo. Točnosti razvrščanj nismo natančno izmerili, ocenjujemo pa, da je nižja od tiste, ki smo jo dosegli na prej posnetih podatkih. Kljub temu je iz rezultatov razvidno, da je klasifikacija gibanja v realnem času mogoča.
 
 \begin{figure}

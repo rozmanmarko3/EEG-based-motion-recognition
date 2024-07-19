@@ -5,9 +5,9 @@
 \usepackage[slovene]{babel}
 %Preimenuje naslov Slike v Seznam slik, Tabele v Seznam tabel, Priloge v Seznam prilog:
 \addto\captionsslovene{%
-  \renewcommand{\contentsname}{Kazalo vsebine}
-  \renewcommand{\listfigurename}{Kazalo slik}
-  \renewcommand{\listtablename}{Kazalo tabel}
+  \renewcommand{\contentsname}{KAZALO VSEBINE}
+  \renewcommand{\listfigurename}{KAZALO SLIK}
+  \renewcommand{\listtablename}{KAZALO PREGLEDNIC}
   \renewcommand{\listappendicesname}{Kazalo prilog}
 }
 
@@ -20,21 +20,25 @@
 % Oblikovanje naslovov poglavij (brez Chapter) -> St. poglavja in naslov poglavja
 \makeatletter
 \def\@makechapterhead#1{%
-  \vspace*{30\p@}%
+  \vspace*{-10\p@}%
   {\noindent\Huge\bf\thechapter \hspace*{0.5cm} \parindent \z@ \raggedright \normalfont
     \interlinepenalty\@M
     \Huge \bfseries #1\par\nobreak
-    \vskip 30\p@
+    \vskip 25\p@
   }}
   \makeatother
 
-% Poglavje Literatura
-\usepackage{etoolbox}
-\makeatletter
-\patchcmd{\thebibliography}{%
-  \chapter*{\bibname}\@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}}{%
-  \chapter{Literatura in viri}}{}{}
-\makeatother
+
+  \makeatletter
+  \def\@makeschapterhead#1{%
+    \vspace*{-10\p@}%
+    {\noindent\Huge\bf \parindent \z@ \raggedright \normalfont
+      \interlinepenalty\@M
+      \Huge \bfseries #1\par\nobreak
+      \vskip 25\p@
+    }}
+    \makeatother
+
 
 
 % Priloge
@@ -79,17 +83,7 @@
 %     \else      {\it (Citirano na straneh~#2.)}%
 %     \fi}
 
-% Paket za psevdokode algoritmov s slovenskimi ukazi.
-% Po potrebi lahko prevedemo še ostale ukaze,
-% glej http://www.tug.org/texlive/Contents/live/texmf-dist/doc/latex/algorithm2e/algorithm2e.pdf
-% Če tega ne potrebujete, lahko zakomentirate naslednjih 7 vrstic.
-\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
-\SetKwInput{Vhod}{Vhod}
-\SetKwInput{Izhod}{Izhod}
-\SetKwFor{Za}{za}{}{konec za}
-\SetKwIF{Ce}{SicerCe}{Sicer}{če}{potem}{sicer če}{sicer}{konec če}
-\SetKw{Vrni}{vrni}
-\renewcommand{\algorithmcfname}{Algoritem}
+
 
 
 %http://en.wikibooks.org/wiki/LaTeX/Basics

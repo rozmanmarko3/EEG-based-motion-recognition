@@ -1,9 +1,9 @@
-\chapter{Uvod}
+\uppercaseChapter{Uvod}
 \thispagestyle{fancy}
 \pagenumbering{arabic}
 Motivacija za raziskavo je bila ugotoviti, do kakšne mere je mogoče razpoznavanje gibanja v živo na osnovi analize možganske aktivnosti z meritvami elektronecefalografije (EEG) . Najprej smo podatke iz prosto dostopne zbirke podatkov s pomočjo knjižnice EEGLAB razdelili na nekaj različno dolgih epoh po dogodkih in jim zožili frekvenčne pasove. Iz vsake pridobljene zbirke podatkov smo izračunali matrike povezljivosti Grangerjevega indeksa vzročnosti in matrike povezljivosti kompleksnega Pearsonovega korelacijskega koeficienta. Na pridobljenih podatkih smo naučili nevronsko mrežo. Iz pridobljenih rezultatov smo se odločili za nadaljevanje razvoja na zbirki, ki je obetala najboljšo točnost. Da bi omogočili delovanje v realnem času smo implementirali nekaj že obstoječih funkcij iz knjižnice. Posneli smo podatke na napravi Cognionics Quick-20 in dodatno naučili nevronsko mrežo na naših podatkih za boljše razvrščanje.
 \newpage
-\section{Elektroencefalografija}
+\uppercaseSection{Elektroencefalografija}
 Elektroencefalografija je metoda za merjenje možganske električne aktivnosti. Meri električne potenciale na površini temena, ki jih deloma generira možganska aktivnost. V zadnjem stoletju so znanstveniki s pomočjo EEG pridobili vpogled v različne nevrološke bolezni. V zadnjem času pa se pojavlja interes za modeliranje EEG signalov in uporabo le-teh za nadzor fizičnih naprav (ang. Brain-Computer Interfacing). EEG signali so običajno razdeljeni v frekvenčna območja, ki odražajo različne spektralne vrhove in jih povezujemo z različnimi možganskimi procesi. Ta območja (Slika \ref{slika:eeg}) so običajno določena kot delta (1-4 Hz), theta (4-8 Hz), alpha (8-13 Hz), beta (13-20 Hz), in gamma (>20 Hz).
  \cite{nunezElectroencephalographyEEGNeurophysics2016}
  \begin{figure}[h]
@@ -45,6 +45,6 @@ Cognionics Quick-20 (slika \ref{slika:quick_20}) je brezžična EEG naprava s su
     \caption[EEG naprava Cognionics Quick-20.]{EEG naprava Cognionics Quick-20. \cite{CognionicsQUICK20User}}
     \label{slika:quick_20}
     \end{figure}
-\section{Možganska povezljivost}
+\uppercaseSection{Možganska povezljivost}
 Možganska povezljivost se nanaša na vzorce, nastale zaradi anatomskih povezav možganov, statistične odvisnosti ali interakcij med posameznimi deli možganov. Enote, med katerimi se meri povezljivost, so lahko različne: posamezni nevroni, nevronske populacije, ali pa kot v našem primeru regije možganske skorje. Možganska aktivnost je omejena s povezljivostjo, le-ta pa je zato ključnega pomena za razumevanje delovanja možganov. V grobem poznamo dve vrsti povezljivosti: strukturno in funkcijsko. Strukturna povezanost se nanaša na anatomsko povezanost različnih delov možganov. Funkcijska povezljivost pa se nanaša na to kako različni deli možganov med seboj komunicirajo oziroma sodelujejo.\cite{spornsBrainConnectivity2007} Funkcijsko povezljivost lahko nadaljnjo delimo na usmerjeno in neusmerjeno. V našem primeru je metoda Grangerjevega indeksa vzročnosti (GC) usmerjena, saj je vpliv elektrode $A$ na elektrodo $B$ drugačen kot vpliv elektrode $B$ na elektrodo $A$. Metoda kompleksnega Pearsonovega korelacijskega koeficienta (CPCC) pa je neusmerjena, saj nam njegova vrednost pove le o povezanosti para elektrod zato se pri njej ne ugotavlja smeri vpliva.
 V izrazu Grangerjev indeks vzročnosti je vzorčnost zavajajoč termin, saj nam Grangerjev indeks vzročnosti nakazuje le, da en signal vpliva na drugega vendar sta lahko v določenih primerih obe meritvi odvisni od nečesa tretjega.

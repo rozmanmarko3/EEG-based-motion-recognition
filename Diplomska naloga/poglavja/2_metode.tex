@@ -1,5 +1,6 @@
-\chapter{Podatki in metode}
-\section{Razvojno okolje MATLAB}
+\uppercaseChapter{Podatki in metode}
+\thispagestyle{fancy}
+\uppercaseSection{Razvojno okolje MATLAB}
 Ves razvoj je potekal v programskem okolju MATLAB. Ta poleg samega programskega jezika vsebuje tudi širok nabor že implementiranih funkcij, napredne aplikacije za strojno učenje in knjižnice, ki omogočajo povezave z laboratorijskimi napravami. V njem sta ustvarjeni funkciji za računanje matrik Grangerjevega indeksa vzročnosti in matrik kompleksnega Pearsonovega korelacijskega koeficienta, prav tako pa so v njem ustvarjene nevronske mreže. Programsko okolje MATLAB se uporablja tudi za ostala razvrščanja, funkcijo za zajemanje podatkov iz naprave Cognionics Quick-20 ter funkcijo, ki v realnem času razpoznava gibanje. \cite{MATLAB}
 \begin{figure}[h!]
     \begin{center}
@@ -29,13 +30,14 @@ Classification Learner je aplikacija v okolju MATLAB za enostavno razvrščanje 
     \caption[Aplikacija Classification learner.]{Aplikacija Classification learner. Na levi strani podokno z različnimi metodami razvrščanja, na sredini prikaz podrobnosti izbrane metode. Zgoraj zavihki za učenje, testiranje in razlago. }
     \end{figure}
 
-\section{Podatkovna zbirka EEG Motor Movement/Imagery Dataset}
+\uppercaseSection{Podatkovna zbirka}
 EEG Motor Movement/Imagery Dataset (MMID) je prosto dostopna zbirka več kot 1500 posnetkov 109 prostovoljcev, ki so dolgi po eno in dve minuti. Zbirka za vsakega prostovoljca vsebuje dva izhodiščna posnetka in po tri posnetke opravljanja štirih različnih nalog: stiskanje in sproščanje leve ali desne pesti (naloga 1), namišljeno stiskanje in sproščanje leve ali desne pesti (naloga 2), stiskanje in sproščanje obeh pesti ali obeh stopal (naloga 3), namišljeno stiskanje in sproščanje obeh pesti ali obeh stopal (naloga 4). Za nas relevantni so posnetki serij 3, 7 in 11, v katerih prostovoljci opravljajo prvo nalogo. Posnetki so shranjeni v formatu EDF+, ki vsebuje posnetke EEG in oznake dogodkov. Snemanje je bilo opravljeno s sistemom BCI2000 s 64 elektrodami postavljenimi po mednarodnem sistemu 10-10 (slika \ref{slika:mednarodni_sistem_10}) brez elektrod Nz, F9, F10, FT9, FT10, A1, A2, TP9, TP10, P9, in P10. \cite{schalkBCI2000GeneralpurposeBraincomputer2004,schalkEEGMotorMovement2009}
 
 \begin{table}[h]
+\caption{Naloge in opisi nalog, ki jih prostovoljci opravljajo v posnetkih zbirke podatkov MMID.}
+\vspace{3mm}
 \centering
 \begin{tabular}{|c|c|l|}
-
 \hline
 Številka serije & Naloga &Opis naloge \\
 \hline
@@ -66,14 +68,12 @@ EEG Motor Movement/Imagery Dataset (MMID) je prosto dostopna zbirka več kot 150
 13 & naloga 3 &stiskanje in sproščanje obeh pesti ali obeh stopal \\
 \hline
 14 & naloga 4 &namišljeno stiskanje in sproščanje obeh pesti ali obeh stopal  \\
-
 \hline
 \end{tabular}
-\caption{Naloge in opisi nalog, ki jih prostovoljci opravljajo v posnetkih zbirke podatkov MMID.}
 \end{table}
 
 
-\section{Metode povezljivosti}
+\uppercaseSection{Metode povezljivosti}
 Metode povezljivosti se uporabljajo za analizo delovanja možganov, saj nam v nasprotju z direktnim razvrščanjem EEG signalov omogočajo identifikacijo specifičnih vzorce, s čimer pridobimo globlji vpogled v delovanje možganov.
 
 \subsection{Grangerjev indeks vzročnosti}
@@ -106,7 +106,7 @@ Za računanje Kompleksnega Pearsonovega korelacijskega koeficienta v našem prim
 r(X_1, X_2) &= \frac{\sum\limits_{n=1}^{N}(X_1(n) \cdot \overline{X_2(n)})}{\sqrt{\sum\limits_{n=1}^{N} |X_1(n)|^2} \cdot \sqrt{\sum\limits_{n=1}^{N} |X_2(n)|^2}}
 \end{align*}
 
-\section{Razvrščanje}
+\uppercaseSection{Razvrščanje}
 Želeli smo preizkusiti, kako uspešno bi razvrščanje delovalo na podatkih zbirke in kako uspešno bi delovalo na naših podatkih, zato smo razvrščanja izvajali dvakrat - enkrat na podatkih zbirke in enkrat na naših podatkih. Ker nevronska mreža za učenje potrebuje več podatkov, kot jih lahko zagotovimo iz naših posnetkov, smo jo za namene razvrščanja naših posnetkov najprej naučili na podatkih MMID in nato dodatno še na naših podatkih. 
 
 \subsection{Razvrščanje v okolju Classification learner}
